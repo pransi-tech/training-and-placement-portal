@@ -187,6 +187,60 @@
             z-index: 999;
         }
 
+        .login-modal .modal-content {
+            background: linear-gradient(145deg, rgba(17, 28, 51, 0.98), rgba(15, 23, 42, 0.95));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+            color: var(--text);
+        }
+
+        .login-modal .modal-header,
+        .login-modal .modal-footer {
+            border-color: var(--border);
+        }
+
+        .login-option {
+            display: block;
+            padding: 1.1rem 1rem;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .login-option:hover {
+            transform: translateY(-4px);
+            background: rgba(37, 99, 235, 0.16);
+            box-shadow: 0 16px 36px rgba(37, 99, 235, 0.2);
+            color: var(--text);
+        }
+
+        .login-option-icon {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: white;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .login-option-title {
+            font-weight: 600;
+        }
+
+        .login-option-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
         footer {
             border-top: 1px solid var(--border);
             background: rgba(2, 6, 23, 0.95);
@@ -224,7 +278,7 @@
                     <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
                     <li class="nav-item"><a class="nav-link" href="#drives">Placement Drives</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light btn-sm rounded-pill ms-lg-2" href="#contact">Login</a></li>
+                    <li class="nav-item"><a class="btn btn-outline-light btn-sm rounded-pill ms-lg-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
                     <li class="nav-item"><a class="btn btn-primary btn-sm rounded-pill ms-lg-2" href="#contact">Register</a></li>
                 </ul>
             </div>
@@ -237,14 +291,12 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-7 scroll-reveal">
                     <div class="hero-card">
-                        <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis mb-3">Trusted by Leading Colleges & Recruiters</span>
                         <h1 class="display-4 fw-bold mb-3">Launch Your Career With Confidence</h1>
                         <p class="lead text-light-emphasis mb-4">
                             Discover premium opportunities, connect with top recruiters, and build a future-ready profile through our modern placement ecosystem.
                         </p>
                         <div class="d-flex flex-wrap gap-3">
                             <a href="#drives" class="btn btn-primary btn-lg rounded-pill px-4">Explore Opportunities</a>
-                            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-4">Login</a>
                         </div>
                     </div>
                 </div>
@@ -293,130 +345,6 @@
                             <p class="text-light-emphasis mb-0">
                                 With a professional interface and modern workflows, colleges can coordinate placement drives while recruiters gain direct access to highly engaged student talent pools.
                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Placement Statistics -->
-        <section class="py-5">
-            <div class="container py-3 scroll-reveal">
-                <div class="text-center mb-4">
-                    <h2 class="section-title">Placement Excellence in Numbers</h2>
-                    <p class="section-subtitle">A growing network of students, companies, and successful career outcomes.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-3 col-6">
-                        <div class="stat-box text-center">
-                            <h3 class="display-6 fw-bold counter" data-target="2500">0</h3>
-                            <p class="text-light-emphasis mb-0">Students Registered</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="stat-box text-center">
-                            <h3 class="display-6 fw-bold counter" data-target="180">0</h3>
-                            <p class="text-light-emphasis mb-0">Recruiting Companies</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="stat-box text-center">
-                            <h3 class="display-6 fw-bold counter" data-target="95">0</h3>
-                            <p class="text-light-emphasis mb-0">Placement Drives</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="stat-box text-center">
-                            <h3 class="display-6 fw-bold counter" data-target="1400">0</h3>
-                            <p class="text-light-emphasis mb-0">Successful Placements</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Top Recruiters -->
-        <section id="companies" class="py-5">
-            <div class="container py-3 scroll-reveal">
-                <div class="text-center mb-4">
-                    <h2 class="section-title">Top Recruiters</h2>
-                    <p class="section-subtitle">Our placement network includes some of the most respected names in technology and industry.</p>
-                </div>
-                <div class="row g-3">
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">TCS</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Infosys</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Wipro</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Accenture</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">IBM</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Capgemini</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Cognizant</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Tech Mahindra</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Oracle</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Microsoft</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Google</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Amazon</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Bosch</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Siemens</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">Dell</div></div>
-                    <div class="col-6 col-md-4 col-lg-3"><div class="logo-box p-3">HCL</div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Latest Placement Drives -->
-        <section id="drives" class="py-5">
-            <div class="container py-3 scroll-reveal">
-                <div class="text-center mb-4">
-                    <h2 class="section-title">Latest Placement Drives</h2>
-                    <p class="section-subtitle">Explore the newest career opportunities available for talented students.</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="glass-card p-4 h-100">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="company-logo">T</div>
-                                <div>
-                                    <h5 class="fw-semibold mb-1">TCS</h5>
-                                    <p class="text-light-emphasis mb-0">Software Engineer</p>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled small text-light-emphasis mb-3">
-                                <li class="mb-2"><i class="bi bi-person-check me-2"></i>Eligibility: B.Tech 2026 Batch</li>
-                                <li class="mb-2"><i class="bi bi-calendar3 me-2"></i>Last Date: 05 Aug 2026</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="glass-card p-4 h-100">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="company-logo">I</div>
-                                <div>
-                                    <h5 class="fw-semibold mb-1">Infosys</h5>
-                                    <p class="text-light-emphasis mb-0">System Engineer</p>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled small text-light-emphasis mb-3">
-                                <li class="mb-2"><i class="bi bi-person-check me-2"></i>Eligibility: Any Graduate</li>
-                                <li class="mb-2"><i class="bi bi-calendar3 me-2"></i>Last Date: 12 Aug 2026</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="glass-card p-4 h-100">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-                                <div class="company-logo">M</div>
-                                <div>
-                                    <h5 class="fw-semibold mb-1">Microsoft</h5>
-                                    <p class="text-light-emphasis mb-0">Data Analyst Intern</p>
-                                </div>
-                            </div>
-                            <ul class="list-unstyled small text-light-emphasis mb-3">
-                                <li class="mb-2"><i class="bi bi-person-check me-2"></i>Eligibility: MCA / M.Tech</li>
-                                <li class="mb-2"><i class="bi bi-calendar3 me-2"></i>Last Date: 18 Aug 2026</li>
-                            </ul>
-                            <a href="#contact" class="btn btn-primary rounded-pill">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -479,41 +407,78 @@
 
     <!-- Footer -->
     <footer class="py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5 class="fw-semibold mb-3">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#home" class="text-light-emphasis text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="#about" class="text-light-emphasis text-decoration-none">About</a></li>
-                        <li class="mb-2"><a href="#drives" class="text-light-emphasis text-decoration-none">Placement Drives</a></li>
-                        <li class="mb-2"><a href="#contact" class="text-light-emphasis text-decoration-none">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="fw-semibold mb-3">Contact Details</h5>
-                    <p class="text-light-emphasis mb-2"><i class="bi bi-envelope-fill text-primary me-2"></i>placement.portal@gmail.com</p>
-                    <p class="text-light-emphasis mb-2"><i class="bi bi-telephone-fill text-primary me-2"></i>+91 98765 43210</p>
-                    <p class="text-light-emphasis mb-0"><i class="bi bi-geo-alt-fill text-primary me-2"></i>K. D. Polytechnic, Patan, Gujarat, India</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="fw-semibold mb-3">Follow Us</h5>
-                    <div class="d-flex gap-3 fs-5">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-top border-secondary mt-4 pt-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <p class="mb-0 text-light-emphasis">© 2026 College Training & Placement Portal. All rights reserved.</p>
-                <a href="#home" class="btn btn-primary rounded-pill mt-3 mt-md-0">Back to Top</a>
+        <div class="container text-center">
+            <div class="border-top border-secondary pt-4">
+                <h5 class="fw-semibold mb-3">Training & Placement Portal</h5>
+                <p class="text-light-emphasis mb-2">K. D. Polytechnic, Patan, Gujarat</p>
+                <p class="text-light-emphasis mb-0">Designed for students, placement officers, companies, and administrators.</p>
             </div>
         </div>
     </footer>
 
     <a href="#home" class="btn btn-primary rounded-circle back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+
+    <div class="modal fade login-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-semibold" id="loginModalLabel">Login As</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <a href="student-login.html" class="login-option h-100">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="login-option-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                                    <div>
+                                        <div class="login-option-title">Student</div>
+                                        <div class="login-option-desc">Access student dashboard</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="company-login.html" class="login-option h-100">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="login-option-icon"><i class="bi bi-building-fill-gear"></i></div>
+                                    <div>
+                                        <div class="login-option-title">Company</div>
+                                        <div class="login-option-desc">Manage recruitment</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="placementofficer-login.html" class="login-option h-100">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="login-option-icon"><i class="bi bi-person-badge-fill"></i></div>
+                                    <div>
+                                        <div class="login-option-title">Placement Officer</div>
+                                        <div class="login-option-desc">Manage placement activities</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="admin-login.html" class="login-option h-100">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="login-option-icon"><i class="bi bi-shield-lock-fill"></i></div>
+                                    <div>
+                                        <div class="login-option-title">Admin</div>
+                                        <div class="login-option-desc">Manage entire portal</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light rounded-pill" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

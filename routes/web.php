@@ -7,6 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 // Placement Officer Login
 Route::get('/placement-officer/login', function () {
     return view('placement_officer_login');
@@ -20,4 +21,16 @@ Route::get('/explore-opportunities', function () {
 // Company Details (Dynamic)
 Route::get('/company-details/{company}', function ($company) {
     return view('company_details', compact('company'));
+
+
+// Admin Login Page
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
+
+
+// Student Login Page
+Route::get('/student/login', function () {
+    return view('student.login');
+
 });

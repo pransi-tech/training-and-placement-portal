@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 // Home Page
 Route::get('/', function () {
     return view('welcome');
@@ -13,14 +14,17 @@ Route::get('/placement-officer/login', function () {
     return view('placement_officer_login');
 });
 
+
 // Explore Opportunities
 Route::get('/explore-opportunities', function () {
     return view('explore_opportunities');
 });
 
-// Company Details (Dynamic)
+
+// Company Details
 Route::get('/company-details/{company}', function ($company) {
     return view('company_details', compact('company'));
+});
 
 
 // Admin Login Page
@@ -32,5 +36,4 @@ Route::get('/admin/login', function () {
 // Student Login Page
 Route::get('/student/login', function () {
     return view('student.login');
-
 });

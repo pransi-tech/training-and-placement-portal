@@ -24,10 +24,10 @@ Route::get('/company-details/{company}', function ($company) {
 
 // Admin Login Page
 Route::get('/admin/login', function () {
-    return view('admin.admin');
+    return view('admin');
 });
 
 // Student Login Page
 Route::get('/student/login', function () {
-    return view('student.student');
+    return view('student');
 });

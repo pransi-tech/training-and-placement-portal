@@ -24,11 +24,12 @@ Route::get('/company-details/{company}', function ($company) {
 
 // Admin Login Page
 Route::get('/admin/login', function () {
-    return view('admin.admin');
+    return view('admin');
 });
 
 // Student Login Page
 Route::get('/student/login', function () {
+<<<<<<< HEAD
     return view('student.student');
 });
 // Company Login Page (GET)
@@ -42,4 +43,6 @@ Route::post('/company/login', function () {
 })->name('company.login.submit');
 Route::get('/register', function () {
     return view('register');
+
+    return view('student');
 });

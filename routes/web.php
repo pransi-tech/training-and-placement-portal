@@ -3,26 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentRegistrationController;
 
-// Home
+// Home Page
 Route::get('/', function () {
     return view('welcome');
-});
-
-// Register
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::post('/register', [StudentRegistrationController::class, 'store']);
-
-// Student Login
-Route::get('/student/login', function () {
-    return view('student');
-});
-
-// Admin Login
-Route::get('/admin/login', function () {
-    return view('admin');
 });
 
 // Placement Officer Login
@@ -39,3 +22,31 @@ Route::get('/explore-opportunities', function () {
 Route::get('/company-details/{company}', function ($company) {
     return view('company_details', compact('company'));
 });
+
+// Admin Login Page
+Route::get('/admin/login', function () {
+    return view('admin');
+});
+
+// Student Login Page
+Route::get('/student/login', function () {
+    return view('student.student');
+});
+
+// Company Login Page (GET)
+Route::get('/company/login', function () {
+    return view('company_login');
+})->name('company.login');
+
+// Company Login Form Submission (POST)
+Route::post('/company/login', function () {
+    // Authentication logic later
+})->name('company.login.submit');
+
+// Student Registration Page
+Route::get('/register', function () {
+    return view('register');
+});
+
+// Student Registration Submit
+Route::post('/register', [StudentRegistrationController::class, 'store']);

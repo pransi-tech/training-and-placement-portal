@@ -54,8 +54,7 @@
         </div>
 
         <!-- Registration Form Start -->
-<form id="registrationForm" action="{{ url('/register') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+        <form id="registrationForm" novalidate enctype="multipart/form-data">
             <div class="row g-4">
                 
                 <!-- LEFT COLUMN -->
@@ -112,18 +111,6 @@
                                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
                                     <input type="email" name="email" id="email" class="form-control" placeholder="student@college.edu" required>
                                 </div>
-
-                                <div class="col-12">
-    <label class="form-label">Password *</label>
-    <div class="input-group">
-        <span class="input-group-text">
-            <i class="fa-solid fa-lock"></i>
-        </span>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Create Password" required>
-    </div>
-</div>
-
-
                                 <div class="invalid-feedback">Please enter a valid email.</div>
                             </div>
 

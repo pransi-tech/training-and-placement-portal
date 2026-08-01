@@ -241,6 +241,33 @@
             color: var(--muted);
         }
 
+        .help-accordion .accordion-button {
+            background: transparent;
+            color: var(--text);
+            box-shadow: none;
+            padding-left: 0;
+            padding-right: 0;
+            font-weight: 600;
+        }
+
+        .help-accordion .accordion-button:not(.collapsed) {
+            background: transparent;
+            color: var(--primary-2);
+            box-shadow: none;
+        }
+
+        .help-accordion .accordion-body {
+            color: var(--muted);
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 0.35rem;
+        }
+
+        .help-accordion .accordion-item {
+            background: transparent;
+            border-color: rgba(255,255,255,0.08);
+        }
+
         footer {
             border-top: 1px solid var(--border);
             background: rgba(2, 6, 23, 0.95);
@@ -277,9 +304,13 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
                     <li class="nav-item"><a class="nav-link" href="#drives">Placement Drives</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
                     <li class="nav-item"><a class="btn btn-outline-light btn-sm rounded-pill ms-lg-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li class="nav-item"><a class="btn btn-primary btn-sm rounded-pill ms-lg-2" href="#contact">Register</a></li>
+                  <li class="nav-item">
+    <a class="btn btn-primary btn-sm rounded-pill ms-lg-2" href="{{ url('/register') }}">
+        Register
+    </a>
+</li>
                 </ul>
             </div>
         </div>
@@ -288,20 +319,22 @@
     <!-- Hero Section -->
     <header class="hero-section">
         <div class="container py-5">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-7 scroll-reveal">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-8 scroll-reveal">
                     <div class="hero-card">
                         <h1 class="display-4 fw-bold mb-3">Launch Your Career With Confidence</h1>
                         <p class="lead text-light-emphasis mb-4">
                             Discover premium opportunities, connect with top recruiters, and build a future-ready profile through our modern placement ecosystem.
                         </p>
                         <div class="d-flex flex-wrap gap-3">
-                            <a href="#drives" class="btn btn-primary btn-lg rounded-pill px-4">Explore Opportunities</a>
+                            <a href="{{ url('/explore-opportunities') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                                Explore Opportunities
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 scroll-reveal">
-                    <div class="glass-card p-4 p-lg-5">
+                <div class="col-lg-4 scroll-reveal d-flex">
+                    <div class="glass-card p-4 p-lg-5 w-100">
                         <div class="icon-badge"><i class="bi bi-rocket-takeoff"></i></div>
                         <h3 class="fw-semibold mb-3">Career Advancement Starts Here</h3>
                         <p class="text-light-emphasis mb-3">
@@ -351,53 +384,101 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-5">
+        <!-- Help & Support Section -->
+        <section id="help" class="py-5">
             <div class="container py-3 scroll-reveal">
                 <div class="text-center mb-4">
-                    <h2 class="section-title">Contact Us</h2>
-                    <p class="section-subtitle">We are here to help students, recruiters, and academic partners connect smoothly.</p>
+                    <h2 class="section-title">Help & Support</h2>
+                    <p class="section-subtitle">Need help with placements, account access, or profile updates? We're here to assist you.</p>
                 </div>
                 <div class="row g-4">
-                    <div class="col-lg-4">
+                    <div class="col-lg-7">
                         <div class="glass-card p-4 h-100">
-                            <h5 class="fw-semibold mb-3">Contact Information</h5>
-                            <p class="text-light-emphasis mb-3"><i class="bi bi-geo-alt-fill text-primary me-2"></i>Address: K. D. Polytechnic<br>Patan, Gujarat, India</p>
-                            <p class="text-light-emphasis mb-3"><i class="bi bi-envelope-fill text-primary me-2"></i>Email: placement.portal@gmail.com</p>
-                            <p class="text-light-emphasis mb-0"><i class="bi bi-telephone-fill text-primary me-2"></i>Phone: +91 98765 43210</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="glass-card p-4 h-100">
-                            <h5 class="fw-semibold mb-3">Send a Message</h5>
+                            <h5 class="fw-semibold mb-3">Send us a message</h5>
                             <form>
-                                <div class="mb-3">
-                                    <label class="form-label small text-light-emphasis">Name</label>
-                                    <input type="text" class="form-control bg-transparent text-white" placeholder="Enter your name" required>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-light-emphasis">Full Name</label>
+                                        <input type="text" class="form-control bg-transparent text-white" placeholder="Enter your full name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small text-light-emphasis">Email Address</label>
+                                        <input type="email" class="form-control bg-transparent text-white" placeholder="Enter your email" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small text-light-emphasis">Subject</label>
+                                        <input type="text" class="form-control bg-transparent text-white" placeholder="What do you need help with?" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small text-light-emphasis">Message</label>
+                                        <textarea class="form-control bg-transparent text-white" rows="4" placeholder="Write your message" required></textarea>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label small text-light-emphasis">Email</label>
-                                    <input type="email" class="form-control bg-transparent text-white" placeholder="Enter your email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label small text-light-emphasis">Message</label>
-                                    <textarea class="form-control bg-transparent text-white" rows="4" placeholder="Write your message" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
+                                <button type="submit" class="btn btn-primary rounded-pill mt-3">Send Message</button>
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <div class="glass-card p-4 h-100">
-                            <h5 class="fw-semibold mb-3">Campus Location</h5>
-                            <div class="map-placeholder">
-                                <iframe
-                                    src="https://www.google.com/maps?q=K.%20D.%20Polytechnic%20Patan%20Gujarat%20India&z=14&output=embed"
-                                    title="K. D. Polytechnic, Patan, Gujarat"
-                                    allowfullscreen=""
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <h5 class="fw-semibold mb-3">Frequently Asked Questions</h5>
+                            <div class="accordion accordion-flush help-accordion" id="faqAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">
+                                            How do I apply for a placement drive?
+                                        </button>
+                                    </h2>
+                                    <div id="faqOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Log in to your student account, browse available drives, and click the apply button for the opportunity you want.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">
+                                            I forgot my password. What should I do?
+                                        </button>
+                                    </h2>
+                                    <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Use the Forgot Password option on the respective login page or contact the support team for assistance.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">
+                                            How can I update my profile?
+                                        </button>
+                                    </h2>
+                                    <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            Navigate to your dashboard and update your personal and academic information from the profile section.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">
+                                            Who can I contact for placement-related issues?
+                                        </button>
+                                    </h2>
+                                    <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                        <div class="accordion-body">
+                                            You can reach out to the placement office through this help page or contact the listed support team.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="glass-card p-4">
+                            <h5 class="fw-semibold mb-2">Need More Help?</h5>
+                            <p class="text-light-emphasis mb-0">If your issue is not resolved through the FAQs, please send us a message using the form above.</p>
                         </div>
                     </div>
                 </div>
@@ -450,7 +531,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="placementofficer-login.html" class="login-option h-100">
+                            <a href="{{ url('/placement-officer/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-person-badge-fill"></i></div>
                                     <div>

@@ -31,3 +31,15 @@ Route::get('/admin/login', function () {
 Route::get('/student/login', function () {
     return view('student.student');
 });
+// Company Login Page (GET)
+Route::get('/company/login', function () {
+    return view('company_login');
+})->name('company.login');
+
+// Company Login Form Submission (POST)
+Route::post('/company/login', function () {
+    // Authentication logic later
+})->name('company.login.submit');
+Route::get('/register', function () {
+    return view('register');
+});

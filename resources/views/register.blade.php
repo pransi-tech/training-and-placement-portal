@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div>
-                <a href="login.html" class="btn btn-outline-light btn-sm fw-semibold"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</a>
+                <a href="{{ url('/student/login') }}" class="btn btn-outline-light btn-sm fw-semibold"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</a>
             </div>
         </div>
     </header>
@@ -264,5 +264,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+
+    <script>
+const skills = document.querySelectorAll('.skill-checkbox');
+const hidden = document.getElementById('area_of_expertise');
+
+skills.forEach(skill => {
+    skill.addEventListener('change', function () {
+        let selected = [];
+
+        skills.forEach(s => {
+            if (s.checked) {
+                selected.push(s.value);
+            }
+        });
+
+        hidden.value = selected.join(', ');
+    });
+});
+</script>
 </body>
 </html>

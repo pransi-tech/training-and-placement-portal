@@ -140,63 +140,54 @@
     <h1>Student Login</h1>
 
 
-    <form>
+   
 
 
-        <label>Email Address</label>
+       
+    <form action="{{ url('/student/login') }}" method="POST">
+    @csrf
 
-        <input type="email" 
-        class="input-box" 
-        placeholder="Enter your email">
+    <label>Email Address</label>
 
+    <input
+        type="email"
+        name="email"
+        class="input-box"
+        placeholder="Enter your email"
+        required>
 
-        <label>Password</label>
+    <label>Password</label>
 
-        <div class="password-box">
+    <div class="password-box">
 
-            <input type="password" 
-            class="input-box" 
-            placeholder="Enter your password">
+        <input
+            type="password"
+            name="password"
+            class="input-box"
+            placeholder="Enter your password"
+            required>
 
-            <span class="show">
-                Show
-            </span>
+        <span class="show">Show</span>
 
+    </div>
+
+    <div class="options">
+
+        <div class="remember">
+            <input type="checkbox">
+            <span>Remember Me</span>
         </div>
 
+        <a href="#">Forgot Password?</a>
 
+    </div>
 
-        <div class="options">
+    <button type="submit">
+        Login
+    </button>
 
-            <div class="remember">
-
-                <input type="checkbox">
-
-                <span>
-                    Remember Me
-                </span>
-
-            </div>
-
-
-            <a href="#">
-                Forgot Password?
-            </a>
-
-        </div>
-
-
-
-        <button>
-            Login
-        </button>
-
-
-    </form>
-
-
+</form>\
 </div>
-
 
 </body>
 </html>

@@ -1,3 +1,7 @@
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,38 +129,52 @@
 
     <h1>Admin Login</h1>
 
-    <form>
+    <form action="{{ url('/admin/login') }}" method="POST">
 
-        <label>Email Address</label>
-        <input class="input-box" type="email" placeholder="Enter your email">
+    @csrf
+
+    <label>Email Address</label>
+    <input 
+        class="input-box" 
+        type="email" 
+        name="email"
+        placeholder="Enter your email"
+        required
+    >
 
 
-        <label>Password</label>
+    <label>Password</label>
 
-        <div class="password-area">
-            <input class="input-box" type="password" placeholder="Enter your password">
-            <span class="show">Show</span>
+    <div class="password-area">
+        <input 
+            class="input-box" 
+            type="password" 
+            name="password"
+            placeholder="Enter your password"
+            required
+        >
+        <span class="show">Show</span>
+    </div>
+
+
+    <div class="options">
+
+        <div class="remember">
+            <input type="checkbox">
+            <span>Remember Me</span>
         </div>
 
+        <a href="#">Forgot Password?</a>
 
-        <div class="options">
-
-            <div class="remember">
-                <input type="checkbox">
-                <span>Remember Me</span>
-            </div>
-
-            <a href="#">Forgot Password?</a>
-
-        </div>
+    </div>
 
 
-        <button>
-            Login
-        </button>
+    <button type="submit">
+        Login
+    </button>
 
 
-    </form>
+</form>
 
 </div>
 

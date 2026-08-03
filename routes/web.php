@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentRegistrationController;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CompanyController;
 // Home Page
 Route::get('/', function () {
     return view('welcome');
@@ -24,25 +26,44 @@ Route::get('/company-details/{company}', function ($company) {
 });
 
 // Admin Login Page
+// Admin Login Page
 Route::get('/admin/login', function () {
     return view('admin');
 });
+// Admin Login Submit
+Route::post('/admin/login', function(Request $request){
 
-// Student Login Page
-Route::get('/student/login', function () {
-    return view('student.student');
+    $credentials = $request->only('email','password');
+
+    if(Auth::attempt($credentials))
+    {
+        return redirect('/admin/dashboard');
+    }
+
+    return back()->with('error','Invalid Email or Password');
+
 });
 
-// Company Login Page (GET)
+// Student Login Page
+// Company Login Submit
+Route::post('/company/login', [CompanyController::class, 'login'])
+    ->name('company.login.submit');
+Route::post('/student/login', [StudentRegistrationController::class, 'login']);
+
+// Company Login Page
 Route::get('/company/login', function () {
     return view('company_login');
 })->name('company.login');
 
-// Company Login Form Submission (POST)
-Route::post('/company/login', function () {
-    // Authentication logic later
-})->name('company.login.submit');
 
+// Company Login Submit
+Route::post('/company/login', [CompanyController::class, 'login'])
+    ->name('company.login.submit');
+
+// Company Dashboard
+Route::get('/company/dashboard', function () {
+    return view('company_dashboard');
+});
 // Student Registration Page
 Route::get('/register', function () {
     return view('register');
@@ -50,3 +71,6 @@ Route::get('/register', function () {
 
 // Student Registration Submit
 Route::post('/register', [StudentRegistrationController::class, 'store']);
+Route::get('/admin/dashboard', function () {
+    return view('admin_dashboard');
+});

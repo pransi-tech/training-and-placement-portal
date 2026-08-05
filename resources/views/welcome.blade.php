@@ -509,7 +509,7 @@
                 <div class="modal-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <a href="student-login.html" class="login-option h-100">
+                            <a href="{{ url('/student/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-mortarboard-fill"></i></div>
                                     <div>
@@ -520,7 +520,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="company-login.html" class="login-option h-100">
+                            <a href="{{ url('/company/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-building-fill-gear"></i></div>
                                     <div>
@@ -542,7 +542,7 @@
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="admin-login.html" class="login-option h-100">
+                            <a href="{{ url('/admin/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-shield-lock-fill"></i></div>
                                     <div>

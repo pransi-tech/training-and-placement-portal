@@ -146,6 +146,7 @@ use Illuminate\Support\Facades\Auth;
     <label>Password</label>
 
     <div class="password-area">
+<<<<<<< HEAD
         <input 
             class="input-box" 
             type="password" 
@@ -163,6 +164,11 @@ use Illuminate\Support\Facades\Auth;
             <input type="checkbox">
             <span>Remember Me</span>
         </div>
+=======
+    <input id="password" class="input-box" type="password" placeholder="Enter your password">
+    <span class="show" onclick="togglePassword()">Show</span>
+    </div>
+>>>>>>> 65d94e4690e3e73d2c938b2f156e8b8444e2c4c6
 
         <a href="#">Forgot Password?</a>
 
@@ -177,7 +183,20 @@ use Illuminate\Support\Facades\Auth;
 </form>
 
 </div>
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const show = document.querySelector(".show");
 
+    if (password.type === "password") {
+        password.type = "text";
+        show.innerHTML = "Hide";
+    } else {
+        password.type = "password";
+        show.innerHTML = "Show";
+    }
+}
+</script>
 
 </body>
 </html>

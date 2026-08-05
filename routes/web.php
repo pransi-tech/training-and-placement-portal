@@ -30,7 +30,7 @@ Route::get('/admin/login', function () {
 
 // Student Login Page
 Route::get('/student/login', function () {
-    return view('student.student');
+    return view('student');
 });
 
 // Company Login Page (GET)

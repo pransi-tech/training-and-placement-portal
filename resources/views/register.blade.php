@@ -30,9 +30,7 @@
                     <p class="subtitle mb-0">Student Registration Form</p>
                 </div>
             </div>
-            <div>
-                <a href="{{ url('/student/login') }}" class="btn btn-outline-light btn-sm fw-semibold"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</a>
-            </div>
+
         </div>
     </header>
 

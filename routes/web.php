@@ -41,13 +41,11 @@ Route::post('/admin/login', function(Request $request){
     }
 
     return back()->with('error','Invalid Email or Password');
+});
 
-<<<<<<< HEAD
-=======
 // Student Login Page
 Route::get('/student/login', function () {
     return view('student');
->>>>>>> 65d94e4690e3e73d2c938b2f156e8b8444e2c4c6
 });
 
 // Student Login Page

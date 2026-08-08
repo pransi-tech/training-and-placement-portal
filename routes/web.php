@@ -14,6 +14,9 @@ Route::get('/', function () {
 Route::get('/placement-officer/login', function () {
     return view('placement_officer_login');
 });
+Route::get('/placement-officer/dashboard', function () {
+    return view('placement_officer_dashboard');
+})->name('placement.officer.dashboard');
 
 // Explore Opportunities
 Route::get('/explore-opportunities', function () {
@@ -71,6 +74,10 @@ Route::get('/company/dashboard', function () {
 // Student Registration Page
 Route::get('/register', function () {
     return view('register');
+});
+// Company Registration Page
+Route::get('/company-register', function () {
+    return view('company_register');
 });
 
 // Student Registration Submit

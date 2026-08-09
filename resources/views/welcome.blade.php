@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Training & Placement Portal</title>
-    <meta name="description" content="A premium college training and placement portal homepage built with Laravel Blade and Bootstrap.">
+    <title>K. D. Polytechnic - Training & Placement Portal</title>
+    <meta name="description" content="Kilachand Devchand Polytechnic, Patan - Training and Placement Portal">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
@@ -35,6 +35,16 @@
             border-bottom: 1px solid var(--border);
         }
 
+        .navbar-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: #ffffff;
+            padding: 2px;
+            box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+        }
+
         .nav-link {
             color: var(--text) !important;
             transition: 0.3s ease;
@@ -55,21 +65,44 @@
         }
 
         .hero-section {
-            min-height: 100vh;
-            padding-top: 90px;
-            background: linear-gradient(90deg, rgba(2, 6, 23, 0.94), rgba(15, 23, 42, 0.72)),
-                        url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
+            position: relative;
+            min-height: 80vh;
+            padding-top: 110px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.85), rgba(15, 23, 42, 0.85));
             display: flex;
             align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Hero Background Logo Watermark */
+        .hero-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 550px;
+            object-fit: contain;
+            opacity: 0.28;
+            z-index: 0;
+            pointer-events: none;
+            filter: drop-shadow(0 0 40px rgba(37, 99, 235, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero-card {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.82);
             border: 1px solid var(--border);
             border-radius: 28px;
-            padding: 2rem;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
         }
 
         .section-title {
@@ -97,6 +130,20 @@
             box-shadow: 0 20px 45px rgba(37, 99, 235, 0.18);
         }
 
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            color: white;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
         .icon-badge {
             width: 54px;
             height: 54px;
@@ -108,64 +155,6 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-2));
             color: white;
             margin-bottom: 1rem;
-        }
-
-        .stat-box {
-            padding: 1.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.04);
-        }
-
-        .logo-box {
-            min-height: 92px;
-            border-radius: 18px;
-            border: 1px solid var(--border);
-            background: rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #E2E8F0;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .logo-box:hover {
-            transform: translateY(-4px);
-            background: rgba(37, 99, 235, 0.16);
-        }
-
-        .company-logo {
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 16px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(59,130,246,0.15));
-            color: white;
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .map-placeholder {
-            min-height: 280px;
-            border-radius: 18px;
-            border: 1px dashed rgba(255,255,255,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.8));
-            overflow: hidden;
-        }
-
-        .map-placeholder iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            min-height: 280px;
         }
 
         .scroll-reveal {
@@ -279,6 +268,11 @@
                 padding: 110px 0 70px;
             }
 
+            .hero-watermark {
+                width: 320px;
+                height: 320px;
+            }
+
             .section-title {
                 font-size: 1.7rem;
             }
@@ -291,88 +285,130 @@
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand text-white fw-bold" href="#home">
-                <i class="bi bi-mortarboard-fill me-2 text-primary"></i>
-                College Training & Placement Portal
+            <a class="navbar-brand text-white fw-bold d-flex align-items-center gap-2" href="#home">
+                <img src="{{ asset('logo.jpeg') }}" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/KD_Polytechnic_Patan_Logo.png/600px-KD_Polytechnic_Patan_Logo.png';" alt="K. D. Polytechnic Logo" class="navbar-logo">
+                <span>K. D. Polytechnic TPO Portal</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#companies">Companies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#drives">Placement Drives</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#help">Help</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-light btn-sm rounded-pill ms-lg-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li class="nav-item"><a class="btn btn-primary btn-sm rounded-pill ms-lg-2" href="#contact">Register</a></li>
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-2 mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm px-3 rounded-pill" href="{{ url('/student/login') }}">Student Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light btn-sm px-3 rounded-pill" href="{{ url('/company/login') }}">Company Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary btn-sm px-3 rounded-pill" href="{{ url('/register') }}">Register</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Background Watermark Logo -->
     <header class="hero-section">
-        <div class="container py-5">
-            <div class="row align-items-center g-4 g-lg-5">
-                <div class="col-lg-8 scroll-reveal">
+        <img src="{{ asset('logo.jpeg') }}" 
+             onerror="this.onerror=null; this.src='{{ asset('logo.jpg') }}'; if(!this.complete || this.naturalWidth === 0) this.src='{{ asset('logo.png') }}';" 
+             alt="College Logo Background" 
+             class="hero-watermark">
+
+        <div class="container py-5 hero-content">
+            <div class="row align-items-center justify-content-center text-center">
+                <div class="col-lg-10 scroll-reveal">
                     <div class="hero-card">
-                        <h1 class="display-4 fw-bold mb-3">Launch Your Career With Confidence</h1>
-                        <p class="lead text-light-emphasis mb-4">
-                            Discover premium opportunities, connect with top recruiters, and build a future-ready profile through our modern placement ecosystem.
+                        <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill fs-6">Kilachand Devchand Polytechnic, Patan</span>
+                        <h1 class="display-4 fw-bold mb-3 text-white">K. D. Polytechnic Training & Placement Portal</h1>
+                        <p class="lead text-light-emphasis mb-4 mx-auto max-w-700 fs-5">
+                            Connecting Students with Career Opportunities & Top Recruiters
                         </p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="{{ url('/explore-opportunities') }}" class="btn btn-primary btn-lg rounded-pill px-4">
-                                Explore Opportunities
+                        <div class="d-flex flex-wrap gap-3 justify-content-center">
+                            <a href="{{ url('/register') }}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-semibold">
+                                Get Started
+                            </a>
+                            <a href="{{ url('/student/login') }}" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-semibold">
+                                Student Portal
                             </a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 scroll-reveal d-flex">
-                    <div class="glass-card p-4 p-lg-5 w-100">
-                        <div class="icon-badge"><i class="bi bi-rocket-takeoff"></i></div>
-                        <h3 class="fw-semibold mb-3">Career Advancement Starts Here</h3>
-                        <p class="text-light-emphasis mb-3">
-                            From registration to placement, everything is designed to help students and recruiters collaborate seamlessly.
-                        </p>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Smart placement discovery</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Professional recruiter engagement</li>
-                            <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Real-time updates and notifications</li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Options Section: Student, Company, Admin Cards -->
+    <section class="py-5">
+        <div class="container py-3">
+            <div class="row g-4">
+                
+                <!-- Student Card -->
+                <div class="col-md-4 scroll-reveal">
+                    <div class="glass-card p-4 text-center h-100 d-flex flex-column">
+                        <div class="icon-box">
+                            <i class="bi bi-person-badge-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2 text-white">For Students</h4>
+                        <p class="text-light-emphasis flex-grow-1">Access job postings, apply for campus drives, and track your placement application status.</p>
+                        <a href="{{ url('/student/login') }}" class="btn btn-outline-primary rounded-pill w-100 mt-3 py-2 fw-semibold">Login as Student</a>
+                    </div>
+                </div>
+
+                <!-- Company Card -->
+                <div class="col-md-4 scroll-reveal">
+                    <div class="glass-card p-4 text-center h-100 d-flex flex-column">
+                        <div class="icon-box" style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);">
+                            <i class="bi bi-building-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2 text-white">For Companies</h4>
+                        <p class="text-light-emphasis flex-grow-1">Post new placement opportunities, manage drives, and shortlist candidates efficiently.</p>
+                        <a href="{{ url('/company/login') }}" class="btn btn-outline-success rounded-pill w-100 mt-3 py-2 fw-semibold">Login as Recruiter</a>
+                    </div>
+                </div>
+
+                <!-- Admin Card -->
+                <div class="col-md-4 scroll-reveal">
+                    <div class="glass-card p-4 text-center h-100 d-flex flex-column">
+                        <div class="icon-box" style="background: linear-gradient(135deg, #64748b, #475569); box-shadow: 0 10px 20px rgba(100, 116, 139, 0.3);">
+                            <i class="bi bi-shield-lock-fill"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2 text-white">TPO / Admin</h4>
+                        <p class="text-light-emphasis flex-grow-1">Oversee placement operations, manage student & company registrations, and generate reports.</p>
+                        <a href="{{ url('/admin/login') }}" class="btn btn-outline-light rounded-pill w-100 mt-3 py-2 fw-semibold">Admin Access</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <main>
         <!-- About Section -->
         <section id="about" class="py-5">
             <div class="container py-3 scroll-reveal">
                 <div class="text-center mb-4">
-                    <h2 class="section-title">About the Training & Placement Portal</h2>
+                    <h2 class="section-title">About Training & Placement Cell</h2>
                     <p class="section-subtitle">
-                        The portal brings students, colleges, and employers together in one polished platform to simplify placement activities and accelerate career growth.
+                        Kilachand Devchand Polytechnic, Patan brings diploma students and top engineering employers together on a unified digital platform.
                     </p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="glass-card p-4 h-100">
                             <div class="icon-badge"><i class="bi bi-award"></i></div>
-                            <h4 class="fw-semibold mb-3">Empowering Student Success</h4>
+                            <h4 class="fw-semibold mb-3">Empowering Students</h4>
                             <p class="text-light-emphasis mb-0">
-                                Students can explore career opportunities, build their professional profiles, and apply to companies with clarity and confidence. The platform makes the placement journey organized, transparent, and efficient.
+                                Diploma students can explore upcoming placement drives, track job opportunities, and build job-ready profiles with guidance from our Training & Placement Officer.
                             </p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="glass-card p-4 h-100">
                             <div class="icon-badge"><i class="bi bi-building-check"></i></div>
-                            <h4 class="fw-semibold mb-3">Connecting Education with Industry</h4>
+                            <h4 class="fw-semibold mb-3">Industry Alignment</h4>
                             <p class="text-light-emphasis mb-0">
-                                With a professional interface and modern workflows, colleges can coordinate placement drives while recruiters gain direct access to highly engaged student talent pools.
+                                Partnering with leading companies to offer campus interviews, skill training workshops, and apprenticeship opportunities tailored for K. D. Polytechnic graduates.
                             </p>
                         </div>
                     </div>
@@ -385,12 +421,12 @@
             <div class="container py-3 scroll-reveal">
                 <div class="text-center mb-4">
                     <h2 class="section-title">Help & Support</h2>
-                    <p class="section-subtitle">Need help with placements, account access, or profile updates? We're here to assist you.</p>
+                    <p class="section-subtitle">Need assistance with placement registration, account access, or drive schedules?</p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-7">
                         <div class="glass-card p-4 h-100">
-                            <h5 class="fw-semibold mb-3">Send us a message</h5>
+                            <h5 class="fw-semibold mb-3">Contact TPO Office</h5>
                             <form>
                                 <div class="row g-3">
                                     <div class="col-md-6">
@@ -398,16 +434,16 @@
                                         <input type="text" class="form-control bg-transparent text-white" placeholder="Enter your full name" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="form-label small text-light-emphasis">Email Address</label>
-                                        <input type="email" class="form-control bg-transparent text-white" placeholder="Enter your email" required>
+                                        <label class="form-label small text-light-emphasis">Email / Enrollment No.</label>
+                                        <input type="text" class="form-control bg-transparent text-white" placeholder="Enrollment / Email" required>
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label small text-light-emphasis">Subject</label>
-                                        <input type="text" class="form-control bg-transparent text-white" placeholder="What do you need help with?" required>
+                                        <input type="text" class="form-control bg-transparent text-white" placeholder="How can we help you?" required>
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label small text-light-emphasis">Message</label>
-                                        <textarea class="form-control bg-transparent text-white" rows="4" placeholder="Write your message" required></textarea>
+                                        <textarea class="form-control bg-transparent text-white" rows="4" placeholder="Write your message..." required></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary rounded-pill mt-3">Send Message</button>
@@ -421,60 +457,28 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne">
-                                            How do I apply for a placement drive?
+                                            How do I apply for campus drives?
                                         </button>
                                     </h2>
                                     <div id="faqOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            Log in to your student account, browse available drives, and click the apply button for the opportunity you want.
+                                            Log in to your Student Portal, view active placement drives, and submit your application with one click.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo">
-                                            I forgot my password. What should I do?
+                                            Who can access the Placement Officer portal?
                                         </button>
                                     </h2>
                                     <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                         <div class="accordion-body">
-                                            Use the Forgot Password option on the respective login page or contact the support team for assistance.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree">
-                                            How can I update my profile?
-                                        </button>
-                                    </h2>
-                                    <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            Navigate to your dashboard and update your personal and academic information from the profile section.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour">
-                                            Who can I contact for placement-related issues?
-                                        </button>
-                                    </h2>
-                                    <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            You can reach out to the placement office through this help page or contact the listed support team.
+                                            Only authorized faculty members and TPO coordinators of K. D. Polytechnic can access the Placement Officer dashboard.
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="glass-card p-4">
-                            <h5 class="fw-semibold mb-2">Need More Help?</h5>
-                            <p class="text-light-emphasis mb-0">If your issue is not resolved through the FAQs, please send us a message using the form above.</p>
                         </div>
                     </div>
                 </div>
@@ -483,45 +487,47 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-5">
-        <div class="container text-center">
-            <div class="border-top border-secondary pt-4">
-                <h5 class="fw-semibold mb-3">Training & Placement Portal</h5>
-                <p class="text-light-emphasis mb-2">K. D. Polytechnic, Patan, Gujarat</p>
-                <p class="text-light-emphasis mb-0">Designed for students, placement officers, companies, and administrators.</p>
+    <footer class="py-5 text-center">
+        <div class="container">
+            <div class="pt-2">
+                <img src="{{ asset('logo.jpeg') }}" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/KD_Polytechnic_Patan_Logo.png/600px-KD_Polytechnic_Patan_Logo.png';" alt="Logo" class="navbar-logo mb-3" style="width: 55px; height: 55px;">
+                <h5 class="fw-semibold mb-2">Kilachand Devchand Polytechnic, Patan</h5>
+                <p class="text-light-emphasis small mb-1">Government of Gujarat Institution (ESTD: 1961)</p>
+                <p class="text-muted small mb-0">&copy; Training & Placement Cell. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <a href="#home" class="btn btn-primary rounded-circle back-to-top" id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
 
+    <!-- Login Modal -->
     <div class="modal fade login-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-semibold" id="loginModalLabel">Login As</h5>
+                    <h5 class="modal-title fw-semibold" id="loginModalLabel">Login To Portal</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <a href="student-login.html" class="login-option h-100">
+                            <a href="{{ url('/student/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-mortarboard-fill"></i></div>
                                     <div>
-                                        <div class="login-option-title">Student</div>
-                                        <div class="login-option-desc">Access student dashboard</div>
+                                        <div class="login-option-title">Student Login</div>
+                                        <div class="login-option-desc">Access placement dashboard</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="company-login.html" class="login-option h-100">
+                            <a href="{{ url('/company/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-building-fill-gear"></i></div>
                                     <div>
-                                        <div class="login-option-title">Company</div>
-                                        <div class="login-option-desc">Manage recruitment</div>
+                                        <div class="login-option-title">Company Login</div>
+                                        <div class="login-option-desc">Manage recruitment drives</div>
                                     </div>
                                 </div>
                             </a>
@@ -532,18 +538,18 @@
                                     <div class="login-option-icon"><i class="bi bi-person-badge-fill"></i></div>
                                     <div>
                                         <div class="login-option-title">Placement Officer</div>
-                                        <div class="login-option-desc">Manage placement activities</div>
+                                        <div class="login-option-desc">Manage placement drives</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-md-6">
-                            <a href="admin-login.html" class="login-option h-100">
+                            <a href="{{ url('/admin/login') }}" class="login-option h-100">
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="login-option-icon"><i class="bi bi-shield-lock-fill"></i></div>
                                     <div>
-                                        <div class="login-option-title">Admin</div>
-                                        <div class="login-option-desc">Manage entire portal</div>
+                                        <div class="login-option-title">Admin Login</div>
+                                        <div class="login-option-desc">Portal administration</div>
                                     </div>
                                 </div>
                             </a>
@@ -569,41 +575,6 @@
         }, { threshold: 0.15 });
 
         revealItems.forEach(item => observer.observe(item));
-
-        const counters = document.querySelectorAll('.counter');
-        const statsSection = document.querySelector('.stat-box');
-        let countersDone = false;
-
-        const animateCounters = () => {
-            if (countersDone) return;
-            countersDone = true;
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let current = 0;
-                const step = Math.ceil(target / 60);
-                const timer = setInterval(() => {
-                    current += step;
-                    if (current >= target) {
-                        counter.textContent = `${target}+`;
-                        clearInterval(timer);
-                    } else {
-                        counter.textContent = `${current}+`;
-                    }
-                }, 18);
-            });
-        };
-
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                }
-            });
-        });
-
-        if (statsSection) {
-            statsObserver.observe(statsSection.parentElement.parentElement);
-        }
 
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {

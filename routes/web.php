@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Home Page
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Placement Officer Login
 Route::get('/placement-officer/login', function () {
@@ -26,11 +22,9 @@ Route::get('/company-details/{company}', function ($company) {
 Route::get('/admin/login', function () {
     return view('admin');
 });
-
 // Student Login Page
 Route::get('/student/login', function () {
-<<<<<<< HEAD
-    return view('student.student');
+    return view('student');
 });
 // Company Login Page (GET)
 Route::get('/company/login', function () {
@@ -43,6 +37,12 @@ Route::post('/company/login', function () {
 })->name('company.login.submit');
 Route::get('/register', function () {
     return view('register');
+});
 
+Route::get('/student', function () {
     return view('student');
+});
+
+Route::get('/welcome', function () {
+    return view('welcome');
 });

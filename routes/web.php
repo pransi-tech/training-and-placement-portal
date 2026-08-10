@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentRegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CompanyController;
+
 // Home Page
 Route::get('/', function () {
     return view('welcome');
@@ -26,21 +27,25 @@ Route::get('/company-details/{company}', function ($company) {
 });
 
 // Admin Login Page
-// Admin Login Page
 Route::get('/admin/login', function () {
     return view('admin');
 });
+
 // Admin Login Submit
-Route::post('/admin/login', function(Request $request){
+Route::post('/admin/login', function (Request $request) {
 
-    $credentials = $request->only('email','password');
+    $credentials = $request->only('email', 'password');
 
-    if(Auth::attempt($credentials))
-    {
+    if (Auth::attempt($credentials)) {
         return redirect('/admin/dashboard');
     }
 
-    return back()->with('error','Invalid Email or Password');
+    return back()->with('error', 'Invalid Email or Password');
+});
+
+// Admin Dashboard
+Route::get('/admin/dashboard', function () {
+    return view('admin_dashboard');
 });
 
 // Student Login Page
@@ -48,17 +53,13 @@ Route::get('/student/login', function () {
     return view('student');
 });
 
-// Student Login Page
-// Company Login Submit
-Route::post('/company/login', [CompanyController::class, 'login'])
-    ->name('company.login.submit');
+// Student Login Submit
 Route::post('/student/login', [StudentRegistrationController::class, 'login']);
 
 // Company Login Page
 Route::get('/company/login', function () {
     return view('company_login');
 })->name('company.login');
-
 
 // Company Login Submit
 Route::post('/company/login', [CompanyController::class, 'login'])
@@ -68,6 +69,7 @@ Route::post('/company/login', [CompanyController::class, 'login'])
 Route::get('/company/dashboard', function () {
     return view('company_dashboard');
 });
+
 // Student Registration Page
 Route::get('/register', function () {
     return view('register');
@@ -75,6 +77,13 @@ Route::get('/register', function () {
 
 // Student Registration Submit
 Route::post('/register', [StudentRegistrationController::class, 'store']);
-Route::get('/admin/dashboard', function () {
-    return view('admin_dashboard');
+
+// Student Page
+Route::get('/student', function () {
+    return view('student');
+});
+
+// Welcome Page
+Route::get('/welcome', function () {
+    return view('welcome');
 });

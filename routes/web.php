@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +28,10 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-// Placement Officer Login
 Route::get('/placement-officer/login', function () {
     return view('placement_officer_login');
 });
 
-// Placement Officer Dashboard
 Route::get('/placement-officer/dashboard', function () {
     return view('placement_officer_dashboard');
 })->name('placement.officer.dashboard');
@@ -63,12 +65,10 @@ Route::get('/company-details/{company}', function ($company) {
 |--------------------------------------------------------------------------
 */
 
-// Admin Login Page
 Route::get('/admin/login', function () {
     return view('admin');
 });
 
-// Admin Login Submit
 Route::post('/admin/login', function (Request $request) {
 
     $credentials = $request->only('email', 'password');
@@ -80,7 +80,6 @@ Route::post('/admin/login', function (Request $request) {
     return back()->with('error', 'Invalid Email or Password');
 });
 
-// Admin Dashboard
 Route::get('/admin/dashboard', function () {
     return view('admin_dashboard');
 });
@@ -92,28 +91,23 @@ Route::get('/admin/dashboard', function () {
 |--------------------------------------------------------------------------
 */
 
-// Student Login Page
 Route::get('/student/login', function () {
     return view('student');
 });
 
-// Student Login Submit
 Route::post('/student/login', [
     StudentRegistrationController::class,
     'login'
 ]);
 
-// Student Page
 Route::get('/student', function () {
     return view('student');
 });
 
-// Student Registration Page
 Route::get('/register', function () {
     return view('register');
 });
 
-// Student Registration Submit
 Route::post('/register', [
     StudentRegistrationController::class,
     'store'
@@ -126,12 +120,10 @@ Route::post('/register', [
 |--------------------------------------------------------------------------
 */
 
-// Company Login Page
 Route::get('/company/login', function () {
     return view('company_login');
 })->name('company.login');
 
-// Company Login Submit
 Route::post('/company/login', [
     CompanyController::class,
     'login'
@@ -140,11 +132,21 @@ Route::post('/company/login', [
 
 /*
 |--------------------------------------------------------------------------
+| COMPANY REGISTRATION
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/company-register', function () {
+    return view('company_register');
+});
+
+
+/*
+|--------------------------------------------------------------------------
 | COMPANY DASHBOARD
 |--------------------------------------------------------------------------
 */
 
-// Main Company Dashboard
 Route::get('/company/dashboard', function () {
     return view('company_dashboard');
 })->name('company.dashboard');
@@ -167,12 +169,10 @@ Route::get('/company/profile', function () {
 |--------------------------------------------------------------------------
 */
 
-// All Job Postings
 Route::get('/company/jobs', function () {
     return view('company_jobs');
 })->name('company.jobs');
 
-// Create New Job
 Route::get('/company/jobs/create', function () {
     return view('company_create_job');
 })->name('company.jobs.create');
@@ -184,12 +184,10 @@ Route::get('/company/jobs/create', function () {
 |--------------------------------------------------------------------------
 */
 
-// All Applications
 Route::get('/company/applications', function () {
     return view('company_applications');
 })->name('company.applications');
 
-// Individual Application Details
 Route::get('/company/application/{id}', function ($id) {
     return view('company_application_details', compact('id'));
 })->name('company.application.details');
@@ -212,12 +210,10 @@ Route::get('/company/shortlisted', function () {
 |--------------------------------------------------------------------------
 */
 
-// All Interviews
 Route::get('/company/interviews', function () {
     return view('company_interviews');
 })->name('company.interviews');
 
-// Schedule New Interview
 Route::get('/company/interviews/create', function () {
     return view('company_schedule_interview');
 })->name('company.interviews.create');
@@ -229,12 +225,10 @@ Route::get('/company/interviews/create', function () {
 |--------------------------------------------------------------------------
 */
 
-// All Upcoming Drives
 Route::get('/company/drives', function () {
     return view('company_drives');
 })->name('company.drives');
 
-// Individual Drive Details
 Route::get('/company/drive/{id}', function ($id) {
     return view('company_drive_details', compact('id'));
 })->name('company.drive.details');
@@ -277,14 +271,3 @@ Route::get('/company/logout', function () {
         ->with('success', 'You have been logged out successfully.');
 
 })->name('company.logout');
-
-
-/*
-|--------------------------------------------------------------------------
-| WELCOME PAGE
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});

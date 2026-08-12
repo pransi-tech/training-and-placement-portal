@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Dashboard</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f7f5ff;
-            color: #211b3d;
+            background: #f6f3ff;
+            color: #1e124b;
+            min-height: 100vh;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* SIDEBAR */
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
 
         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
-            width: 230px;
+            width: 250px;
             height: 100vh;
-            background: linear-gradient(180deg, #180d4d, #32116f);
+
+            background: linear-gradient(
+                180deg,
+                #291064,
+                #4d20a5
+            );
+
             color: white;
-            padding: 22px 14px;
+            padding: 25px 18px;
+
+            box-shadow:
+                5px 0 25px rgba(57, 25, 120, 0.15);
+
+            z-index: 1000;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 10px 30px;
+            text-align: center;
+            margin-bottom: 35px;
         }
 
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
-            background: rgba(255,255,255,0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
+        .logo h2 {
+            font-size: 23px;
         }
 
-        .logo-text {
+        .logo p {
+            margin-top: 5px;
             font-size: 12px;
-            font-weight: 800;
-            line-height: 1.3;
+            color: #d9cbff;
         }
 
-        .logo-text span {
-            color: #cfc4ff;
+        .menu-title {
+            color: #baa9e7;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 13px 12px;
         }
 
         .nav {
@@ -72,1234 +75,1945 @@
         }
 
         .nav li {
-            margin: 5px 0;
+            margin-bottom: 6px;
         }
 
-        .nav a {
+        .nav-link {
+            width: 100%;
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px;
-            border-radius: 9px;
-            color: #d8d0ed;
-            font-size: 11px;
-            font-weight: 500;
+            gap: 13px;
+
+            padding: 13px 14px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: transparent;
+
+            color: #e0d7f6;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
         }
 
-        .nav a:hover {
-            background: rgba(255,255,255,0.08);
+        .nav-link:hover {
+            background: rgba(255,255,255,0.10);
             color: white;
         }
 
-        .nav a.active {
-            background: linear-gradient(90deg, #6334db, #7849ed);
+        .nav-link.active {
+            background: rgba(255,255,255,0.18);
             color: white;
+
+            box-shadow:
+                0 6px 18px rgba(0,0,0,0.12);
         }
 
         .nav-icon {
-            width: 18px;
+            width: 27px;
             text-align: center;
-            font-size: 15px;
-        }
-
-        .notification {
-            margin-left: auto;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #ff4d71;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8px;
-            font-weight: 700;
+            font-size: 18px;
         }
 
         .logout {
             position: absolute;
+            left: 18px;
+            right: 18px;
             bottom: 20px;
-            left: 14px;
-            right: 14px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.12);
+
+            padding-top: 15px;
         }
 
-        /* MAIN */
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
-            margin-left: 230px;
+            margin-left: 250px;
+            padding: 30px 38px;
             min-height: 100vh;
         }
 
-        /* TOPBAR */
+
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
 
         .topbar {
-            height: 65px;
-            background: white;
-            border-bottom: 1px solid #ebe7f5;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 28px;
-            gap: 18px;
-        }
-
-        .notification-btn {
-            width: 34px;
-            height: 34px;
-            border: 1px solid #e7e1f2;
-            border-radius: 9px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .notification-dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #ff4d70;
-            top: 5px;
-            right: 5px;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #d9ccff, #8b65e9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 17px;
-        }
-
-        .profile-name {
-            font-size: 10px;
-            font-weight: 700;
-        }
-
-        .profile-role {
-            font-size: 8px;
-            color: #8d879d;
-            margin-top: 3px;
-        }
-
-        /* CONTENT */
-
-        .content {
-            padding: 28px;
-        }
-
-        .welcome {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 22px;
+
+            margin-bottom: 25px;
         }
 
-        .welcome h1 {
-            font-size: 27px;
-            font-weight: 800;
-            letter-spacing: -1px;
+        .topbar h1 {
+            font-size: 30px;
+            color: #351275;
         }
 
-        .welcome h1 span {
-            color: #6638dc;
+        .topbar p {
+            color: #7b748d;
+            font-size: 13px;
+            margin-top: 5px;
         }
 
-        .welcome p {
-            color: #817a91;
-            font-size: 10px;
-            margin-top: 6px;
-        }
-
-        .dream {
+        .student-badge {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 17px;
+            gap: 9px;
+
+            background: white;
+
+            padding: 9px 15px;
+
             border-radius: 13px;
-            background: linear-gradient(135deg, #eee7ff, #faf8ff);
-            border: 1px solid #e2d9fa;
+
+            box-shadow:
+                0 5px 20px rgba(70,40,130,0.08);
         }
 
-        .rocket {
+        .student-icon {
             width: 36px;
             height: 36px;
-            border-radius: 10px;
-            background: #7041e5;
-            color: white;
+
+            background: #eee4ff;
+
+            border-radius: 50%;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            font-size: 18px;
         }
 
-        .dream strong {
+        .student-name {
+            font-weight: bold;
+            font-size: 12px;
+            color: #351275;
+        }
+
+
+        /* =====================================================
+           SECTIONS
+        ===================================================== */
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
             display: block;
-            font-size: 10px;
         }
 
-        .dream small {
-            display: block;
-            color: #898299;
-            font-size: 8px;
-            margin-top: 3px;
+
+        /* =====================================================
+           WELCOME
+        ===================================================== */
+
+        .welcome {
+            background:
+                linear-gradient(
+                    135deg,
+                    #5d2bc8,
+                    #7d4de0
+                );
+
+            color: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 15px 35px rgba(89,45,190,0.20);
+
+            position: relative;
+            overflow: hidden;
         }
 
-        /* STAT CARDS */
+        .welcome::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -50px;
+            top: -70px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.08);
+        }
+
+        .welcome h2 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome p {
+            color: #eee8ff;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+        .section-title {
+            font-size: 19px;
+            color: #351275;
+            margin-bottom: 16px;
+        }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-bottom: 17px;
+
+            gap: 16px;
+
+            margin-bottom: 28px;
         }
 
-        .stat {
-            padding: 16px;
-            border-radius: 14px;
-            min-height: 105px;
-        }
+        .stat-card {
+            background: white;
 
-        .stat:nth-child(1) {
-            background: linear-gradient(135deg, #eee7ff, #faf8ff);
-        }
+            padding: 20px;
 
-        .stat:nth-child(2) {
-            background: linear-gradient(135deg, #e4f8f1, #f9fffc);
-        }
+            border-radius: 16px;
 
-        .stat:nth-child(3) {
-            background: linear-gradient(135deg, #fff0dc, #fffaf3);
-        }
+            border: 1px solid #eee9f8;
 
-        .stat:nth-child(4) {
-            background: linear-gradient(135deg, #ffe8ef, #fff8fa);
+            box-shadow:
+                0 7px 25px rgba(60,40,120,0.07);
         }
 
         .stat-icon {
-            width: 30px;
-            height: 30px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 9px;
+            width: 42px;
+            height: 42px;
+
+            border-radius: 11px;
+
+            background: #eee5ff;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+
+            font-size: 20px;
+
+            margin-bottom: 12px;
         }
 
         .stat-number {
-            font-size: 21px;
-            font-weight: 800;
+            font-size: 25px;
+            font-weight: bold;
+            color: #5421b6;
         }
 
         .stat-label {
-            color: #777087;
-            font-size: 8px;
-            margin-top: 3px;
-        }
-
-        /* CARDS */
-
-        .card {
-            background: white;
-            border: 1px solid #ebe7f5;
-            border-radius: 15px;
-            box-shadow: 0 4px 18px rgba(50, 35, 100, 0.04);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 17px;
-        }
-
-        .card-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 12px;
-            font-weight: 750;
-        }
-
-        .title-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: #f0eaff;
-            color: #693cdd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .view {
-            color: #6739da;
-            font-size: 8px;
-            font-weight: 700;
-        }
-
-        /* MIDDLE */
-
-        .middle {
-            display: grid;
-            grid-template-columns: 1.6fr 0.8fr;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        /* TABLE */
-
-        .table-container {
-            padding: 0 13px 13px;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 550px;
-        }
-
-        th {
-            padding: 9px 7px;
-            text-align: left;
-            background: #f8f6fd;
-            color: #696279;
-            font-size: 8px;
-        }
-
-        td {
-            padding: 11px 7px;
-            border-bottom: 1px solid #f1eef6;
-            font-size: 8px;
-        }
-
-        .company {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-        }
-
-        .company-icon {
-            width: 27px;
-            height: 27px;
-            border-radius: 7px;
-            background: #f0eaff;
-            color: #673bda;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-        }
-
-        .apply {
-            border: 0;
-            border-radius: 6px;
-            padding: 6px 11px;
-            background: #6939df;
-            color: white;
-            font-size: 8px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        /* PROGRESS */
-
-        .progress-content {
-            padding: 0 17px 17px;
-        }
-
-        .progress-item {
-            margin-bottom: 15px;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 8px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .percentage {
-            color: #693dde;
-        }
-
-        .bar {
-            height: 6px;
-            border-radius: 10px;
-            background: #eeeaf5;
-            overflow: hidden;
-        }
-
-        .fill {
-            height: 100%;
-            background: linear-gradient(90deg, #6738db, #9068f2);
-            border-radius: 10px;
-        }
-
-        .tip {
-            margin-top: 18px;
-            padding: 11px;
-            background: #e8f8f2;
-            border-radius: 10px;
-            color: #28745e;
-            font-size: 8px;
-            line-height: 1.5;
-        }
-
-        /* BOTTOM */
-
-        .bottom {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-        }
-
-        /* DRIVE */
-
-        .drive-content {
-            padding: 0 16px 17px;
-        }
-
-        .drive {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px;
-            background: #faf8ff;
-            border: 1px solid #eee9f7;
-            border-radius: 10px;
-        }
-
-        .date {
-            width: 40px;
-            height: 43px;
-            background: #eee7ff;
-            color: #693cdd;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .date-month {
-            font-size: 7px;
-            font-weight: 800;
-        }
-
-        .date-day {
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        .drive-info strong {
-            display: block;
-            font-size: 9px;
-        }
-
-        .drive-info span {
-            color: #898298;
-            font-size: 7px;
-            display: block;
+            color: #777;
+            font-size: 11px;
             margin-top: 4px;
         }
 
-        .deadline {
-            display: inline-block;
-            margin-top: 5px;
-            background: #ffe7ed;
-            color: #dc4665;
-            padding: 3px 5px;
-            border-radius: 4px;
-            font-size: 6px;
-            font-weight: 700;
+
+        /* =====================================================
+           SERVICE CARDS
+        ===================================================== */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
         }
 
-        /* COURSES */
+        .service-card {
+            background: white;
 
-        .courses {
-            padding: 0 16px 15px;
+            padding: 23px;
+
+            border-radius: 17px;
+
+            border: 1px solid #eee9f8;
+
+            box-shadow:
+                0 7px 25px rgba(60,40,120,0.07);
+
+            transition: 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 28px rgba(70,40,140,0.11);
+        }
+
+        .service-icon {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 11px;
+
+            background: #eee5ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 21px;
+
+            margin-bottom: 14px;
+        }
+
+        .service-card h3 {
+            color: #351275;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .service-card button {
+            margin-top: 13px;
+
+            border: none;
+            background: transparent;
+
+            color: #6532cf;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           LOWER DASHBOARD
+        ===================================================== */
+
+        .lower {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
+            gap: 18px;
+        }
+
+        .panel {
+            background: white;
+
+            border-radius: 17px;
+
+            padding: 22px;
+
+            border: 1px solid #eee9f8;
+
+            box-shadow:
+                0 7px 25px rgba(60,40,120,0.07);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 17px;
+        }
+
+        .panel-header h3 {
+            color: #351275;
+            font-size: 16px;
+        }
+
+        .view-btn {
+            border: none;
+            background: transparent;
+
+            color: #6632d1;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           OPPORTUNITIES
+        ===================================================== */
+
+        .opportunity {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px;
+
+            background: #faf8ff;
+
+            border: 1px solid #eee8fa;
+
+            border-radius: 11px;
+
+            margin-bottom: 10px;
+        }
+
+        .opportunity:last-child {
+            margin-bottom: 0;
+        }
+
+        .company {
+            color: #351275;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .role {
+            color: #777;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .apply-btn {
+            border: none;
+
+            background: #6331d1;
+
+            color: white;
+
+            padding: 7px 12px;
+
+            border-radius: 7px;
+
+            font-size: 10px;
+
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #7847e0;
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        .back-btn {
+            border: none;
+            background: transparent;
+
+            color: #6331d1;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-bottom: 20px;
+        }
+
+        .profile-card {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 10px 30px rgba(60,40,120,0.08);
+
+            border: 1px solid #eee9f8;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+
+            gap: 20px;
+
+            padding-bottom: 25px;
+
+            border-bottom:
+                1px solid #eeeaf5;
+
+            margin-bottom: 28px;
+        }
+
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+
+            border-radius: 50%;
+
+            background: #eee4ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+        }
+
+        .profile-header h2 {
+            color: #4b1da8;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .profile-item {
+            background: #f8f5ff;
+
+            padding: 20px;
+
+            border-radius: 13px;
+        }
+
+        .profile-label {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .profile-value {
+            color: #180a59;
+
+            font-weight: bold;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           APPLICATIONS
+        ===================================================== */
+
+        .application {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            border: 1px solid #eee9f8;
+
+            margin-bottom: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .application h3 {
+            color: #351275;
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+        }
+
+        .application p {
+            color: #777;
+
+            font-size: 12px;
+        }
+
+        .status {
+            background: #e6f8ed;
+
+            color: #21834d;
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           COURSES
+        ===================================================== */
+
+        .course-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
         }
 
         .course {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid #f0edf5;
-        }
+            background: white;
 
-        .course:last-child {
-            border-bottom: 0;
-        }
+            border: 1px solid #eee9f8;
 
-        .course-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            border-radius: 17px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 7px 25px rgba(60,40,120,0.07);
         }
 
         .course-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 7px;
-            background: #f0eaff;
+            width: 45px;
+            height: 45px;
+
+            border-radius: 11px;
+
+            background: #eee5ff;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            font-size: 21px;
+
+            margin-bottom: 15px;
         }
 
-        .course-name {
-            font-size: 8px;
-            font-weight: 700;
+        .course h3 {
+            color: #351275;
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
         }
 
-        .course-info {
-            color: #898299;
-            font-size: 6px;
-            margin-top: 3px;
+        .course p {
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.6;
         }
 
-        .start {
-            padding: 5px 8px;
-            border: 1px solid #ddd3ff;
-            border-radius: 5px;
-            background: #f7f3ff;
-            color: #693cdd;
-            font-size: 6px;
-            font-weight: 700;
-        }
+        .course button {
+            margin-top: 15px;
 
-        /* QUICK LINKS */
+            border: none;
 
-        .quick {
-            padding: 0 16px 15px;
-        }
+            background: #6331d1;
 
-        .quick-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid #f0edf5;
-            font-size: 8px;
-            font-weight: 600;
-        }
+            color: white;
 
-        .quick-link:last-child {
-            border-bottom: 0;
-        }
+            padding: 8px 14px;
 
-        .quick-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .quick-icon {
-            width: 28px;
-            height: 28px;
             border-radius: 7px;
-            background: #f0eaff;
-            color: #693cdd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+            cursor: pointer;
         }
 
-        .arrow {
-            color: #91899f;
+
+        /* =====================================================
+           RESUME
+        ===================================================== */
+
+        .resume-box {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 8px 25px rgba(60,40,120,0.07);
+
+            border: 1px solid #eee9f8;
         }
 
-        .footer {
-            text-align: center;
-            color: #9a94a9;
-            font-size: 7px;
-            padding: 20px 0 5px;
+        .resume-box h2 {
+            color: #351275;
+
+            margin-bottom: 10px;
         }
 
-        /* RESPONSIVE */
+        .resume-box p {
+            color: #777;
+
+            margin-bottom: 20px;
+        }
+
+        .resume-btn {
+            border: none;
+
+            background: #6331d1;
+
+            color: white;
+
+            padding: 10px 17px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           NOTIFICATIONS
+        ===================================================== */
+
+        .notification {
+            background: white;
+
+            border: 1px solid #eee9f8;
+
+            border-left:
+                4px solid #6a37d7;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 12px;
+        }
+
+        .notification h3 {
+            color: #351275;
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+        }
+
+        .notification p {
+            color: #777;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
 
         @media (max-width: 1050px) {
+
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .middle {
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .lower {
                 grid-template-columns: 1fr;
             }
 
-            .bottom {
-                grid-template-columns: 1fr 1fr;
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 750px) {
+        @media (max-width: 700px) {
+
             .sidebar {
-                width: 65px;
-            }
-
-            .logo-text,
-            .nav a span,
-            .notification {
-                display: none;
-            }
-
-            .logo {
-                justify-content: center;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .nav a {
-                justify-content: center;
+                width: 210px;
             }
 
             .main {
-                margin-left: 65px;
+                margin-left: 210px;
+
+                padding: 22px 18px;
             }
 
-            .content {
-                padding: 18px;
-            }
-
-            .welcome {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .dream {
-                width: 100%;
-            }
-
-            .bottom {
+            .services {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @media (max-width: 500px) {
             .stats {
                 grid-template-columns: 1fr;
             }
 
-            .profile-name,
-            .profile-role {
-                display: none;
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-details {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
 
-        <div class="logo">
-            <div class="logo-icon">🎓</div>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-            <div class="logo-text">
-                Training &<br>
-                <span>Placement Portal</span>
-            </div>
-        </div>
+<aside class="sidebar">
 
-        <ul class="nav">
+    <div class="logo">
 
-            <li>
-                <a href="#" class="active">
-                    <div class="nav-icon">⌂</div>
-                    <span>Dashboard</span>
-                </a>
-            </li>
+        <h2>🎓 Student Portal</h2>
 
-            <li>
-                <a href="/student/profile">
-                    <div class="nav-icon">👤</div>
-                    <span>My Profile</span>
-                </a>
-            </li>
-<li>
-    <a href="/student/opportunities">
-        <div class="nav-icon">💼</div>
-        <span>Opportunities</span>
-    </a>
-</li>
+        <p>Training & Placement</p>
 
-<li>
-    <a href="/student/applications">
-        <div class="nav-icon">📋</div>
-        <span>My Applications</span>
-    </a>
-</li>
-
-<li>
-    <a href="/student/courses">
-        <div class="nav-icon">🎓</div>
-        <span>Training & Courses</span>
-    </a>
-</li>
-
-<li>
-    <a href="/student/resume">
-        <div class="nav-icon">📄</div>
-        <span>Resume</span>
-    </a>
-</li>
-
-<li>
-    <a href="/student/notifications">
-        <div class="nav-icon">🔔</div>
-        <span>Notifications</span>
-    </a>
-</li>
-
-        </ul>
-
-        <div class="logout">
-    <a href="/student/logout" class="nav">
-        <div style="padding:12px;color:#d8d0ed;font-size:11px;">
-            ↪ &nbsp; Logout
-        </div>
-    </a>
-</div>
-
-    </aside>
+    </div>
 
 
-    <!-- MAIN -->
-    <main class="main">
+    <div class="menu-title">
+        Main Menu
+    </div>
 
-        <!-- TOP BAR -->
+
+    <ul class="nav">
+
+        <li>
+            <button
+                class="nav-link active"
+                onclick="showSection('dashboard', this)"
+            >
+                <div class="nav-icon">🏠</div>
+                <span>Dashboard</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('profile', this)"
+            >
+                <div class="nav-icon">👤</div>
+                <span>My Profile</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('opportunities', this)"
+            >
+                <div class="nav-icon">💼</div>
+                <span>Opportunities</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('applications', this)"
+            >
+                <div class="nav-icon">📄</div>
+                <span>My Applications</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('courses', this)"
+            >
+                <div class="nav-icon">🎓</div>
+                <span>Training & Courses</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('resume', this)"
+            >
+                <div class="nav-icon">📋</div>
+                <span>Resume</span>
+            </button>
+        </li>
+
+
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('notifications', this)"
+            >
+                <div class="nav-icon">🔔</div>
+                <span>Notifications</span>
+            </button>
+        </li>
+
+    </ul>
+
+
+    <div class="logout">
+
+        <a
+            href="/student/logout"
+            class="nav-link"
+        >
+            <div class="nav-icon">↪</div>
+            <span>Logout</span>
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         DASHBOARD
+    ================================================== -->
+
+    <section
+        id="dashboard"
+        class="page-section active"
+    >
+
+
         <div class="topbar">
 
-            <div class="notification-btn">
-                🔔
-                <div class="notification-dot"></div>
+            <div>
+
+                <h1>
+                    Student Dashboard
+                </h1>
+
+                <p>
+                    Welcome to your Training & Placement Portal.
+                </p>
+
             </div>
 
-            <div class="profile">
 
-                <div class="avatar">
+            <div class="student-badge">
+
+                <div class="student-icon">
+                    👤
+                </div>
+
+                <div class="student-name">
+                    Student
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="welcome">
+
+            <h2>
+                Welcome, Student! 👋
+            </h2>
+
+            <p>
+                Explore opportunities, manage applications,
+                improve your skills and prepare for your career.
+            </p>
+
+        </div>
+
+
+        <h2 class="section-title">
+            Overview
+        </h2>
+
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💼
+                </div>
+
+                <div class="stat-number">
+                    12
+                </div>
+
+                <div class="stat-label">
+                    Available Opportunities
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📄
+                </div>
+
+                <div class="stat-number">
+                    0
+                </div>
+
+                <div class="stat-label">
+                    My Applications
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎓
+                </div>
+
+                <div class="stat-number">
+                    4
+                </div>
+
+                <div class="stat-label">
+                    Training Courses
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔔
+                </div>
+
+                <div class="stat-number">
+                    3
+                </div>
+
+                <div class="stat-label">
+                    Notifications
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="lower">
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        Latest Opportunities
+                    </h3>
+
+                    <button
+                        class="view-btn"
+                        onclick="showSection('opportunities')"
+                    >
+                        View All →
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity">
+
+                    <div>
+
+                        <div class="company">
+                            TCS
+                        </div>
+
+                        <div class="role">
+                            Software Developer
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="apply-btn"
+                        onclick="applyJob('TCS - Software Developer')"
+                    >
+                        Apply
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity">
+
+                    <div>
+
+                        <div class="company">
+                            Infosys
+                        </div>
+
+                        <div class="role">
+                            System Engineer
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="apply-btn"
+                        onclick="applyJob('Infosys - System Engineer')"
+                    >
+                        Apply
+                    </button>
+
+                </div>
+
+
+                <div class="opportunity">
+
+                    <div>
+
+                        <div class="company">
+                            Wipro
+                        </div>
+
+                        <div class="role">
+                            Web Developer
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="apply-btn"
+                        onclick="applyJob('Wipro - Web Developer')"
+                    >
+                        Apply
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        My Progress
+                    </h3>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+
+                        <span>Resume</span>
+
+                        <span>80%</span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:80%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+
+                        <span>Skills</span>
+
+                        <span>70%</span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:70%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+
+                        <span>Training</span>
+
+                        <span>60%</span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:60%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-item">
+
+                    <div class="progress-label">
+
+                        <span>Placement Preparation</span>
+
+                        <span>50%</span>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:50%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PROFILE
+    ================================================== -->
+
+    <section
+        id="profile"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <div class="profile-card">
+
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
                     👤
                 </div>
 
                 <div>
-                    <div class="profile-name">
-                        Hi, Hridyaa 👋
-                    </div>
 
-                    <div class="profile-role">
+                    <h2>
                         Student
-                    </div>
-                </div>
-
-                <span>⌄</span>
-
-            </div>
-
-        </div>
-
-
-        <!-- CONTENT -->
-        <div class="content">
-
-            <!-- WELCOME -->
-            <div class="welcome">
-
-                <div>
-                    <h1>
-                        Welcome, <span>student</span> 👋
-                    </h1>
+                    </h2>
 
                     <p>
-                        Your career journey starts here. Explore opportunities,
-                        gain skills and get placed.
+                        Student Profile
                     </p>
-                </div>
-
-                <div class="dream">
-
-                    <div class="rocket">
-                        🚀
-                    </div>
-
-                    <div>
-                        <strong>Dream Today, Hire Tomorrow!</strong>
-                        <small>Your career journey starts here.</small>
-                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- STATISTICS -->
-            <div class="stats">
-
-                <div class="stat">
-                    <div class="stat-icon">💼</div>
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Available Opportunities</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">📄</div>
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Applications Submitted</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">🏢</div>
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Eligible Companies</div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-icon">📅</div>
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Upcoming Drives</div>
-                </div>
-
-            </div>
+            <div class="profile-details">
 
 
-            <!-- MIDDLE -->
-            <div class="middle">
+                <div class="profile-item">
 
-                <!-- OPPORTUNITIES -->
-                <div class="card">
-
-                    <div class="card-header">
-
-                        <div class="card-title">
-                            <div class="title-icon">📢</div>
-                            Latest Placement Opportunities
-                        </div>
-
-                        <a href="#" class="view">
-                            View All →
-                        </a>
-
+                    <div class="profile-label">
+                        Full Name
                     </div>
 
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-                                <tr>
-                                    <th>Company</th>
-                                    <th>Job Role</th>
-                                    <th>Eligibility</th>
-                                    <th>Last Date</th>
-                                    <th>Apply</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <td>
-                                        <div class="company">
-                                            <div class="company-icon">G</div>
-                                            Google
-                                        </div>
-                                    </td>
-
-                                    <td>Software Engineer</td>
-                                    <td>B.Tech / B.E</td>
-                                    <td>24 Jun</td>
-
-                                    <td>
-                                        <button class="apply">
-                                            Apply
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="company">
-                                            <div class="company-icon">M</div>
-                                            Microsoft
-                                        </div>
-                                    </td>
-
-                                    <td>Software Developer</td>
-                                    <td>B.Tech / B.E</td>
-                                    <td>26 Jun</td>
-
-                                    <td>
-                                        <button class="apply">
-                                            Apply
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="company">
-                                            <div class="company-icon">I</div>
-                                            Infosys
-                                        </div>
-                                    </td>
-
-                                    <td>System Engineer</td>
-                                    <td>B.Tech / B.E</td>
-                                    <td>28 Jun</td>
-
-                                    <td>
-                                        <button class="apply">
-                                            Apply
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="company">
-                                            <div class="company-icon">T</div>
-                                            TCS
-                                        </div>
-                                    </td>
-
-                                    <td>Software Engineer</td>
-                                    <td>B.Tech / B.E</td>
-                                    <td>30 Jun</td>
-
-                                    <td>
-                                        <button class="apply">
-                                            Apply
-                                        </button>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
+                    <div class="profile-value">
+                        Student
                     </div>
 
                 </div>
 
 
-                <!-- PROGRESS -->
-                <div class="card">
+                <div class="profile-item">
 
-                    <div class="card-header">
-
-                        <div class="card-title">
-                            <div class="title-icon">📊</div>
-                            My Progress
-                        </div>
-
-                        <a href="#" class="view">
-                            View Details →
-                        </a>
-
+                    <div class="profile-label">
+                        Enrollment Number
                     </div>
 
-                    <div class="progress-content">
-
-                        <div class="progress-item">
-
-                            <div class="progress-label">
-                                <span>Resume Profile</span>
-                                <span class="percentage">80%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div class="fill" style="width:80%;"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="progress-item">
-
-                            <div class="progress-label">
-                                <span>Skills Completed</span>
-                                <span class="percentage">70%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div class="fill" style="width:70%;"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="progress-item">
-
-                            <div class="progress-label">
-                                <span>Training Completed</span>
-                                <span class="percentage">60%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div class="fill" style="width:60%;"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="progress-item">
-
-                            <div class="progress-label">
-                                <span>Application Status</span>
-                                <span class="percentage">50%</span>
-                            </div>
-
-                            <div class="bar">
-                                <div class="fill" style="width:50%;"></div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="tip">
-                            💡 <strong>Tip:</strong>
-                            Improve your skills and attend more training sessions
-                            to increase your chances of getting placed!
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- BOTTOM -->
-            <div class="bottom">
-
-                <!-- UPCOMING DRIVES -->
-                <div class="card">
-
-                    <div class="card-header">
-
-                        <div class="card-title">
-                            <div class="title-icon">📅</div>
-                            Upcoming Drives
-                        </div>
-
-                        <a href="#" class="view">
-                            View All →
-                        </a>
-
-                    </div>
-
-                    <div class="drive-content">
-
-                        <div class="drive">
-
-                            <div class="date">
-                                <div class="date-month">JUN</div>
-                                <div class="date-day">24</div>
-                            </div>
-
-                            <div class="drive-info">
-
-                                <strong>Campus Placement Drive</strong>
-
-                                <span>
-                                    Virtual | 10:00 AM
-                                </span>
-
-                                <div class="deadline">
-                                    Last Date: 24 Jun
-                                </div>
-
-                            </div>
-
-                        </div>
-
+                    <div class="profile-value">
+                        Not Available
                     </div>
 
                 </div>
 
 
-                <!-- COURSES -->
-                <div class="card">
+                <div class="profile-item">
 
-                    <div class="card-header">
-
-                        <div class="card-title">
-                            <div class="title-icon">📚</div>
-                            Recommended Courses
-                        </div>
-
-                        <a href="#" class="view">
-                            View All →
-                        </a>
-
+                    <div class="profile-label">
+                        Email
                     </div>
 
-                    <div class="courses">
-
-                        <div class="course">
-
-                            <div class="course-left">
-
-                                <div class="course-icon">
-                                    💻
-                                </div>
-
-                                <div>
-                                    <div class="course-name">
-                                        Data Structures & Algorithms
-                                    </div>
-
-                                    <div class="course-info">
-                                        Learn and practice DSA
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="start">
-                                Start
-                            </button>
-
-                        </div>
-
-
-                        <div class="course">
-
-                            <div class="course-left">
-
-                                <div class="course-icon">
-                                    🤖
-                                </div>
-
-                                <div>
-                                    <div class="course-name">
-                                        Machine Learning Basics
-                                    </div>
-
-                                    <div class="course-info">
-                                        Fundamentals of ML and AI
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="start">
-                                Start
-                            </button>
-
-                        </div>
-
-
-                        <div class="course">
-
-                            <div class="course-left">
-
-                                <div class="course-icon">
-                                    🌐
-                                </div>
-
-                                <div>
-                                    <div class="course-name">
-                                        Web Development
-                                    </div>
-
-                                    <div class="course-info">
-                                        Frontend & Backend
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <button class="start">
-                                Start
-                            </button>
-
-                        </div>
-
+                    <div class="profile-value">
+                        Not Available
                     </div>
 
                 </div>
 
 
-                <!-- QUICK LINKS -->
-                <div class="card">
+                <div class="profile-item">
 
-                    <div class="card-header">
-
-                        <div class="card-title">
-                            <div class="title-icon">🔗</div>
-                            Quick Links
-                        </div>
-
+                    <div class="profile-label">
+                        Mobile Number
                     </div>
 
-                    <div class="quick">
-
-                        <a href="#" class="quick-link">
-
-                            <div class="quick-left">
-                                <div class="quick-icon">💼</div>
-                                View Job Opportunities
-                            </div>
-
-                            <span class="arrow">→</span>
-
-                        </a>
-
-
-                        <a href="#" class="quick-link">
-
-                            <div class="quick-left">
-                                <div class="quick-icon">🎓</div>
-                                Training & Courses
-                            </div>
-
-                            <span class="arrow">→</span>
-
-                        </a>
-
-
-                        <a href="#" class="quick-link">
-
-                            <div class="quick-left">
-                                <div class="quick-icon">📄</div>
-                                Update Resume
-                            </div>
-
-                            <span class="arrow">→</span>
-
-                        </a>
-
+                    <div class="profile-value">
+                        Not Available
                     </div>
 
                 </div>
 
-            </div>
+
+                <div class="profile-item">
+
+                    <div class="profile-label">
+                        Semester
+                    </div>
+
+                    <div class="profile-value">
+                        Not Available
+                    </div>
+
+                </div>
 
 
-            <div class="footer">
-                © 2026 Training & Placement Portal | Student Dashboard
+                <div class="profile-item">
+
+                    <div class="profile-label">
+                        Branch
+                    </div>
+
+                    <div class="profile-value">
+                        Not Available
+                    </div>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <div class="profile-label">
+                        Area of Expertise
+                    </div>
+
+                    <div class="profile-value">
+                        Not Available
+                    </div>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <div class="profile-label">
+                        LinkedIn
+                    </div>
+
+                    <div class="profile-value">
+                        Not Added
+                    </div>
+
+                </div>
+
+
             </div>
 
         </div>
 
-    </main>
+    </section>
+
+
+
+    <!-- =================================================
+         OPPORTUNITIES
+    ================================================== -->
+
+    <section
+        id="opportunities"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 class="section-title">
+            💼 Opportunities
+        </h2>
+
+
+        <div class="opportunity">
+
+            <div>
+
+                <div class="company">
+                    TCS
+                </div>
+
+                <div class="role">
+                    Software Developer
+                </div>
+
+            </div>
+
+            <button
+                class="apply-btn"
+                onclick="applyJob('TCS - Software Developer')"
+            >
+                Apply
+            </button>
+
+        </div>
+
+
+        <div class="opportunity">
+
+            <div>
+
+                <div class="company">
+                    Infosys
+                </div>
+
+                <div class="role">
+                    System Engineer
+                </div>
+
+            </div>
+
+            <button
+                class="apply-btn"
+                onclick="applyJob('Infosys - System Engineer')"
+            >
+                Apply
+            </button>
+
+        </div>
+
+
+        <div class="opportunity">
+
+            <div>
+
+                <div class="company">
+                    Wipro
+                </div>
+
+                <div class="role">
+                    Web Developer
+                </div>
+
+            </div>
+
+            <button
+                class="apply-btn"
+                onclick="applyJob('Wipro - Web Developer')"
+            >
+                Apply
+            </button>
+
+        </div>
+
+
+        <div class="opportunity">
+
+            <div>
+
+                <div class="company">
+                    Accenture
+                </div>
+
+                <div class="role">
+                    Associate Software Engineer
+                </div>
+
+            </div>
+
+            <button
+                class="apply-btn"
+                onclick="applyJob('Accenture - Associate Software Engineer')"
+            >
+                Apply
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         APPLICATIONS
+    ================================================== -->
+
+    <section
+        id="applications"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 class="section-title">
+            📄 My Applications
+        </h2>
+
+
+        <div id="applicationList">
+
+            <div class="application">
+
+                <div>
+
+                    <h3>
+                        No applications yet
+                    </h3>
+
+                    <p>
+                        Apply for an opportunity and it will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         COURSES
+    ================================================== -->
+
+    <section
+        id="courses"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 class="section-title">
+            🎓 Training & Courses
+        </h2>
+
+
+        <div class="course-grid">
+
+
+            <div class="course">
+
+                <div class="course-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Web Development
+                </h3>
+
+                <p>
+                    Learn HTML, CSS, JavaScript and modern web development.
+                </p>
+
+                <button>
+                    Start Course
+                </button>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-icon">
+                    🐘
+                </div>
+
+                <h3>
+                    PHP & Laravel
+                </h3>
+
+                <p>
+                    Learn backend development using PHP and Laravel.
+                </p>
+
+                <button>
+                    Start Course
+                </button>
+
+            </div>
+
+
+            <div class="course">
+
+                <div class="course-icon">
+                    🗄️
+                </div>
+
+                <h3>
+                    Database Management
+                </h3>
+
+                <p>
+                    Learn SQL and database management concepts.
+                </p>
+
+                <button>
+                    Start Course
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         RESUME
+    ================================================== -->
+
+    <section
+        id="resume"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 class="section-title">
+            📋 Resume
+        </h2>
+
+
+        <div class="resume-box">
+
+            <h2>
+                My Resume
+            </h2>
+
+            <p>
+                Manage your resume for placement opportunities.
+            </p>
+
+            <button class="resume-btn">
+                Upload Resume
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         NOTIFICATIONS
+    ================================================== -->
+
+    <section
+        id="notifications"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+
+        <h2 class="section-title">
+            🔔 Notifications
+        </h2>
+
+
+        <div class="notification">
+
+            <h3>
+                New Placement Opportunity
+            </h3>
+
+            <p>
+                A new Software Developer opportunity has been added.
+            </p>
+
+        </div>
+
+
+        <div class="notification">
+
+            <h3>
+                New Training Available
+            </h3>
+
+            <p>
+                Web Development training is now available.
+            </p>
+
+        </div>
+
+
+        <div class="notification">
+
+            <h3>
+                Welcome to the Portal
+            </h3>
+
+            <p>
+                Keep checking your portal for placement updates.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    let applicationCount = 0;
+
+
+    function showSection(sectionId, clickedButton = null) {
+
+        /* Hide all sections */
+
+        const sections =
+            document.querySelectorAll(".page-section");
+
+        sections.forEach(function(section) {
+
+            section.classList.remove("active");
+
+        });
+
+
+        /* Show selected section */
+
+        const selected =
+            document.getElementById(sectionId);
+
+        if (selected) {
+
+            selected.classList.add("active");
+
+        }
+
+
+        /* Remove active state from sidebar */
+
+        const navLinks =
+            document.querySelectorAll(".nav-link");
+
+        navLinks.forEach(function(link) {
+
+            link.classList.remove("active");
+
+        });
+
+
+        /* Add active state to clicked sidebar item */
+
+        if (clickedButton) {
+
+            clickedButton.classList.add("active");
+
+        }
+
+
+        /* Scroll to top */
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+
+    function applyJob(jobName) {
+
+        applicationCount++;
+
+
+        const list =
+            document.getElementById("applicationList");
+
+
+        /* Remove "No applications yet" */
+
+        if (applicationCount === 1) {
+
+            list.innerHTML = "";
+
+        }
+
+
+        /* Create application */
+
+        const application =
+            document.createElement("div");
+
+        application.className =
+            "application";
+
+
+        application.innerHTML = `
+
+            <div>
+
+                <h3>
+                    ${jobName}
+                </h3>
+
+                <p>
+                    Application submitted successfully.
+                </p>
+
+            </div>
+
+            <div class="status">
+                Applied
+            </div>
+
+        `;
+
+
+        list.appendChild(application);
+
+
+        /* Open applications */
+
+        showSection("applications");
+
+    }
+
+</script>
+
 
 </body>
+
 </html>

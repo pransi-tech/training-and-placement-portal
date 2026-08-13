@@ -36,8 +36,8 @@
         }
 
         .navbar-logo {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             object-fit: contain;
             border-radius: 50%;
             background: #ffffff;
@@ -76,7 +76,6 @@
             overflow: hidden;
         }
 
-        /* Hero Background Logo Watermark */
         .hero-watermark {
             position: absolute;
             top: 50%;
@@ -103,6 +102,42 @@
             padding: 2.5rem 2rem;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(12px);
+        }
+
+        /* Hero Carousel Styling */
+        .hero-carousel {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .hero-carousel .carousel-item {
+            min-height: 100vh;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Background image settings for each slide */
+        .hero-slide-1 {
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.75)),
+                        url("{{ asset('image.png') }}") center/cover no-repeat;
+        }
+
+        .hero-slide-2 {
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.75)),
+                        url("{{ asset('K.D1.jpeg') }}") center/cover no-repeat;
+        }
+
+        .hero-slide-3 {
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.75)),
+                        url("{{ asset('logo.jpeg') }}") center/cover no-repeat;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+            z-index: 5;
         }
 
         .section-title {
@@ -301,48 +336,149 @@
                         <a class="btn btn-outline-light btn-sm px-3 rounded-pill" href="{{ url('/company/login') }}">Company Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-sm px-3 rounded-pill" href="{{ url('/register') }}">Register</a>
+                        <a class="btn btn-primary btn-sm px-3 rounded-pill" href="{{ url('/register') }}">Student Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success btn-sm px-3 rounded-pill" href="{{ url('/company-register') }}">Company Register</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Background Watermark Logo -->
-    <header class="hero-section">
-        <img src="{{ asset('logo.jpeg') }}" 
-             onerror="this.onerror=null; this.src='{{ asset('logo.jpg') }}'; if(!this.complete || this.naturalWidth === 0) this.src='{{ asset('logo.png') }}';" 
-             alt="College Logo Background" 
-             class="hero-watermark">
+    <!-- Hero Carousel Section -->
+    <header id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+        <!-- Carousel Navigation Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
 
-        <div class="container py-5 hero-content">
-            <div class="row align-items-center justify-content-center text-center">
-                <div class="col-lg-10 scroll-reveal">
-                    <div class="hero-card">
-                        <span class="badge bg-primary mb-3 px-3 py-2 rounded-pill fs-6">Kilachand Devchand Polytechnic, Patan</span>
-                        <h1 class="display-4 fw-bold mb-3 text-white">K. D. Polytechnic Training & Placement Portal</h1>
-                        <p class="lead text-light-emphasis mb-4 mx-auto max-w-700 fs-5">
-                            Connecting Students with Career Opportunities & Top Recruiters
-                        </p>
-                        <div class="d-flex flex-wrap gap-3 justify-content-center">
-                            <a href="{{ url('/register') }}" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-semibold">
-                                Get Started
-                            </a>
-                            <a href="{{ url('/student/login') }}" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-semibold">
-                                Student Portal
-                            </a>
+        <div class="carousel-inner">
+
+            <!-- Slide 1: image.png -->
+            <div class="carousel-item active hero-slide-1">
+                <div class="container d-flex align-items-center h-100 py-5">
+                    <div class="row align-items-center g-4 g-lg-5 w-100">
+                        <div class="col-lg-8">
+                            <div class="hero-card">
+                                <h1 class="display-4 fw-bold mb-3">Launch Your Career With Confidence</h1>
+                                <p class="lead text-light-emphasis mb-4">
+                                    Discover premium opportunities, connect with top recruiters, and build a future-ready profile through our modern placement ecosystem.
+                                </p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="{{ url('/explore-opportunities') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Explore Opportunities
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex">
+                            <div class="glass-card p-4 p-lg-5 w-100">
+                                <div class="icon-badge"><i class="bi bi-rocket-takeoff"></i></div>
+                                <h3 class="fw-semibold mb-3">Career Advancement Starts Here</h3>
+                                <p class="text-light-emphasis mb-3">
+                                    From registration to placement, everything is designed to help students and recruiters collaborate seamlessly.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Smart placement discovery</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Professional recruiter engagement</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Real-time updates and notifications</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Slide 2: K.D1.jpeg -->
+            <div class="carousel-item hero-slide-2">
+                <div class="container d-flex align-items-center h-100 py-5">
+                    <div class="row align-items-center g-4 g-lg-5 w-100">
+                        <div class="col-lg-8">
+                            <div class="hero-card">
+                                <h1 class="display-4 fw-bold mb-3">Empowering Engineering Talent</h1>
+                                <p class="lead text-light-emphasis mb-4">
+                                    Access campus recruitment drives, industry apprenticeships, and skill development programs tailored for success.
+                                </p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="{{ url('/student/login') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Student Portal
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex">
+                            <div class="glass-card p-4 p-lg-5 w-100">
+                                <div class="icon-badge"><i class="bi bi-building-check"></i></div>
+                                <h3 class="fw-semibold mb-3">Top Industry Partners</h3>
+                                <p class="text-light-emphasis mb-3">
+                                    Leading companies regularly recruit directly from our campus placement ecosystem.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Top-tier engineering drives</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Verified recruiter listings</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Seamless shortlisting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: logo.jpeg -->
+            <div class="carousel-item hero-slide-3">
+                <div class="container d-flex align-items-center h-100 py-5">
+                    <div class="row align-items-center g-4 g-lg-5 w-100">
+                        <div class="col-lg-8">
+                            <div class="hero-card">
+                                <h1 class="display-4 fw-bold mb-3">Connecting Industry with Education</h1>
+                                <p class="lead text-light-emphasis mb-4">
+                                    Recruiters gain direct access to highly engaged diploma student talent pools across various engineering branches.
+                                </p>
+                                <div class="d-flex flex-wrap gap-3">
+                                    <a href="{{ url('/company/login') }}" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Recruiter Portal
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 d-flex">
+                            <div class="glass-card p-4 p-lg-5 w-100">
+                                <div class="icon-badge"><i class="bi bi-award-fill"></i></div>
+                                <h3 class="fw-semibold mb-3">Placement Officer Cell</h3>
+                                <p class="text-light-emphasis mb-3">
+                                    Streamlining student registrations, interview schedules, and placement reports efficiently.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Centralized TPO management</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Automated notifications</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Performance analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </header>
 
     <!-- Options Section: Student, Company, Admin Cards -->
     <section class="py-5">
         <div class="container py-3">
             <div class="row g-4">
-                
                 <!-- Student Card -->
                 <div class="col-md-4 scroll-reveal">
                     <div class="glass-card p-4 text-center h-100 d-flex flex-column">
@@ -378,7 +514,6 @@
                         <a href="{{ url('/admin/login') }}" class="btn btn-outline-light rounded-pill w-100 mt-3 py-2 fw-semibold">Admin Access</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -410,6 +545,115 @@
                             <p class="text-light-emphasis mb-0">
                                 Partnering with leading companies to offer campus interviews, skill training workshops, and apprenticeship opportunities tailored for K. D. Polytechnic graduates.
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recently Registered Students & Top Recruiters Section -->
+        <section class="py-5">
+            <div class="container py-3 scroll-reveal">
+                <div class="row g-4">
+                    <!-- Recently Registered Students -->
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="icon-badge mb-0"><i class="bi bi-people-fill"></i></div>
+                                <div>
+                                    <h4 class="fw-semibold mb-0 text-white">Recent Student Registrations</h4>
+                                    <small class="text-light-emphasis">Recently joined students on the portal</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex flex-column gap-3">
+                                <!-- Student 1 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 42px; height: 42px;">RP</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Rahul Patel</h6>
+                                            <small class="text-light-emphasis">Computer Engineering</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">Just Now</span>
+                                </div>
+
+                                <!-- Student 2 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 42px; height: 42px;">PS</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Priya Shah</h6>
+                                            <small class="text-light-emphasis">Computer Engineering</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">5 mins ago</span>
+                                </div>
+
+                                <!-- Student 3 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 42px; height: 42px;">AS</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Aman Sharma</h6>
+                                            <small class="text-light-emphasis">Mechanical Engineering</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-2">15 mins ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Recruiting Companies -->
+                    <div class="col-lg-6">
+                        <div class="glass-card p-4 h-100">
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="icon-badge mb-0"><i class="bi bi-building"></i></div>
+                                <div>
+                                    <h4 class="fw-semibold mb-0 text-white">Top Hiring Partners</h4>
+                                    <small class="text-light-emphasis">Companies actively hiring from our college</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex flex-column gap-3">
+                                <!-- Company 1 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-3 bg-dark text-white d-flex align-items-center justify-content-center fw-bold border border-secondary" style="width: 42px; height: 42px;">TCS</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Tata Consultancy Services</h6>
+                                            <small class="text-light-emphasis">Software & IT Services</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-2 rounded-pill px-3 py-2">Active Drive</span>
+                                </div>
+
+                                <!-- Company 2 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-3 bg-dark text-white d-flex align-items-center justify-content-center fw-bold border border-secondary" style="width: 42px; height: 42px;">L&T</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Larsen & Toubro</h6>
+                                            <small class="text-light-emphasis">Engineering & Construction</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-2 rounded-pill px-3 py-2">Active Drive</span>
+                                </div>
+
+                                <!-- Company 3 -->
+                                <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-3 bg-dark text-white d-flex align-items-center justify-content-center fw-bold border border-secondary" style="width: 42px; height: 42px;">INF</div>
+                                        <div>
+                                            <h6 class="fw-semibold mb-0 text-white">Infosys</h6>
+                                            <small class="text-light-emphasis">Global IT Consulting</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-2 rounded-pill px-3 py-2">Upcoming Drive</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

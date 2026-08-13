@@ -106,7 +106,7 @@ Route::get('/student', function () {
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('register');
 
 Route::post('/register', [
     StudentRegistrationController::class,
@@ -138,7 +138,7 @@ Route::post('/company/login', [
 
 Route::get('/company-register', function () {
     return view('company_register');
-});
+})->name('company.register.page');
 
 
 /*

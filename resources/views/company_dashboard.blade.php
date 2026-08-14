@@ -4,667 +4,365 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Company Dashboard</title>
+    <title>Company Dashboard - K D Polytechnic T&P Portal</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
-            background: #f6f3ff;
-            color: #21194d;
-        }
-
-        .layout {
-            display: flex;
-            min-height: 100vh;
-            width: 100%;
+            background: #f5f7fb;
+            color: #222;
         }
 
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 245px;
             position: fixed;
-            top: 0;
-            bottom: 0;
             left: 0;
-            background: linear-gradient(180deg, #26105f, #35137d, #1b0b4d);
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #17104f;
             color: white;
-            padding: 20px 13px;
+            padding: 25px 15px;
             overflow-y: auto;
-            z-index: 100;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 4px 10px 25px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            background: white;
-            color: #5d2ee6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo h2 {
             font-size: 20px;
-            flex-shrink: 0;
         }
 
-        .logo-text {
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 1.4;
-            white-space: nowrap;
+        .logo p {
+            font-size: 12px;
+            color: #d8d4ff;
+            margin-top: 5px;
         }
 
         .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            list-style: none;
         }
 
-        .menu-btn {
+        .menu li {
+            margin: 7px 0;
+        }
+
+        .menu button {
+            width: 100%;
             border: none;
             background: transparent;
-            color: #ded8ff;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            font-size: 13px;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            line-height: 1.4;
-        }
-
-        .menu-btn:hover,
-        .menu-btn.active {
-            background: linear-gradient(90deg, #5520df, #7133ef);
             color: white;
+            text-align: left;
+            padding: 13px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
-        .menu-icon {
-            width: 20px;
-            text-align: center;
-            font-size: 16px;
-            flex-shrink: 0;
+        .menu button:hover,
+        .menu button.active {
+            background: #302777;
         }
 
-        .logout {
-            margin-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.12);
-            padding-top: 15px;
+        .menu .logout {
+            margin-top: 20px;
+            background: #b42335;
         }
 
         /* ================= MAIN ================= */
 
         .main {
-            margin-left: 245px;
-            width: calc(100% - 245px);
-            min-height: 100vh;
+            margin-left: 250px;
+            padding: 25px;
         }
-
-        /* ================= TOPBAR ================= */
 
         .topbar {
-            height: 70px;
-            width: 100%;
             background: white;
-            border-bottom: 1px solid #e7e1f8;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 0 32px;
-            gap: 25px;
-        }
-
-        .notification-btn {
-            position: relative;
-            border: none;
-            background: none;
-            font-size: 21px;
-            cursor: pointer;
-        }
-
-        .badge {
-            position: absolute;
-            top: -5px;
-            right: -7px;
-            width: 16px;
-            height: 16px;
-            background: #ef4273;
-            color: white;
-            font-size: 9px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .company-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6330e8, #a27bff);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .user-name {
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1.4;
-            white-space: nowrap;
-        }
-
-        .user-role {
-            font-size: 10px;
-            color: #777;
-            line-height: 1.4;
-            white-space: nowrap;
-        }
-
-        /* ================= CONTENT ================= */
-
-        .content {
-            width: 100%;
-            padding: 30px 32px 50px;
-        }
-
-        .page-section {
-            width: 100%;
-            display: none;
-        }
-
-        .page-section.active-section {
-            display: block;
-            width: 100%;
-        }
-
-        /* ================= WELCOME ================= */
-
-        .welcome {
-            width: 100%;
-            max-width: none;
-            margin-bottom: 25px;
-        }
-
-        .welcome h1 {
-            width: 100%;
-            max-width: none;
-            font-size: 31px;
-            line-height: 1.3;
-            margin-bottom: 9px;
-            color: #171052;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-        }
-
-        .welcome p {
-            width: 100%;
-            max-width: none;
-            font-size: 14px;
-            line-height: 1.7;
-            color: #6d6880;
-        }
-
-        /* ================= STATS ================= */
-
-        .stats {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-            margin-bottom: 24px;
-        }
-
-        .stat {
-            width: 100%;
-            min-width: 0;
-            background: white;
-            border: 1px solid #e5def8;
-            border-radius: 14px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 5px 15px rgba(60,30,130,.04);
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
+            padding: 18px 22px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .purple {
-            background: #eee7ff;
-        }
-
-        .green {
-            background: #def8ed;
-        }
-
-        .orange {
-            background: #fff0db;
-        }
-
-        .pink {
-            background: #ffe4ef;
-        }
-
-        .number {
-            font-size: 25px;
-            font-weight: 800;
-            color: #171052;
-            line-height: 1.2;
-        }
-
-        .label {
-            font-size: 11px;
-            line-height: 1.6;
-            color: #77718b;
-            white-space: normal;
-        }
-
-        /* ================= MAIN GRID ================= */
-
-        .grid {
-            width: 100%;
-            display: grid;
-
-            /*
-             * MORE WIDTH FOR APPLICATIONS
-             * AND ENOUGH WIDTH FOR DRIVES
-             */
-            grid-template-columns: minmax(0, 2.4fr) minmax(330px, 1fr);
-
-            gap: 22px;
-            margin-bottom: 22px;
-            align-items: start;
-        }
-
-        .card {
-            width: 100%;
-            min-width: 0;
-            background: white;
-            border: 1px solid #e5def8;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(60,30,130,.04);
-        }
-
-        .card-header {
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 17px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
         }
 
-        .card-header h2 {
-            width: auto;
-            font-size: 18px;
-            line-height: 1.4;
-            color: #21194d;
-            white-space: nowrap;
+        .topbar h1 {
+            font-size: 24px;
+            color: #222;
         }
 
-        .link-btn {
-            border: none;
-            background: transparent;
-            color: #6030df;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-            flex-shrink: 0;
+        .company-name {
+            font-weight: bold;
+            color: #17104f;
         }
 
-        .link-btn:hover {
-            text-decoration: underline;
+        /* ================= PAGES ================= */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+        }
+
+        .page-title h2 {
+            color: #17104f;
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .card .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #17104f;
         }
 
         /* ================= TABLE ================= */
 
+        .table-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
         table {
             width: 100%;
-            min-width: 620px;
             border-collapse: collapse;
-            table-layout: auto;
+        }
+
+        th,
+        td {
+            padding: 13px 10px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+            font-size: 14px;
         }
 
         th {
-            text-align: left;
-            padding: 12px 9px;
-            font-size: 10px;
-            line-height: 1.5;
-            color: #706a84;
-            background: #f8f6ff;
-            white-space: nowrap;
+            background: #f7f7fb;
+            color: #17104f;
         }
 
-        td {
-            padding: 13px 9px;
-            border-bottom: 1px solid #eeeaf7;
-            font-size: 11px;
-            line-height: 1.6;
-            vertical-align: middle;
+        /* ================= BUTTONS ================= */
 
-            /*
-             * TEXT CAN USE FULL WIDTH
-             */
-            white-space: normal;
-            word-break: normal;
-            overflow-wrap: break-word;
-        }
-
-        .student {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            min-width: 155px;
-        }
-
-        .student-img {
-            width: 31px;
-            height: 31px;
-            border-radius: 50%;
-            background: #ebe4ff;
-            color: #5d2de0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .student-name {
-            font-size: 11px;
-            font-weight: 700;
-            line-height: 1.5;
-            white-space: nowrap;
-        }
-
-        .course {
-            font-size: 10px;
-            color: #888;
-            line-height: 1.5;
-            white-space: nowrap;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 6px;
-            font-size: 9px;
-            line-height: 1.4;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .review {
-            background: #e2edff;
-            color: #3569bd;
-        }
-
-        .shortlisted {
-            background: #dcf7eb;
-            color: #12825b;
-        }
-
-        .interview {
-            background: #fff0d3;
-            color: #ae7216;
-        }
-
-        .small-btn {
-            background: #6030df;
-            color: white;
-            padding: 7px 12px;
-            border-radius: 6px;
+        .btn {
             border: none;
-            text-decoration: none;
-            font-size: 9px;
-            line-height: 1.3;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .small-btn:hover {
-            background: #4c22bd;
-        }
-
-        /* ================= DRIVES ================= */
-
-        .drive {
-            width: 100%;
-            border: 1px solid #e9e3f6;
-            border-radius: 9px;
-            padding: 15px;
-            margin-bottom: 11px;
-        }
-
-        .drive:last-child {
-            margin-bottom: 0;
-        }
-
-        .drive-title {
-            width: 100%;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1.5;
-            margin-bottom: 7px;
-        }
-
-        .drive-info {
-            width: 100%;
-            font-size: 11px;
-            color: #777;
-            line-height: 1.8;
-        }
-
-        .date {
-            display: inline-block;
-            background: #eee7ff;
-            color: #6031df;
-            padding: 6px 8px;
-            border-radius: 5px;
-            font-size: 9px;
-            line-height: 1.3;
-            font-weight: 700;
-            margin-top: 8px;
-        }
-
-        /* ================= QUICK ACTIONS ================= */
-
-        .actions {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 13px;
-        }
-
-        .action {
-            width: 100%;
-            border: 1px solid #e7e1f7;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            background: white;
-            transition: .2s;
-            color: #21194d;
-        }
-
-        .action:hover {
-            box-shadow: 0 5px 15px rgba(80,40,160,.1);
-            transform: translateY(-2px);
-            border-color: #d7c8f7;
-        }
-
-        .action-icon {
-            font-size: 23px;
-            margin-bottom: 8px;
-        }
-
-        .action-text {
-            width: 100%;
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1.5;
-            white-space: nowrap;
-        }
-
-        /* ================= OTHER SECTIONS ================= */
-
-        .section-card {
-            width: 100%;
-            max-width: none;
-            background: white;
-            border: 1px solid #e5def8;
-            border-radius: 14px;
-            padding: 28px;
-            margin-top: 5px;
-            box-shadow: 0 5px 15px rgba(60,30,130,.04);
-        }
-
-        .section-card h2 {
-            width: 100%;
-            font-size: 22px;
-            line-height: 1.4;
-            margin-bottom: 8px;
-            color: #24115d;
-        }
-
-        .section-card > p {
-            width: 100%;
-            max-width: none;
-            color: #77718b;
-            font-size: 13px;
-            line-height: 1.7;
-            margin-bottom: 22px;
-        }
-
-        .info-grid {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .info-box {
-            width: 100%;
-            min-width: 0;
-            background: #f8f6ff;
-            padding: 17px;
-            border-radius: 9px;
-        }
-
-        .info-label {
-            width: 100%;
-            color: #77718b;
-            font-size: 11px;
-            line-height: 1.5;
-            margin-bottom: 6px;
-        }
-
-        .info-value {
-            width: 100%;
-            font-size: 14px;
-            line-height: 1.6;
-            font-weight: 700;
-            color: #2b2354;
-            overflow-wrap: anywhere;
-        }
-
-        .back-btn {
-            border: none;
-            background: #eee7ff;
-            color: #6031df;
             padding: 9px 14px;
-            border-radius: 7px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 11px;
-            line-height: 1.4;
-            margin-bottom: 17px;
+            font-size: 13px;
+            margin: 2px;
         }
 
-        .back-btn:hover {
-            background: #e2d8ff;
+        .btn-primary {
+            background: #17104f;
+            color: white;
         }
 
-        .detail-box {
-            width: 100%;
-            border: 1px solid #eee8f8;
-            padding: 17px;
-            border-radius: 9px;
-            margin-bottom: 13px;
+        .btn-primary:hover {
+            background: #302777;
         }
 
-        .detail-box h3 {
-            width: 100%;
-            font-size: 15px;
-            line-height: 1.5;
+        .btn-success {
+            background: #198754;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #f0ad4e;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .filter-box {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-box input,
+        .filter-box select {
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            min-width: 180px;
+        }
+
+        /* ================= FORMS ================= */
+
+        .form-box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
             margin-bottom: 7px;
-            color: #2b2354;
+            font-weight: bold;
+            font-size: 14px;
         }
 
-        .detail-box p {
-            width: 100%;
-            margin: 4px 0;
-            font-size: 12px;
-            line-height: 1.8;
-            color: #666078;
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* ================= PROFILE ================= */
+
+        .profile-header {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #17104f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* ================= NOTIFICATION ================= */
+
+        .notification {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #17104f;
+        }
+
+        .notification small {
+            color: #777;
+        }
+
+        /* ================= BADGES ================= */
+
+        .badge {
+            padding: 5px 9px;
+            border-radius: 15px;
+            font-size: 11px;
+        }
+
+        .badge-success {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .badge-info {
+            background: #cff4fc;
+            color: #055160;
         }
 
         /* ================= RESPONSIVE ================= */
 
-        @media(max-width:1200px) {
-
-            .stats {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+        @media(max-width: 1000px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                width: 100%;
-            }
-        }
-
-        @media(max-width:850px) {
 
             .sidebar {
                 width: 210px;
@@ -672,83 +370,23 @@
 
             .main {
                 margin-left: 210px;
-                width: calc(100% - 210px);
-            }
-
-            .content {
-                padding: 25px 20px 40px;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .welcome h1 {
-                white-space: normal;
             }
         }
 
-        @media(max-width:700px) {
-
+        @media(max-width: 700px) {
             .sidebar {
-                width: 70px;
-            }
-
-            .logo-text {
-                display: none;
-            }
-
-            .logo {
-                justify-content: center;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .menu-btn {
-                justify-content: center;
-                padding: 12px 5px;
-            }
-
-            .menu-btn span:not(.menu-icon) {
-                display: none;
+                position: relative;
+                width: 100%;
+                height: auto;
             }
 
             .main {
-                margin-left: 70px;
-                width: calc(100% - 70px);
+                margin-left: 0;
             }
 
-            .content {
-                padding: 20px 15px 35px;
-            }
-
-            .welcome h1 {
-                font-size: 25px;
-                white-space: normal;
-            }
-
-            .stats {
+            .cards,
+            .form-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .actions {
-                grid-template-columns: 1fr;
-            }
-
-            .topbar {
-                padding: 0 15px;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                overflow-x: auto;
             }
         }
     </style>
@@ -756,1638 +394,1494 @@
 
 <body>
 
-<div class="layout">
+<!-- ========================================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================================= -->
 
-    <!-- ================= SIDEBAR ================= -->
+<div class="sidebar">
 
-    <aside class="sidebar">
+    <div class="logo">
+        <h2>K D Polytechnic</h2>
+        <p>T&P Portal</p>
+    </div>
 
-        <div class="logo">
+    <ul class="menu">
 
-            <div class="logo-icon">
-                🎓
+        <li>
+            <button onclick="showPage('dashboard', this)" class="active">
+                🏠 Dashboard
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('profile', this)">
+                👤 Company Profile
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('post-job', this)">
+                ➕ Post New Job
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('applications', this)">
+                📋 All Applications
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('shortlisted', this)">
+                ⭐ Shortlisted Students
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('drives', this)">
+                📅 Upcoming Drives
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('interviews', this)">
+                🕐 Schedule Interview
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('notifications', this)">
+                🔔 Notifications
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('settings', this)">
+                ⚙ Settings
+            </button>
+        </li>
+
+        <li>
+            <button class="logout" onclick="logoutCompany()">
+                🚪 Logout
+            </button>
+        </li>
+
+    </ul>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- MAIN -->
+<!-- ========================================================= -->
+
+<div class="main">
+
+    <div class="topbar">
+        <h1 id="topTitle">Company Dashboard</h1>
+        <div>
+            Welcome,
+            <span class="company-name">TCS</span>
+        </div>
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- DASHBOARD -->
+    <!-- ===================================================== -->
+
+    <section id="dashboard" class="page active">
+
+        <div class="page-title">
+            <h2>Dashboard</h2>
+            <p>Overview of your recruitment activities.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Active Job Posts</h3>
+                <div class="number">08</div>
             </div>
 
-            <div class="logo-text">
-                Training &<br>
-                Placement Portal
+            <div class="card">
+                <h3>Total Applications</h3>
+                <div class="number">126</div>
+            </div>
+
+            <div class="card">
+                <h3>Shortlisted Students</h3>
+                <div class="number">32</div>
+            </div>
+
+            <div class="card">
+                <h3>Upcoming Interviews</h3>
+                <div class="number">12</div>
             </div>
 
         </div>
 
-        <nav class="menu">
+        <div class="table-box">
 
-            <button class="menu-btn active"
-                    onclick="showSection('dashboard', this)">
-                <span class="menu-icon">⌂</span>
-                <span>Dashboard</span>
-            </button>
+            <h3 style="margin-bottom:15px;">Recent Applications</h3>
 
-            <button class="menu-btn"
-                    onclick="showSection('profile', this)">
-                <span class="menu-icon">🏢</span>
-                <span>Company Profile</span>
-            </button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Applied For</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
 
-            <button class="menu-btn"
-                    onclick="showSection('jobs', this)">
-                <span class="menu-icon">💼</span>
-                <span>Job Postings</span>
-            </button>
+                <tbody>
+                    <tr>
+                        <td>Rahul Patel</td>
+                        <td>Computer Engineering</td>
+                        <td>Software Engineer</td>
+                        <td>
+                            <span class="badge badge-warning">Under Review</span>
+                        </td>
+                    </tr>
 
-            <button class="menu-btn"
-                    onclick="showSection('applications', this)">
-                <span class="menu-icon">📄</span>
-                <span>Applications</span>
-            </button>
+                    <tr>
+                        <td>Priya Shah</td>
+                        <td>IT Engineering</td>
+                        <td>Web Developer</td>
+                        <td>
+                            <span class="badge badge-success">Shortlisted</span>
+                        </td>
+                    </tr>
 
-            <button class="menu-btn"
-                    onclick="showSection('shortlisted', this)">
-                <span class="menu-icon">⭐</span>
-                <span>Shortlisted Students</span>
-            </button>
+                    <tr>
+                        <td>Amit Desai</td>
+                        <td>Computer Engineering</td>
+                        <td>Data Analyst</td>
+                        <td>
+                            <span class="badge badge-info">New</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <button class="menu-btn"
-                    onclick="showSection('interviews', this)">
-                <span class="menu-icon">📅</span>
-                <span>Interviews</span>
-            </button>
+        </div>
 
-            <button class="menu-btn"
-                    onclick="showSection('notifications', this)">
-                <span class="menu-icon">🔔</span>
-                <span>Notifications</span>
-            </button>
+    </section>
 
-            <button class="menu-btn"
-                    onclick="showSection('settings', this)">
-                <span class="menu-icon">⚙</span>
-                <span>Settings</span>
-            </button>
 
-        </nav>
+    <!-- ===================================================== -->
+    <!-- PROFILE -->
+    <!-- ===================================================== -->
 
-        <div class="logout">
+    <section id="profile" class="page">
 
-            <button class="menu-btn"
-                    onclick="logoutCompany()">
+        <div class="page-title">
+            <h2>Company Profile</h2>
+            <p>Manage your company information.</p>
+        </div>
 
-                <span class="menu-icon">↪</span>
-                <span>Logout</span>
+        <div class="profile-header">
 
+            <div class="company-logo">
+                T
+            </div>
+
+            <div>
+                <h2>TCS</h2>
+                <p>Information Technology Company</p>
+                <p>Ahmedabad, Gujarat</p>
+            </div>
+
+        </div>
+
+        <div class="form-box">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" value="TCS">
+                </div>
+
+                <div class="form-group">
+                    <label>Company Email</label>
+                    <input type="email" value="hr@tcs.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" value="9876543210">
+                </div>
+
+                <div class="form-group">
+                    <label>Website</label>
+                    <input type="text" value="www.tcs.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Industry</label>
+                    <input type="text" value="Information Technology">
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" value="Ahmedabad, Gujarat">
+                </div>
+
+                <div class="form-group full">
+                    <label>Company Description</label>
+                    <textarea>Leading technology and consulting company providing IT services and solutions.</textarea>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn btn-primary" onclick="saveMessage()">
+                Save Profile
             </button>
 
         </div>
 
-    </aside>
+    </section>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- ===================================================== -->
+    <!-- POST JOB -->
+    <!-- ===================================================== -->
 
-    <main class="main">
+    <section id="post-job" class="page">
 
-        <header class="topbar">
+        <div class="page-title">
+            <h2>Post New Job</h2>
+            <p>Create a new placement opportunity.</p>
+        </div>
 
-            <button class="notification-btn"
-                    onclick="showSection('notifications')">
+        <div class="form-box">
 
-                🔔
+            <div class="form-grid">
 
-                <span class="badge">
-                    4
-                </span>
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="Software Engineer">
+                </div>
 
+                <div class="form-group">
+                    <label>Job Type</label>
+
+                    <select>
+                        <option>Full Time</option>
+                        <option>Internship</option>
+                        <option>Part Time</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Eligibility Course</label>
+
+                    <select>
+                        <option>Computer Engineering</option>
+                        <option>Information Technology</option>
+                        <option>Electronics Engineering</option>
+                        <option>All Courses</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Minimum CPI</label>
+                    <input type="number" step="0.1" placeholder="6.0">
+                </div>
+
+                <div class="form-group">
+                    <label>Salary / Package</label>
+                    <input type="text" placeholder="₹5 LPA">
+                </div>
+
+                <div class="form-group">
+                    <label>Application Last Date</label>
+                    <input type="date">
+                </div>
+
+                <div class="form-group full">
+                    <label>Required Skills</label>
+                    <input type="text" placeholder="Java, Python, SQL, HTML">
+                </div>
+
+                <div class="form-group full">
+                    <label>Job Description</label>
+                    <textarea placeholder="Enter complete job description..."></textarea>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn btn-primary" onclick="postJob()">
+                Post Job
             </button>
 
-            <div class="company-user">
+        </div>
 
-                <div class="avatar">
-                    C
-                </div>
-
-                <div>
-
-                    <div class="user-name">
-                        Company
-                    </div>
-
-                    <div class="user-role">
-                        Company Account
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>
+    </section>
 
 
-        <section class="content">
+    <!-- ===================================================== -->
+    <!-- ALL APPLICATIONS -->
+    <!-- ===================================================== -->
+
+    <section id="applications" class="page">
+
+        <div class="page-title">
+            <h2>All Applications</h2>
+            <p>View, search, edit and manage student applications.</p>
+        </div>
 
 
-            <!-- ================= DASHBOARD ================= -->
+        <!-- SEARCH + FILTER -->
 
-            <div id="dashboard"
-                 class="page-section active-section">
+        <div class="filter-box">
 
+            <input
+                type="text"
+                id="applicationSearch"
+                placeholder="Search student name..."
+                onkeyup="filterApplications()"
+            >
 
-                <div class="welcome">
+            <select id="courseFilter" onchange="filterApplications()">
+                <option value="">All Courses</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="IT Engineering">IT Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+            </select>
 
-                    <h1>
-                        Welcome, Company! 👋
-                    </h1>
+            <select id="statusFilter" onchange="filterApplications()">
+                <option value="">All Status</option>
+                <option value="New">New</option>
+                <option value="Under Review">Under Review</option>
+                <option value="Shortlisted">Shortlisted</option>
+                <option value="Rejected">Rejected</option>
+            </select>
 
-                    <p>
-                        Manage your recruitment activities, review applications
-                        and connect with talented students.
-                    </p>
+            <button class="btn btn-secondary" onclick="clearFilters()">
+                Clear Filters
+            </button>
 
-                </div>
-
-
-                <!-- ================= STATS ================= -->
-
-                <div class="stats">
-
-
-                    <div class="stat">
-
-                        <div class="stat-icon purple">
-                            💼
-                        </div>
-
-                        <div>
-                            <div class="number">
-                                8
-                            </div>
-
-                            <div class="label">
-                                Active Job Postings
-                            </div>
-                        </div>
-
-                    </div>
+        </div>
 
 
-                    <div class="stat">
+        <div class="table-box">
 
-                        <div class="stat-icon green">
-                            📄
-                        </div>
+            <table id="applicationsTable">
 
-                        <div>
-                            <div class="number">
-                                126
-                            </div>
+                <thead>
 
-                            <div class="label">
-                                Total Applications
-                            </div>
-                        </div>
+                    <tr>
+                        <th>Name</th>
+                        <th>Enrollment No.</th>
+                        <th>Course</th>
+                        <th>Job</th>
+                        <th>CPI</th>
+                        <th>Skills</th>
+                        <th>LinkedIn</th>
+                        <th>Resume</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
 
-                    </div>
+                </thead>
 
+                <tbody>
 
-                    <div class="stat">
+                    <tr data-course="Computer Engineering"
+                        data-status="Under Review">
 
-                        <div class="stat-icon orange">
-                            ⭐
-                        </div>
+                        <td class="student-name">Rahul Patel</td>
 
-                        <div>
-                            <div class="number">
-                                34
-                            </div>
+                        <td>CE12345</td>
 
-                            <div class="label">
-                                Shortlisted Students
-                            </div>
-                        </div>
+                        <td>Computer Engineering</td>
 
-                    </div>
+                        <td>Software Engineer</td>
 
+                        <td>8.2</td>
 
-                    <div class="stat">
+                        <td>Java, PHP, SQL</td>
 
-                        <div class="stat-icon pink">
-                            📅
-                        </div>
+                        <td>
+                            <a href="https://www.linkedin.com/" target="_blank">
+                                View
+                            </a>
+                        </td>
 
-                        <div>
-                            <div class="number">
-                                6
-                            </div>
+                        <td>
+                            <a href="#" onclick="viewResume('Rahul Patel')">
+                                PDF
+                            </a>
+                        </td>
 
-                            <div class="label">
-                                Upcoming Interviews
-                            </div>
-                        </div>
+                        <td>
+                            <span class="badge badge-warning">
+                                Under Review
+                            </span>
+                        </td>
 
-                    </div>
+                        <td>
 
-                </div>
-
-
-                <!-- ================= APPLICATIONS + DRIVES ================= -->
-
-                <div class="grid">
-
-
-                    <!-- RECENT APPLICATIONS -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                Recent Applications
-                            </h2>
-
-                            <button class="link-btn"
-                                    onclick="showSection('applications')">
-
-                                View All →
-
+                            <button
+                                class="btn btn-warning"
+                                onclick="editApplication(this)">
+                                Edit
                             </button>
 
-                        </div>
-
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Job Role</th>
-                                    <th>Applied On</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody>
-
-
-                                <tr>
-
-                                    <td>
-
-                                        <div class="student">
-
-                                            <div class="student-img">
-                                                A
-                                            </div>
-
-                                            <div>
-
-                                                <div class="student-name">
-                                                    Aarav Patel
-                                                </div>
-
-                                                <div class="course">
-                                                    B.Tech CSE
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-                                    <td>
-                                        Software Engineer
-                                    </td>
-
-                                    <td>
-                                        08 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status review">
-                                            Under Review
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="small-btn"
-                                                onclick="showApplication(
-                                                    'Aarav Patel',
-                                                    'B.Tech CSE',
-                                                    'Software Engineer',
-                                                    '8.4',
-                                                    'Under Review'
-                                                )">
-
-                                            View
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-
-                                        <div class="student">
-
-                                            <div class="student-img">
-                                                P
-                                            </div>
-
-                                            <div>
-
-                                                <div class="student-name">
-                                                    Priya Shah
-                                                </div>
-
-                                                <div class="course">
-                                                    B.Tech IT
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-                                    <td>
-                                        System Engineer
-                                    </td>
-
-                                    <td>
-                                        07 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status shortlisted">
-                                            Shortlisted
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="small-btn"
-                                                onclick="showApplication(
-                                                    'Priya Shah',
-                                                    'B.Tech IT',
-                                                    'System Engineer',
-                                                    '8.7',
-                                                    'Shortlisted'
-                                                )">
-
-                                            View
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-
-                                        <div class="student">
-
-                                            <div class="student-img">
-                                                R
-                                            </div>
-
-                                            <div>
-
-                                                <div class="student-name">
-                                                    Rohan Mehta
-                                                </div>
-
-                                                <div class="course">
-                                                    B.Tech CSE
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </td>
-
-                                    <td>
-                                        Software Developer
-                                    </td>
-
-                                    <td>
-                                        06 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status interview">
-                                            Interview
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="small-btn"
-                                                onclick="showApplication(
-                                                    'Rohan Mehta',
-                                                    'B.Tech CSE',
-                                                    'Software Developer',
-                                                    '8.3',
-                                                    'Interview'
-                                                )">
-
-                                            View
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-
-                    <!-- UPCOMING DRIVES -->
-
-                    <div class="card">
-
-                        <div class="card-header">
-
-                            <h2>
-                                Upcoming Drives
-                            </h2>
-
-                            <button class="link-btn"
-                                    onclick="showSection('drives')">
-
-                                View All →
-
+                            <button
+                                class="btn btn-danger"
+                                onclick="deleteApplication(this)">
+                                Delete
                             </button>
 
-                        </div>
+                        </td>
+
+                    </tr>
 
 
-                        <div class="drive">
+                    <tr data-course="IT Engineering"
+                        data-status="Shortlisted">
 
-                            <div class="drive-title">
-                                Campus Recruitment Drive
-                            </div>
+                        <td class="student-name">Priya Shah</td>
 
-                            <div class="drive-info">
+                        <td>IT22341</td>
 
-                                📍 ABC Engineering College<br>
+                        <td>IT Engineering</td>
 
-                                👥 B.Tech / B.E Students<br>
+                        <td>Web Developer</td>
 
-                                💼 Software Engineer
+                        <td>8.7</td>
 
-                            </div>
+                        <td>HTML, CSS, JavaScript</td>
 
-                            <span class="date">
-                                20 Aug 2026
+                        <td>
+                            <a href="https://www.linkedin.com/" target="_blank">
+                                View
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="#" onclick="viewResume('Priya Shah')">
+                                PDF
+                            </a>
+                        </td>
+
+                        <td>
+                            <span class="badge badge-success">
+                                Shortlisted
                             </span>
+                        </td>
 
-                        </div>
+                        <td>
+
+                            <button
+                                class="btn btn-warning"
+                                onclick="editApplication(this)">
+                                Edit
+                            </button>
+
+                            <button
+                                class="btn btn-danger"
+                                onclick="deleteApplication(this)">
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
 
 
-                        <div class="drive">
+                    <tr data-course="Computer Engineering"
+                        data-status="New">
 
-                            <div class="drive-title">
-                                Technical Interview
-                            </div>
+                        <td class="student-name">Amit Desai</td>
 
-                            <div class="drive-info">
+                        <td>CE34567</td>
 
-                                📍 Placement Cell<br>
+                        <td>Computer Engineering</td>
 
-                                👥 12 Shortlisted Students<br>
+                        <td>Data Analyst</td>
 
-                                💼 System Engineer
+                        <td>7.9</td>
 
-                            </div>
+                        <td>Python, SQL, Excel</td>
 
-                            <span class="date">
-                                24 Aug 2026
+                        <td>
+                            <a href="https://www.linkedin.com/" target="_blank">
+                                View
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="#" onclick="viewResume('Amit Desai')">
+                                PDF
+                            </a>
+                        </td>
+
+                        <td>
+                            <span class="badge badge-info">
+                                New
                             </span>
+                        </td>
 
-                        </div>
+                        <td>
+
+                            <button
+                                class="btn btn-warning"
+                                onclick="editApplication(this)">
+                                Edit
+                            </button>
+
+                            <button
+                                class="btn btn-danger"
+                                onclick="deleteApplication(this)">
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
 
 
-                        <div class="drive">
+                    <tr data-course="Mechanical Engineering"
+                        data-status="Rejected">
 
-                            <div class="drive-title">
-                                Final HR Round
-                            </div>
+                        <td class="student-name">Karan Mehta</td>
 
-                            <div class="drive-info">
+                        <td>ME44521</td>
 
-                                💻 Online<br>
+                        <td>Mechanical Engineering</td>
 
-                                👥 8 Candidates<br>
+                        <td>Graduate Engineer</td>
 
-                                💼 Software Engineer
+                        <td>6.9</td>
 
-                            </div>
+                        <td>AutoCAD, Design</td>
 
-                            <span class="date">
-                                27 Aug 2026
+                        <td>
+                            <a href="https://www.linkedin.com/" target="_blank">
+                                View
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="#" onclick="viewResume('Karan Mehta')">
+                                PDF
+                            </a>
+                        </td>
+
+                        <td>
+                            <span class="badge badge-danger">
+                                Rejected
                             </span>
+                        </td>
 
-                        </div>
+                        <td>
 
-                    </div>
+                            <button
+                                class="btn btn-warning"
+                                onclick="editApplication(this)">
+                                Edit
+                            </button>
 
+                            <button
+                                class="btn btn-danger"
+                                onclick="deleteApplication(this)">
+                                Delete
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SHORTLISTED -->
+    <!-- ===================================================== -->
+
+    <section id="shortlisted" class="page">
+
+        <div class="page-title">
+            <h2>Shortlisted Students</h2>
+            <p>Students selected for the next recruitment stage.</p>
+        </div>
+
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>CPI</th>
+                        <th>Job</th>
+                        <th>Interview</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Priya Shah</td>
+                        <td>IT Engineering</td>
+                        <td>8.7</td>
+                        <td>Web Developer</td>
+                        <td>
+                            <span class="badge badge-success">
+                                Scheduled
+                            </span>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-primary"
+                                onclick="showMessage('Student profile opened.')">
+                                View Profile
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Rahul Patel</td>
+                        <td>Computer Engineering</td>
+                        <td>8.2</td>
+                        <td>Software Engineer</td>
+                        <td>
+                            <span class="badge badge-warning">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-primary"
+                                onclick="showPage('interviews')">
+                                Schedule
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- UPCOMING DRIVES -->
+    <!-- ===================================================== -->
+
+    <section id="drives" class="page">
+
+        <div class="page-title">
+
+            <h2>Upcoming Drives</h2>
+
+            <p>
+                Manage campus placement drives.
+            </p>
+
+        </div>
+
+        <div class="form-box">
+
+            <h3>Add New Drive</h3>
+
+            <br>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Drive Name</label>
+                    <input id="driveName" type="text"
+                           placeholder="TCS Campus Drive">
                 </div>
 
-
-                <!-- ================= QUICK ACTIONS ================= -->
-
-                <div class="card">
-
-                    <div class="card-header">
-
-                        <h2>
-                            Quick Actions
-                        </h2>
-
-                    </div>
-
-
-                    <div class="actions">
-
-
-                        <button class="action"
-                                onclick="showSection('jobs')">
-
-                            <div class="action-icon">
-                                ➕
-                            </div>
-
-                            <div class="action-text">
-                                Post New Job
-                            </div>
-
-                        </button>
-
-
-                        <button class="action"
-                                onclick="showSection('applications')">
-
-                            <div class="action-icon">
-                                📄
-                            </div>
-
-                            <div class="action-text">
-                                View Applications
-                            </div>
-
-                        </button>
-
-
-                        <button class="action"
-                                onclick="showSection('interviews')">
-
-                            <div class="action-icon">
-                                📅
-                            </div>
-
-                            <div class="action-text">
-                                Schedule Interview
-                            </div>
-
-                        </button>
-
-
-                    </div>
-
+                <div class="form-group">
+                    <label>Date</label>
+                    <input id="driveDate" type="date">
                 </div>
 
-            </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input id="driveTime" type="time">
+                </div>
 
+                <div class="form-group">
+                    <label>Venue</label>
+                    <input id="driveVenue" type="text"
+                           placeholder="Seminar Hall">
+                </div>
 
-            <!-- ================= PROFILE ================= -->
+                <div class="form-group">
+                    <label>Organizer</label>
+                    <input id="driveOrganizer" type="text"
+                           placeholder="Placement Officer">
+                </div>
 
-            <div id="profile"
-                 class="page-section">
+                <div class="form-group">
+                    <label>Eligible Course</label>
 
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Company Profile
-                    </h2>
-
-                    <p>
-                        View and manage your company information.
-                    </p>
-
-
-                    <div class="info-grid">
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Company Name
-                            </div>
-
-                            <div class="info-value">
-                                Registered Company
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Industry
-                            </div>
-
-                            <div class="info-value">
-                                Information Technology
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Email
-                            </div>
-
-                            <div class="info-value">
-                                company@example.com
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Location
-                            </div>
-
-                            <div class="info-value">
-                                Ahmedabad, Gujarat
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Website
-                            </div>
-
-                            <div class="info-value">
-                                www.company.com
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Company Status
-                            </div>
-
-                            <div class="info-value">
-                                Verified
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <select id="driveCourse">
+                        <option>Computer Engineering</option>
+                        <option>IT Engineering</option>
+                        <option>All Courses</option>
+                    </select>
 
                 </div>
 
             </div>
 
+            <br>
 
-            <!-- ================= JOB POSTINGS ================= -->
+            <button class="btn btn-primary"
+                    onclick="addDrive()">
+                Add Drive
+            </button>
 
-            <div id="jobs"
-                 class="page-section">
+        </div>
 
-                <div class="section-card">
+        <br>
 
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
+        <div class="table-box">
 
-                        ← Back to Dashboard
+            <h3 style="margin-bottom:15px;">
+                Scheduled Drives
+            </h3>
 
-                    </button>
+            <table id="driveTable">
 
-                    <h2>
-                        Job Postings
-                    </h2>
+                <thead>
+                    <tr>
+                        <th>Drive</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Venue</th>
+                        <th>Organizer</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-                    <p>
-                        Manage your current recruitment opportunities.
-                    </p>
+                <tbody>
 
+                    <tr>
+                        <td>TCS Campus Drive</td>
+                        <td>20 Aug 2026</td>
+                        <td>10:00 AM</td>
+                        <td>Seminar Hall</td>
+                        <td>Placement Officer</td>
+                        <td>Computer Engineering</td>
 
-                    <div class="detail-box">
+                        <td>
+                            <button class="btn btn-danger"
+                                    onclick="deleteDrive(this)">
+                                Delete
+                            </button>
+                        </td>
 
-                        <h3>
-                            Software Engineer
-                        </h3>
+                    </tr>
 
-                        <p>
-                            Eligibility: B.Tech / B.E
-                        </p>
+                </tbody>
 
-                        <p>
-                            Location: Ahmedabad
-                        </p>
+            </table>
 
-                        <p>
-                            Applications: 54
-                        </p>
+        </div>
 
-                        <p>
-                            Last Date: 20 Aug 2026
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            System Engineer
-                        </h3>
-
-                        <p>
-                            Eligibility: B.Tech / MCA
-                        </p>
-
-                        <p>
-                            Location: Gujarat
-                        </p>
-
-                        <p>
-                            Applications: 38
-                        </p>
-
-                        <p>
-                            Last Date: 25 Aug 2026
-                        </p>
-
-                    </div>
+    </section>
 
 
-                    <div class="detail-box">
+    <!-- ===================================================== -->
+    <!-- INTERVIEWS -->
+    <!-- ===================================================== -->
 
-                        <h3>
-                            Data Analyst
-                        </h3>
+    <section id="interviews" class="page">
 
-                        <p>
-                            Eligibility: B.Tech / MCA
-                        </p>
+        <div class="page-title">
 
-                        <p>
-                            Location: Remote
-                        </p>
+            <h2>Schedule Interview</h2>
 
-                        <p>
-                            Applications: 34
-                        </p>
+            <p>
+                Schedule interviews for shortlisted students.
+            </p>
 
-                        <p>
-                            Last Date: 30 Aug 2026
-                        </p>
+        </div>
 
-                    </div>
+        <div class="form-box">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Student Name</label>
+
+                    <select>
+                        <option>Priya Shah</option>
+                        <option>Rahul Patel</option>
+                        <option>Amit Desai</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Interview Type</label>
+
+                    <select>
+                        <option>Technical Round</option>
+                        <option>HR Round</option>
+                        <option>Final Round</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date">
+                </div>
+
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time">
+                </div>
+
+                <div class="form-group">
+                    <label>Mode</label>
+
+                    <select>
+                        <option>Online</option>
+                        <option>Offline</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Interview Location / Link</label>
+                    <input type="text"
+                           placeholder="Meeting link or location">
+                </div>
+
+                <div class="form-group full">
+                    <label>Additional Instructions</label>
+
+                    <textarea
+                        placeholder="Enter interview instructions..."></textarea>
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="btn btn-primary"
+                    onclick="scheduleInterview()">
+                Schedule Interview
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- NOTIFICATIONS -->
+    <!-- ===================================================== -->
+
+    <section id="notifications" class="page">
+
+        <div class="page-title">
+
+            <h2>Notifications</h2>
+
+            <p>
+                Recruitment related updates and alerts.
+            </p>
+
+        </div>
+
+        <div class="notification">
+
+            <strong>New Application Received</strong>
+
+            <p>
+                Rahul Patel has applied for Software Engineer.
+            </p>
+
+            <small>
+                Today, 10:30 AM
+            </small>
+
+        </div>
+
+        <div class="notification">
+
+            <strong>Interview Reminder</strong>
+
+            <p>
+                Technical interview with Priya Shah is scheduled tomorrow.
+            </p>
+
+            <small>
+                Yesterday
+            </small>
+
+        </div>
+
+        <div class="notification">
+
+            <strong>Placement Drive Approved</strong>
+
+            <p>
+                Your upcoming campus drive has been approved.
+            </p>
+
+            <small>
+                2 days ago
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SETTINGS -->
+    <!-- ===================================================== -->
+
+    <section id="settings" class="page">
+
+        <div class="page-title">
+
+            <h2>Settings</h2>
+
+            <p>
+                Manage company dashboard preferences.
+            </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <h3>Account Settings</h3>
+
+            <br>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Company Email</label>
+                    <input type="email" value="hr@tcs.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" value="9876543210">
+                </div>
+
+                <div class="form-group">
+                    <label>Change Password</label>
+                    <input type="password"
+                           placeholder="New Password">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password"
+                           placeholder="Confirm Password">
+                </div>
+
+            </div>
+
+            <br>
+
+            <h3>Notification Settings</h3>
+
+            <br>
+
+            <label>
+                <input type="checkbox" checked>
+                New application notifications
+            </label>
+
+            <br><br>
+
+            <label>
+                <input type="checkbox" checked>
+                Interview reminders
+            </label>
+
+            <br><br>
+
+            <label>
+                <input type="checkbox" checked>
+                Placement drive updates
+            </label>
+
+            <br><br>
+
+            <label>
+                <input type="checkbox">
+                Marketing and promotional emails
+            </label>
+
+            <br><br>
+
+            <h3>Application Preferences</h3>
+
+            <br>
+
+            <label>
+                <input type="checkbox" checked>
+                Allow students to apply to multiple jobs
+            </label>
+
+            <br><br>
+
+            <label>
+                <input type="checkbox" checked>
+                Show student LinkedIn profiles
+            </label>
+
+            <br><br>
+
+            <label>
+                <input type="checkbox" checked>
+                Allow resume viewing
+            </label>
+
+            <br><br>
+
+            <h3>Dashboard Preferences</h3>
+
+            <br>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Default Application Status</label>
+
+                    <select>
+                        <option>New</option>
+                        <option>Under Review</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Items Per Page</label>
+
+                    <select>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
 
                 </div>
 
             </div>
 
+            <br>
 
-            <!-- ================= APPLICATIONS ================= -->
+            <button class="btn btn-primary"
+                    onclick="saveSettings()">
+                Save Settings
+            </button>
 
-            <div id="applications"
-                 class="page-section">
+        </div>
 
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        All Applications
-                    </h2>
-
-                    <p>
-                        Review applications received from students.
-                    </p>
-
-
-                    <table>
-
-                        <thead>
-
-                            <tr>
-                                <th>Student</th>
-                                <th>Course</th>
-                                <th>Job Role</th>
-                                <th>CGPA</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody>
-
-                            <tr>
-
-                                <td>
-                                    Aarav Patel
-                                </td>
-
-                                <td>
-                                    B.Tech CSE
-                                </td>
-
-                                <td>
-                                    Software Engineer
-                                </td>
-
-                                <td>
-                                    8.4
-                                </td>
-
-                                <td>
-
-                                    <span class="status review">
-                                        Under Review
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <button class="small-btn"
-                                            onclick="showApplication(
-                                                'Aarav Patel',
-                                                'B.Tech CSE',
-                                                'Software Engineer',
-                                                '8.4',
-                                                'Under Review'
-                                            )">
-
-                                        View
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-                                    Priya Shah
-                                </td>
-
-                                <td>
-                                    B.Tech IT
-                                </td>
-
-                                <td>
-                                    System Engineer
-                                </td>
-
-                                <td>
-                                    8.7
-                                </td>
-
-                                <td>
-
-                                    <span class="status shortlisted">
-                                        Shortlisted
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <button class="small-btn"
-                                            onclick="showApplication(
-                                                'Priya Shah',
-                                                'B.Tech IT',
-                                                'System Engineer',
-                                                '8.7',
-                                                'Shortlisted'
-                                            )">
-
-                                        View
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-
-                            <tr>
-
-                                <td>
-                                    Rohan Mehta
-                                </td>
-
-                                <td>
-                                    B.Tech CSE
-                                </td>
-
-                                <td>
-                                    Software Developer
-                                </td>
-
-                                <td>
-                                    8.3
-                                </td>
-
-                                <td>
-
-                                    <span class="status interview">
-                                        Interview
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <button class="small-btn"
-                                            onclick="showApplication(
-                                                'Rohan Mehta',
-                                                'B.Tech CSE',
-                                                'Software Developer',
-                                                '8.3',
-                                                'Interview'
-                                            )">
-
-                                        View
-
-                                    </button>
-
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= APPLICATION DETAILS ================= -->
-
-            <div id="application-details"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('applications')">
-
-                        ← Back to Applications
-
-                    </button>
-
-                    <h2>
-                        Application Details
-                    </h2>
-
-                    <p>
-                        Student application information.
-                    </p>
-
-
-                    <div class="info-grid">
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Student Name
-                            </div>
-
-                            <div class="info-value"
-                                 id="detail-name">
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Course
-                            </div>
-
-                            <div class="info-value"
-                                 id="detail-course">
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Job Role
-                            </div>
-
-                            <div class="info-value"
-                                 id="detail-job">
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                CGPA
-                            </div>
-
-                            <div class="info-value"
-                                 id="detail-cgpa">
-                            </div>
-
-                        </div>
-
-
-                        <div class="info-box">
-
-                            <div class="info-label">
-                                Application Status
-                            </div>
-
-                            <div class="info-value"
-                                 id="detail-status">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= SHORTLISTED ================= -->
-
-            <div id="shortlisted"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Shortlisted Students
-                    </h2>
-
-                    <p>
-                        Students selected for the next recruitment stage.
-                    </p>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Priya Shah
-                        </h3>
-
-                        <p>
-                            B.Tech IT | CGPA: 8.7
-                        </p>
-
-                        <p>
-                            Job Role: System Engineer
-                        </p>
-
-                        <span class="status shortlisted">
-                            Shortlisted
-                        </span>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Neha Joshi
-                        </h3>
-
-                        <p>
-                            B.Tech CE | CGPA: 8.5
-                        </p>
-
-                        <p>
-                            Job Role: Software Engineer
-                        </p>
-
-                        <span class="status shortlisted">
-                            Shortlisted
-                        </span>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Rohan Mehta
-                        </h3>
-
-                        <p>
-                            B.Tech CSE | CGPA: 8.3
-                        </p>
-
-                        <p>
-                            Job Role: Software Developer
-                        </p>
-
-                        <span class="status shortlisted">
-                            Shortlisted
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= INTERVIEWS ================= -->
-
-            <div id="interviews"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Interviews
-                    </h2>
-
-                    <p>
-                        Manage upcoming student interviews.
-                    </p>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Technical Interview
-                        </h3>
-
-                        <p>
-                            Student: Priya Shah
-                        </p>
-
-                        <p>
-                            Date: 24 Aug 2026
-                        </p>
-
-                        <p>
-                            Time: 10:00 AM
-                        </p>
-
-                        <p>
-                            Mode: Online
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            HR Interview
-                        </h3>
-
-                        <p>
-                            Student: Neha Joshi
-                        </p>
-
-                        <p>
-                            Date: 25 Aug 2026
-                        </p>
-
-                        <p>
-                            Time: 11:30 AM
-                        </p>
-
-                        <p>
-                            Mode: Campus
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Final Interview
-                        </h3>
-
-                        <p>
-                            Student: Rohan Mehta
-                        </p>
-
-                        <p>
-                            Date: 27 Aug 2026
-                        </p>
-
-                        <p>
-                            Time: 2:00 PM
-                        </p>
-
-                        <p>
-                            Mode: Online
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= DRIVES ================= -->
-
-            <div id="drives"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Upcoming Drives
-                    </h2>
-
-                    <p>
-                        Recruitment drives scheduled by the company.
-                    </p>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Campus Recruitment Drive
-                        </h3>
-
-                        <p>
-                            College: ABC Engineering College
-                        </p>
-
-                        <p>
-                            Job Role: Software Engineer
-                        </p>
-
-                        <p>
-                            Eligibility: B.Tech / B.E
-                        </p>
-
-                        <p>
-                            Date: 20 Aug 2026
-                        </p>
-
-                        <p>
-                            Location: Placement Cell
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Technical Recruitment Drive
-                        </h3>
-
-                        <p>
-                            College: XYZ Engineering College
-                        </p>
-
-                        <p>
-                            Job Role: System Engineer
-                        </p>
-
-                        <p>
-                            Eligibility: B.Tech / MCA
-                        </p>
-
-                        <p>
-                            Date: 24 Aug 2026
-                        </p>
-
-                        <p>
-                            Location: Placement Cell
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Final HR Drive
-                        </h3>
-
-                        <p>
-                            Mode: Online
-                        </p>
-
-                        <p>
-                            Job Role: Software Developer
-                        </p>
-
-                        <p>
-                            Date: 27 Aug 2026
-                        </p>
-
-                        <p>
-                            Location: Online
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= NOTIFICATIONS ================= -->
-
-            <div id="notifications"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Notifications
-                    </h2>
-
-                    <p>
-                        Important recruitment updates and notifications.
-                    </p>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            New Student Application
-                        </h3>
-
-                        <p>
-                            Aarav Patel has applied for Software Engineer.
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Interview Reminder
-                        </h3>
-
-                        <p>
-                            Technical interview with Priya Shah is scheduled
-                            for 24 Aug 2026.
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Drive Approved
-                        </h3>
-
-                        <p>
-                            Your upcoming campus recruitment drive has been
-                            approved by the Placement Officer.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= SETTINGS ================= -->
-
-            <div id="settings"
-                 class="page-section">
-
-                <div class="section-card">
-
-                    <button class="back-btn"
-                            onclick="showSection('dashboard')">
-
-                        ← Back to Dashboard
-
-                    </button>
-
-                    <h2>
-                        Settings
-                    </h2>
-
-                    <p>
-                        Manage your company dashboard settings.
-                    </p>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Account Settings
-                        </h3>
-
-                        <p>
-                            Manage company account information.
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Notification Preferences
-                        </h3>
-
-                        <p>
-                            Manage recruitment notification preferences.
-                        </p>
-
-                    </div>
-
-
-                    <div class="detail-box">
-
-                        <h3>
-                            Security
-                        </h3>
-
-                        <p>
-                            Manage account security and password settings.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-    </main>
+    </section>
 
 </div>
 
 
+<!-- ========================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================================= -->
+
 <script>
 
-    /* ================= SHOW SECTION ================= */
+    /* ================= PAGE NAVIGATION ================= */
 
-    function showSection(sectionId, clickedButton = null) {
+    function showPage(pageId, button = null) {
 
-        const sections = document.querySelectorAll(".page-section");
+        const pages = document.querySelectorAll('.page');
 
-        sections.forEach(function(section) {
-
-            section.classList.remove("active-section");
-
+        pages.forEach(function(page) {
+            page.classList.remove('active');
         });
 
+        const selectedPage = document.getElementById(pageId);
 
-        const selected = document.getElementById(sectionId);
-
-        if (selected) {
-
-            selected.classList.add("active-section");
-
+        if (selectedPage) {
+            selectedPage.classList.add('active');
         }
 
+        const buttons = document.querySelectorAll('.menu button');
 
-        const buttons = document.querySelectorAll(".menu-btn");
-
-        buttons.forEach(function(button) {
-
-            button.classList.remove("active");
-
+        buttons.forEach(function(btn) {
+            btn.classList.remove('active');
         });
 
-
-        if (clickedButton) {
-
-            clickedButton.classList.add("active");
-
+        if (button) {
+            button.classList.add('active');
         }
 
+        const titles = {
+            dashboard: 'Company Dashboard',
+            profile: 'Company Profile',
+            'post-job': 'Post New Job',
+            applications: 'All Applications',
+            shortlisted: 'Shortlisted Students',
+            drives: 'Upcoming Drives',
+            interviews: 'Schedule Interview',
+            notifications: 'Notifications',
+            settings: 'Settings'
+        };
+
+        document.getElementById('topTitle').innerText =
+            titles[pageId] || 'Company Dashboard';
 
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: 'smooth'
+        });
+    }
+
+
+    /* ================= APPLICATION SEARCH ================= */
+
+    function filterApplications() {
+
+        const search =
+            document.getElementById('applicationSearch')
+            .value
+            .toLowerCase();
+
+        const course =
+            document.getElementById('courseFilter')
+            .value;
+
+        const status =
+            document.getElementById('statusFilter')
+            .value;
+
+        const rows =
+            document.querySelectorAll(
+                '#applicationsTable tbody tr'
+            );
+
+        rows.forEach(function(row) {
+
+            const name =
+                row.querySelector('.student-name')
+                .innerText
+                .toLowerCase();
+
+            const rowCourse =
+                row.getAttribute('data-course');
+
+            const rowStatus =
+                row.getAttribute('data-status');
+
+            const searchMatch =
+                name.includes(search);
+
+            const courseMatch =
+                course === '' ||
+                rowCourse === course;
+
+            const statusMatch =
+                status === '' ||
+                rowStatus === status;
+
+            if (
+                searchMatch &&
+                courseMatch &&
+                statusMatch
+            ) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+
         });
 
     }
 
 
-    /* ================= APPLICATION DETAILS ================= */
+    /* ================= CLEAR FILTER ================= */
 
-    function showApplication(
-        name,
-        course,
-        job,
-        cgpa,
-        status
-    ) {
+    function clearFilters() {
 
-        document.getElementById("detail-name").innerText = name;
+        document.getElementById('applicationSearch').value = '';
+        document.getElementById('courseFilter').value = '';
+        document.getElementById('statusFilter').value = '';
 
-        document.getElementById("detail-course").innerText = course;
+        filterApplications();
 
-        document.getElementById("detail-job").innerText = job;
+    }
 
-        document.getElementById("detail-cgpa").innerText = cgpa;
 
-        document.getElementById("detail-status").innerText = status;
+    /* ================= EDIT APPLICATION ================= */
 
-        showSection("application-details");
+    function editApplication(button) {
+
+        const row = button.closest('tr');
+
+        const name =
+            row.querySelector('.student-name').innerText;
+
+        const newName =
+            prompt(
+                'Edit Student Name:',
+                name
+            );
+
+        if (newName && newName.trim() !== '') {
+
+            row.querySelector('.student-name')
+               .innerText = newName.trim();
+
+            alert('Application updated successfully.');
+
+        }
+
+    }
+
+
+    /* ================= DELETE APPLICATION ================= */
+
+    function deleteApplication(button) {
+
+        const row = button.closest('tr');
+
+        const name =
+            row.querySelector('.student-name').innerText;
+
+        const confirmDelete =
+            confirm(
+                'Are you sure you want to delete the application of '
+                + name
+                + '?'
+            );
+
+        if (confirmDelete) {
+
+            row.remove();
+
+            alert(
+                'Application deleted successfully.'
+            );
+
+        }
+
+    }
+
+
+    /* ================= RESUME ================= */
+
+    function viewResume(studentName) {
+
+        alert(
+            'Resume PDF for '
+            + studentName
+            + ' will open here after the student resume is connected.'
+        );
+
+    }
+
+
+    /* ================= ADD DRIVE ================= */
+
+    function addDrive() {
+
+        const name =
+            document.getElementById('driveName').value;
+
+        const date =
+            document.getElementById('driveDate').value;
+
+        const time =
+            document.getElementById('driveTime').value;
+
+        const venue =
+            document.getElementById('driveVenue').value;
+
+        const organizer =
+            document.getElementById('driveOrganizer').value;
+
+        const course =
+            document.getElementById('driveCourse').value;
+
+        if (
+            name === '' ||
+            date === '' ||
+            time === '' ||
+            venue === ''
+        ) {
+
+            alert(
+                'Please fill all required drive details.'
+            );
+
+            return;
+        }
+
+        const table =
+            document.querySelector(
+                '#driveTable tbody'
+            );
+
+        const row =
+            document.createElement('tr');
+
+        row.innerHTML = `
+
+            <td>${name}</td>
+
+            <td>${date}</td>
+
+            <td>${time}</td>
+
+            <td>${venue}</td>
+
+            <td>${organizer}</td>
+
+            <td>${course}</td>
+
+            <td>
+                <button
+                    class="btn btn-danger"
+                    onclick="deleteDrive(this)">
+                    Delete
+                </button>
+            </td>
+
+        `;
+
+        table.appendChild(row);
+
+        document.getElementById('driveName').value = '';
+        document.getElementById('driveDate').value = '';
+        document.getElementById('driveTime').value = '';
+        document.getElementById('driveVenue').value = '';
+        document.getElementById('driveOrganizer').value = '';
+
+        alert(
+            'Upcoming drive added successfully.'
+        );
+
+    }
+
+
+    /* ================= DELETE DRIVE ================= */
+
+    function deleteDrive(button) {
+
+        const row = button.closest('tr');
+
+        if (
+            confirm(
+                'Are you sure you want to delete this drive?'
+            )
+        ) {
+
+            row.remove();
+
+            alert(
+                'Drive deleted successfully.'
+            );
+
+        }
+
+    }
+
+
+    /* ================= POST JOB ================= */
+
+    function postJob() {
+
+        const job =
+            document.getElementById('jobTitle').value;
+
+        if (job === '') {
+
+            alert(
+                'Please enter the Job Title.'
+            );
+
+            return;
+
+        }
+
+        alert(
+            'Job posted successfully!'
+        );
+
+        document.getElementById('jobTitle').value = '';
+
+    }
+
+
+    /* ================= INTERVIEW ================= */
+
+    function scheduleInterview() {
+
+        alert(
+            'Interview scheduled successfully!'
+        );
+
+    }
+
+
+    /* ================= SAVE PROFILE ================= */
+
+    function saveMessage() {
+
+        alert(
+            'Company profile saved successfully!'
+        );
+
+    }
+
+
+    /* ================= SETTINGS ================= */
+
+    function saveSettings() {
+
+        alert(
+            'Settings saved successfully!'
+        );
+
+    }
+
+
+    /* ================= GENERAL MESSAGE ================= */
+
+    function showMessage(message) {
+
+        alert(message);
 
     }
 
@@ -2396,14 +1890,15 @@
 
     function logoutCompany() {
 
-        const confirmLogout = confirm(
-            "Are you sure you want to logout?"
-        );
+        const result =
+            confirm(
+                'Are you sure you want to logout?'
+            );
 
+        if (result) {
 
-        if (confirmLogout) {
-
-            window.location.href = "/company/login";
+            window.location.href =
+                "{{ route('company.login') }}";
 
         }
 

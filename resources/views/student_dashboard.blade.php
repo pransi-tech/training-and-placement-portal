@@ -1002,6 +1002,16 @@
             </button>
         </li>
 
+        <li>
+            <button
+                class="nav-link"
+                onclick="showSection('settings', this)"
+            >
+                <div class="nav-icon">⚙️</div>
+                <span>Settings</span>
+            </button>
+        </li>
+
     </ul>
 
 
@@ -1723,9 +1733,7 @@
                     Learn HTML, CSS, JavaScript and modern web development.
                 </p>
 
-                <button>
-                    Start Course
-                </button>
+                <button onclick="openCourseModal('Web Development', 'Learn HTML, CSS, JavaScript and modern web development.', '💻')" onclick="openCourseModal('PHP & Laravel', 'Learn backend development using PHP and Laravel.', '🐘')" onclick="openCourseModal('Database Management', 'Learn SQL and database management concepts.', '🗄️')">Start Course</button>
 
             </div>
 
@@ -1794,31 +1802,72 @@
             ← Back to Dashboard
         </button>
 
-
         <h2 class="section-title">
             📋 Resume
         </h2>
 
+        <div class="profile-card">
 
-        <div class="resume-box">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    📄
+                </div>
 
-            <h2>
-                My Resume
-            </h2>
+                <div>
+                    <h2>My Resume</h2>
+                    <p>Upload and manage your resume for placement opportunities.</p>
+                </div>
+            </div>
 
-            <p>
-                Manage your resume for placement opportunities.
-            </p>
+            <div style="padding:20px;">
 
-            <button class="resume-btn">
-                Upload Resume
-            </button>
+                <form
+                    id="resumeUploadForm"
+                    onsubmit="uploadResume(event)"
+                >
+
+                    <label
+                        for="resumeFile"
+                        style="display:block;font-weight:600;margin-bottom:10px;"
+                    >
+                        Select Resume
+                    </label>
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        name="resume"
+                        accept=".pdf,.doc,.docx"
+                        onchange="showSelectedResume(this)"
+                        style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;"
+                    >
+
+                    <p
+                        id="resumeFileName"
+                        style="margin:10px 0;color:#666;"
+                    >
+                        Accepted formats: PDF, DOC, DOCX
+                    </p>
+
+                    <button
+                        type="submit"
+                        style="background:#6c35d8;color:white;border:none;border-radius:8px;padding:11px 20px;cursor:pointer;font-size:15px;"
+                    >
+                        📤 Upload Resume
+                    </button>
+
+                    <p
+                        id="resumeUploadMessage"
+                        style="display:none;margin-top:14px;padding:10px;border-radius:8px;background:#f1ebff;color:#4b1fa3;"
+                    ></p>
+
+                </form>
+
+            </div>
 
         </div>
 
     </section>
-
-
 
     <!-- =================================================
          NOTIFICATIONS
@@ -1883,6 +1932,195 @@
     </section>
 
 
+
+    <!-- =================================================
+         SETTINGS
+    ================================================== -->
+
+    <section
+        id="settings"
+        class="page-section"
+    >
+
+        <button
+            class="back-btn"
+            onclick="showSection('dashboard')"
+        >
+            ← Back to Dashboard
+        </button>
+
+        <h2 class="section-title">
+            ⚙️ Settings
+        </h2>
+
+        <p style="color:#666; margin-top:-10px; margin-bottom:20px;">
+            Manage your student portal preferences.
+        </p>
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    ⚙️
+                </div>
+
+                <div>
+                    <h2>Account Settings</h2>
+                    <p>Manage your account information and password.</p>
+                </div>
+            </div>
+
+            <div class="profile-details">
+
+                <div class="profile-item">
+                    <div class="profile-label">Student Email</div>
+                    <div class="profile-value">
+                        {{ $student->email ?? 'Not Available' }}
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">Mobile Number</div>
+                    <div class="profile-value">
+                        {{ $student->mobile_no ?? 'Not Available' }}
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">Change Password</div>
+                    <div class="profile-value">
+                        <input
+                            type="password"
+                            placeholder="New Password"
+                            style="width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;"
+                        >
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">Confirm Password</div>
+                    <div class="profile-value">
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            style="width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;box-sizing:border-box;"
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="profile-card" style="margin-top:20px;">
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    🔔
+                </div>
+
+                <div>
+                    <h2>Notification Settings</h2>
+                    <p>Choose which student portal updates you want to receive.</p>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px;padding:10px 20px 20px;">
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Placement opportunity notifications
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Application status updates
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Interview reminders
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Training and course updates
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="profile-card" style="margin-top:20px;">
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    ⭐
+                </div>
+
+                <div>
+                    <h2>Application Preferences</h2>
+                    <p>Manage how you use placement opportunities.</p>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px;padding:10px 20px 20px;">
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Allow job recommendations
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Show my LinkedIn profile to companies
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Allow companies to view my resume
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Allow applications to multiple opportunities
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="profile-card" style="margin-top:20px;">
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    🔒
+                </div>
+
+                <div>
+                    <h2>Privacy Settings</h2>
+                    <p>Control your profile visibility.</p>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px;padding:10px 20px 20px;">
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Make my student profile visible to placement companies
+                </label>
+
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked>
+                    Allow my resume to be viewed by eligible companies
+                </label>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </main>
 
 
@@ -1941,7 +2179,6 @@
             clickedButton.classList.add("active");
 
         }
-
 
         /* Scroll to top */
 
@@ -2011,8 +2248,128 @@
 
     }
 
+
+        // Resume upload UI
+        function showSelectedResume(input) {
+            const nameBox = document.getElementById('resumeFileName');
+
+            if (input.files && input.files.length > 0) {
+                nameBox.textContent = 'Selected file: ' + input.files[0].name;
+            } else {
+                nameBox.textContent = 'Accepted formats: PDF, DOC, DOCX';
+            }
+        }
+
+        function uploadResume(event) {
+            event.preventDefault();
+
+            const input = document.getElementById('resumeFile');
+            const message = document.getElementById('resumeUploadMessage');
+
+            if (!input.files || input.files.length === 0) {
+                message.style.display = 'block';
+                message.textContent = 'Please select your resume first.';
+                return;
+            }
+
+            const file = input.files[0];
+            const allowed = ['application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+            const extension = file.name.split('.').pop().toLowerCase();
+
+            if (!['pdf', 'doc', 'docx'].includes(extension)) {
+                message.style.display = 'block';
+                message.textContent = 'Please upload a PDF, DOC, or DOCX file.';
+                return;
+            }
+
+            message.style.display = 'block';
+            message.textContent = 'Resume selected successfully: ' + file.name;
+        }
+
+        // Course popup
+        function openCourseModal(title, description, icon) {
+            document.getElementById('courseModalTitle').textContent = title;
+            document.getElementById('courseModalDescription').textContent = description;
+            document.getElementById('courseModalIcon').textContent = icon || '🎓';
+
+            const modal = document.getElementById('courseModal');
+            modal.style.display = 'flex';
+        }
+
+        function closeCourseModal(event) {
+            if (!event || event.target === document.getElementById('courseModal')) {
+                document.getElementById('courseModal').style.display = 'none';
+            }
+        }
+
+        function startCourse() {
+            alert('Course started! 🎓');
+            closeCourseModal();
+        }
+
 </script>
 
+
+
+    <!-- =================================================
+         COURSE POPUP
+    ================================================== -->
+
+    <div
+        id="courseModal"
+        style="display:none;position:fixed;inset:0;background:rgba(20,10,45,.55);z-index:9999;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;"
+        onclick="closeCourseModal(event)"
+    >
+        <div
+            style="background:white;width:min(560px,100%);border-radius:18px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;"
+            onclick="event.stopPropagation()"
+        >
+            <button
+                type="button"
+                onclick="closeCourseModal()"
+                style="position:absolute;right:18px;top:14px;border:none;background:none;font-size:28px;cursor:pointer;color:#666;"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <div style="font-size:42px;margin-bottom:8px;" id="courseModalIcon">🎓</div>
+
+            <h2
+                id="courseModalTitle"
+                style="margin:0 0 10px;color:#3d168c;"
+            >
+                Course
+            </h2>
+
+            <p
+                id="courseModalDescription"
+                style="color:#666;line-height:1.6;margin-bottom:22px;"
+            >
+                Course details will appear here.
+            </p>
+
+            <div
+                style="background:#f7f2ff;border-radius:10px;padding:14px;margin-bottom:22px;"
+            >
+                <strong>Course Information</strong>
+                <p style="margin:7px 0 0;color:#666;">
+                    You can start this course from the Student Portal.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                onclick="startCourse()"
+                style="background:#6c35d8;color:white;border:none;border-radius:8px;padding:11px 20px;cursor:pointer;font-size:15px;"
+            >
+                Start Learning
+            </button>
+        </div>
+    </div>
 
 </body>
 

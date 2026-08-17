@@ -104,6 +104,11 @@ Route::get('/student', function () {
     return view('student');
 });
 
+Route::get('/student/dashboard', function () {
+    return view('student_dashboard');
+});
+
+
 Route::get('/register', function () {
     return view('register');
 })->name('register');

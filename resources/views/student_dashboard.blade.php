@@ -1037,6 +1037,70 @@
 
 <main class="main">
 
+<section id="courseDetails" class="page-section">
+
+    <button
+        class="back-btn"
+        onclick="showSection('courses')"
+    >
+        ← Back to Courses
+    </button>
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                💻
+            </div>
+
+            <div>
+                <h2>Web Development</h2>
+                <p>Course Details</p>
+            </div>
+
+        </div>
+
+        <div style="padding:10px 0;">
+
+            <h3 style="color:#351275;margin-bottom:10px;">
+                About This Course
+            </h3>
+
+            <p style="color:#666;line-height:1.7;margin-bottom:25px;">
+                Learn HTML, CSS, JavaScript and modern web development
+                from the basics.
+            </p>
+
+            <h3 style="color:#351275;margin-bottom:15px;">
+                What You'll Learn
+            </h3>
+
+            <div style="display:flex;flex-direction:column;gap:12px;">
+
+                <div class="profile-item">
+                    📘 HTML Basics
+                </div>
+
+                <div class="profile-item">
+                    🎨 CSS Basics
+                </div>
+
+                <div class="profile-item">
+                    ⚡ JavaScript Basics
+                </div>
+
+                <div class="profile-item">
+                    🌐 Modern Web Development
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <!-- =================================================
          DASHBOARD
@@ -1733,7 +1797,7 @@
                     Learn HTML, CSS, JavaScript and modern web development.
                 </p>
 
-                <button onclick="openCourseModal('Web Development', 'Learn HTML, CSS, JavaScript and modern web development.', '💻')" onclick="openCourseModal('PHP & Laravel', 'Learn backend development using PHP and Laravel.', '🐘')" onclick="openCourseModal('Database Management', 'Learn SQL and database management concepts.', '🗄️')">Start Course</button>
+                <button onclick="openCourseModal('Web Development', 'Learn HTML, CSS, JavaScript and modern web development.', '💻')">Start Course</button>
 
             </div>
 
@@ -2305,10 +2369,10 @@
             }
         }
 
-        function startCourse() {
-            alert('Course started! 🎓');
-            closeCourseModal();
-        }
+function startCourse() {
+    closeCourseModal();
+    showSection('courseDetails');
+}
 
 </script>
 

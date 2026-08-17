@@ -1,165 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Inter", sans-serif;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #050d1c;
-        }
-
-        .login-box {
-            width: 520px;
-            padding: 40px 36px;
-            border-radius: 28px;
-            background: rgba(20, 32, 52, 0.75);
-            border: 1px solid rgba(255,255,255,0.12);
-            box-shadow: 
-                0 20px 50px rgba(0,0,0,0.4),
-                inset 0 0 30px rgba(255,255,255,0.02);
-            backdrop-filter: blur(15px);
-        }
-
-        h1 {
-            text-align: center;
-            color: #c8d0dd;
-            font-size: 32px;
-            margin-bottom: 35px;
-            font-weight: 700;
-        }
-
-        label {
-            color: #aeb8c8;
-            font-size: 17px;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .input-box {
-            width: 100%;
-            height: 58px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 16px;
-            margin-bottom: 25px;
-            padding: 0 18px;
-            color: white;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .input-box::placeholder {
-            color: #78859a;
-        }
-
-        .password-area {
-            position: relative;
-        }
-
-        .show {
-            position: absolute;
-            right: 20px;
-            top: 18px;
-            color: #7d8ba3;
-            cursor: pointer;
-        }
-
-        .options {
+        body{
+            margin:0;
+            padding:0;
+            background:#07101f;
             display:flex;
-            justify-content:space-between;
+            justify-content:center;
             align-items:center;
-            margin: 10px 0 35px;
-            color:#7f8ba0;
+            height:100vh;
+            font-family:Arial,sans-serif;
         }
 
-        .remember {
-            display:flex;
-            gap:10px;
-            align-items:center;
+        .login-box{
+            width:420px;
+            background:#1b2435;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 0 25px rgba(0,0,0,.4);
         }
 
-        .remember input {
-            width:18px;
-            height:18px;
-            accent-color:#2860c7;
+        h2{
+            color:white;
+            text-align:center;
+            margin-bottom:30px;
+            font-weight:bold;
         }
 
-        a {
-            color:#2870d6;
+        label{
+            color:#d6d6d6;
+            margin-bottom:8px;
+        }
+
+        .form-control{
+            background:#202b3d;
+            border:1px solid #374357;
+            color:white;
+            height:48px;
+        }
+
+        .form-control::placeholder{
+            color:#9aa4b2;
+        }
+
+        .btn-login{
+            width:100%;
+            background:#3b82f6;
+            color:white;
+            border:none;
+            border-radius:30px;
+            padding:12px;
+            font-size:18px;
+            margin-top:20px;
+        }
+
+        .btn-login:hover{
+            background:#2563eb;
+        }
+
+        a{
+            color:#4da3ff;
             text-decoration:none;
         }
 
-        button {
-            width:100%;
-            height:58px;
-            border:none;
-            border-radius:30px;
-            background:linear-gradient(90deg,#2457bd,#3268c8);
-            color:#dbe4f5;
-            font-size:18px;
-            cursor:pointer;
-            box-shadow:0 10px 25px rgba(40,100,220,.35);
+        a:hover{
+            text-decoration:underline;
         }
-
-        button:hover {
-            background:linear-gradient(90deg,#3268c8,#2457bd);
-        }
-
     </style>
 </head>
-
 <body>
 
 <div class="login-box">
 
-    <h1>Admin Login</h1>
+    <h2>Admin Login</h2>
 
-    <form>
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
-        <label>Email Address</label>
-        <input class="input-box" type="email" placeholder="Enter your email">
+    <form action="{{ url('/admin/login') }}" method="POST">
+        @csrf
 
-
-        <label>Password</label>
-
-        <div class="password-area">
-            <input class="input-box" type="password" placeholder="Enter your password">
-            <span class="show">Show</span>
+        <div class="mb-3">
+            <label>Email Address</label>
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Enter your email"
+                   required>
         </div>
 
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Enter your password"
+                   required>
+        </div>
 
-        <div class="options">
-
-            <div class="remember">
-                <input type="checkbox">
-                <span>Remember Me</span>
+        <div class="d-flex justify-content-between mb-3">
+            <div>
+                <input type="checkbox" name="remember">
+                <label>Remember Me</label>
             </div>
 
             <a href="#">Forgot Password?</a>
-
         </div>
 
-
-        <button>
+        <button class="btn-login" type="submit">
             Login
         </button>
-
 
     </form>
 
 </div>
-
 
 </body>
 </html>

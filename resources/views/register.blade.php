@@ -13,6 +13,47 @@
     
     <!-- Custom CSS (Laravel Asset Helper) -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        /* Dynamic Skill Badge Styling */
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .skill-tag:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .skill-tag.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }
+        .skill-tag .remove-btn {
+            margin-left: 8px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            padding: 0 2px;
+        }
+        .skill-tag.active .remove-btn {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .skill-tag .remove-btn:hover {
+            color: #ef4444 !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -203,20 +244,83 @@
                         </div>
                     </div>
 
-                    <!-- Skills & Expertise -->
+                    <!-- Skills & Expertise (Dynamic Add/Remove and Best Tech Skills) -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-laptop-code"></i> Area of Expertise
                         </div>
                         <div class="mb-2">
-                            <label class="form-label">Select Primary Expertise / Skills *</label>
-                            <div class="d-flex flex-wrap gap-2 mt-1">
-                                <input type="checkbox" id="e1" class="skill-checkbox" value="Web Development"><label for="e1" class="skill-label"><i class="fa-solid fa-code text-primary me-1"></i> Web Development</label>
-                                <input type="checkbox" id="e2" class="skill-checkbox" value="Python Development"><label for="e2" class="skill-label"><i class="fa-brands fa-python text-warning me-1"></i> Python</label>
-                                <input type="checkbox" id="e3" class="skill-checkbox" value="Java Programming"><label for="e3" class="skill-label"><i class="fa-brands fa-java text-danger me-1"></i> Java</label>
-                                <input type="checkbox" id="e4" class="skill-checkbox" value="Database / SQL"><label for="e4" class="skill-label"><i class="fa-solid fa-database text-info me-1"></i> SQL</label>
-                                <input type="checkbox" id="e5" class="skill-checkbox" value="Laravel Framework"><label for="e5" class="skill-label"><i class="fa-brands fa-laravel text-danger me-1"></i> Laravel</label>
+                            <label class="form-label d-flex justify-content-between align-items-center">
+                                <span>Select or Add Your Skills *</span>
+                                <small class="text-muted" style="font-size: 0.75rem;">Click to select | Click × to remove</small>
+                            </label>
+                            
+                            <!-- Skill Tags Container -->
+                            <div class="d-flex flex-wrap gap-2 mt-1 mb-3" id="skillsContainer">
+                                <div class="skill-tag" data-value="Web Development">
+                                    <span><i class="fa-solid fa-code text-primary me-1"></i> Web Development</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Python">
+                                    <span><i class="fa-brands fa-python text-warning me-1"></i> Python</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Java">
+                                    <span><i class="fa-brands fa-java text-danger me-1"></i> Java</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="SQL">
+                                    <span><i class="fa-solid fa-database text-info me-1"></i> SQL</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Laravel">
+                                    <span><i class="fa-brands fa-laravel text-danger me-1"></i> Laravel</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Cloud Computing">
+                                    <span><i class="fa-solid fa-cloud text-primary me-1"></i> Cloud Computing</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="React JS">
+                                    <span><i class="fa-brands fa-react text-info me-1"></i> React JS</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Flutter & App Dev">
+                                    <span><i class="fa-solid fa-mobile-screen-button text-primary me-1"></i> Flutter & App Dev</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="AI & Machine Learning">
+                                    <span><i class="fa-solid fa-brain text-purple me-1"></i> AI & ML</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Data Analytics">
+                                    <span><i class="fa-solid fa-chart-line text-success me-1"></i> Data Analytics</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="Cyber Security">
+                                    <span><i class="fa-solid fa-shield-virus text-danger me-1"></i> Cyber Security</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="DevOps">
+                                    <span><i class="fa-solid fa-gears text-secondary me-1"></i> DevOps</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
+                                <div class="skill-tag" data-value="AutoCAD / Design">
+                                    <span><i class="fa-solid fa-compass-drafting text-warning me-1"></i> AutoCAD / Design</span>
+                                    <span class="remove-btn" title="Remove">&times;</span>
+                                </div>
                             </div>
+
+                            <!-- Add New Custom Skill Input -->
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-plus text-primary"></i></span>
+                                <input type="text" id="newSkillInput" class="form-control" placeholder="Add custom skill (e.g. Docker, Node.js, C++)...">
+                                <button type="button" class="btn btn-outline-primary fw-semibold" id="addSkillBtn">
+                                    <i class="fa-solid fa-plus me-1"></i> Add Skill
+                                </button>
+                            </div>
+
+                            <!-- Hidden Field synced with Database -->
                             <input type="hidden" name="area_of_expertise" id="area_of_expertise">
                         </div>
                     </div>
@@ -248,6 +352,70 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+        // Skills Synchronization Function
+        function syncSelectedSkills() {
+            const selected = [];
+            document.querySelectorAll('#skillsContainer .skill-tag.active').forEach(tag => {
+                selected.push(tag.getAttribute('data-value'));
+            });
+            document.getElementById('area_of_expertise').value = selected.join(', ');
+        }
+
+        // Click to Toggle Selection or Delete Skill
+        document.getElementById('skillsContainer').addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-btn')) {
+                // Delete tag
+                e.stopPropagation();
+                e.target.closest('.skill-tag').remove();
+                syncSelectedSkills();
+            } else {
+                // Toggle active tag
+                const tag = e.target.closest('.skill-tag');
+                if (tag) {
+                    tag.classList.toggle('active');
+                    syncSelectedSkills();
+                }
+            }
+        });
+
+        // Add Custom Skill
+        function addNewSkill() {
+            const input = document.getElementById('newSkillInput');
+            const skillName = input.value.trim();
+
+            if (skillName !== '') {
+                // Check if already exists
+                let exists = false;
+                document.querySelectorAll('#skillsContainer .skill-tag').forEach(tag => {
+                    if (tag.getAttribute('data-value').toLowerCase() === skillName.toLowerCase()) {
+                        exists = true;
+                        tag.classList.add('active');
+                    }
+                });
+
+                if (!exists) {
+                    const newTag = document.createElement('div');
+                    newTag.className = 'skill-tag active';
+                    newTag.setAttribute('data-value', skillName);
+                    newTag.innerHTML = `<span><i class="fa-solid fa-tag text-primary me-1"></i> ${skillName}</span>
+                                        <span class="remove-btn" title="Remove">&times;</span>`;
+                    document.getElementById('skillsContainer').appendChild(newTag);
+                }
+
+                input.value = '';
+                syncSelectedSkills();
+            }
+        }
+
+        document.getElementById('addSkillBtn').addEventListener('click', addNewSkill);
+        document.getElementById('newSkillInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addNewSkill();
+            }
+        });
+    </script>
 </body>
 </html>

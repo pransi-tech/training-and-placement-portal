@@ -8,24 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0B132B; /* Dark Blue main background */
+            --bg-light: #F4F6FA; /* Clean light background */
             --sidebar-bg: #121829;
-            --card-white: #FFFFFF; /* Pure white for inner content cards */
+            --card-white: #FFFFFF;
             --primary-purple: #6366F1;
-            --text-dark: #1E293B; /* Dark text inside white cards */
+            --text-dark: #1E293B;
             --text-muted: #64748B;
             --border-light: #E2E8F0;
         }
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #020617 0%, var(--bg-dark) 100%);
-            color: #F8FAFC;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Sidebar Styling */
+        /* Original Sidebar Styling */
         .sidebar {
             width: 260px;
             height: 100vh;
@@ -104,10 +104,11 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255, 255, 255, 0.08);
+            background: #FFFFFF;
             padding: 0.5rem 1rem;
             border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
         }
 
         .user-avatar {
@@ -128,7 +129,7 @@
             color: var(--text-dark);
             border-radius: 20px;
             padding: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             height: 100%;
             border: 1px solid var(--border-light);
         }
@@ -155,7 +156,7 @@
         .stat-amber { background: #FFFBEB; color: #D97706; }
         .stat-rose { background: #FFF1F2; color: #E11D48; }
 
-        /* Tables & Lists inside White Cards */
+        /* Tables */
         .custom-table {
             width: 100%;
             color: var(--text-dark);
@@ -200,6 +201,22 @@
         .badge-active { background: #DCFCE7; color: #15803D; }
         .badge-pending { background: #FEF3C7; color: #B45309; }
 
+        .btn-action-dark {
+            background: #1E1B4B;
+            color: #FFFFFF;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-action-dark:hover {
+            background: #312E81;
+            color: #FFFFFF;
+        }
+
         @media (max-width: 768px) {
             .sidebar { width: 100%; height: auto; position: relative; }
             .main-content { margin-left: 0; }
@@ -208,7 +225,7 @@
 </head>
 <body>
 
-    <!-- Sidebar Menu -->
+    <!-- Sidebar Menu (Original Simple Style) -->
     <aside class="sidebar">
         <div>
             <a href="#" class="sidebar-brand">
@@ -216,10 +233,10 @@
                 <span>Placement Cell</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="#" class="nav-item-link active"><i class="bi bi-grid-fill"></i> Dashboard</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-people-fill"></i> Students List</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-building-fill"></i> Company Drives</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-file-earmark-text-fill"></i> Applications</a></li>
+                <li><a href="{{ url('/placement-officer/dashboard') }}" class="nav-item-link active"><i class="bi bi-grid-fill"></i> Dashboard</a></li>
+                <li><a href="{{ url('/placement-officer/students') }}" class="nav-item-link"><i class="bi bi-people-fill"></i> Students List</a></li>
+                <li><a href="{{ url('/placement-officer/companies') }}" class="nav-item-link"><i class="bi bi-building-fill"></i> Company Drives</a></li>
+                <li><a href="{{ url('/placement-officer/applications') }}" class="nav-item-link"><i class="bi bi-file-earmark-text-fill"></i> Applications</a></li>
                 <li><a href="#" class="nav-item-link"><i class="bi bi-journal-check"></i> Training & Skill Cell</a></li>
                 <li><a href="#" class="nav-item-link"><i class="bi bi-bell-fill"></i> Notifications</a></li>
             </ul>
@@ -235,15 +252,15 @@
         <!-- Header -->
         <header class="top-header">
             <div>
-                <h3 class="fw-bold mb-1 text-white">Welcome, TPO Officer 👋</h3>
-                <p class="text-light-emphasis small mb-0">Kilachand Devchand Polytechnic Placement Dashboard</p>
+                <h3 class="fw-bold mb-1" style="color: #0F172A;">Welcome, TPO Officer 👋</h3>
+                <p class="text-muted small mb-0">Kilachand Devchand Polytechnic Placement Dashboard</p>
             </div>
             <div class="d-flex align-items-center gap-3">
                 <div class="user-profile">
                     <div class="user-avatar">PO</div>
                     <div>
-                        <div class="fw-semibold small text-white">Placement Officer</div>
-                        <small class="text-light-emphasis" style="font-size: 0.75rem;">K. D. Polytechnic, Patan</small>
+                        <div class="fw-semibold small" style="color: #0F172A;">Placement Officer</div>
+                        <small class="text-muted" style="font-size: 0.75rem;">K. D. Polytechnic, Patan</small>
                     </div>
                 </div>
             </div>
@@ -297,7 +314,7 @@
                 <div class="white-card">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="fw-bold mb-0"><i class="bi bi-briefcase-fill text-primary me-2"></i> Recent Placement Drives</h5>
-                        <a href="#" class="btn btn-sm btn-primary rounded-pill">View All Drives</a>
+                        <a href="{{ url('/placement-officer/companies') }}" class="btn btn-sm btn-primary rounded-pill">View All Drives</a>
                     </div>
 
                     <div class="table-responsive">
@@ -309,6 +326,7 @@
                                     <th>Branch Eligibility</th>
                                     <th>Drive Date</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -318,6 +336,7 @@
                                     <td>Computer, IT</td>
                                     <td>28 Aug 2026</td>
                                     <td><span class="badge-status badge-active">Active</span></td>
+                                    <td><button class="btn-action-dark">View Details</button></td>
                                 </tr>
                                 <tr>
                                     <td class="fw-semibold"><i class="bi bi-building text-warning me-2"></i> L&T Construction</td>
@@ -325,6 +344,7 @@
                                     <td>Civil, Mechanical</td>
                                     <td>02 Sep 2026</td>
                                     <td><span class="badge-status badge-active">Active</span></td>
+                                    <td><button class="btn-action-dark">View Details</button></td>
                                 </tr>
                                 <tr>
                                     <td class="fw-semibold"><i class="bi bi-building text-primary me-2"></i> Infosys</td>
@@ -332,6 +352,7 @@
                                     <td>All Diploma Branches</td>
                                     <td>10 Sep 2026</td>
                                     <td><span class="badge-status badge-pending">Upcoming</span></td>
+                                    <td><button class="btn-action-dark">Schedule</button></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -10,36 +10,27 @@ class StudentRegistrationController extends Controller
 {
     // Student Registration
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'enrollment_no' => 'required|unique:student_registrations',
-            'name' => 'required',
-            'email' => 'required|email|unique:student_registrations',
-            'mobile_no' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'dob' => 'required',
-            'semester' => 'required',
-            'branch' => 'required',
-            'area_of_expertise' => 'required',
-            'ssc_percentage' => 'required',
-            'hsc_percentage' => 'nullable',
-            'consent' => 'required',
-            'diploma_cpi' => 'required',
-            'backlog' => 'required',
-            'linkedin_id' => 'nullable',
-        ]);
+{
+    $data = $request->validate([
+        'enrollment_no' => 'required|unique:student_registrations',
+        'name' => 'required',
+        'email' => 'required|email|unique:student_registrations',
+        'mobile_no' => 'required',
+        'address' => 'required',
+        'city' => 'required',
+        'dob' => 'required',
+        'semester' => 'required',
+        'branch' => 'required',
+        'password' => 'required|min:6',
+    ]);
 
-        if ($request->hasFile('profile_pic')) {
-            $data['profile_pic'] = $request->file('profile_pic')->store('profile_pics', 'public');
-        }
+    $data['password'] = Hash::make($data['password']);
 
-        $data['password'] = bcrypt($request->password);
+    $student = StudentRegistration::create($data);
 
-        StudentRegistration::create($data);
-
-        return redirect('/register')->with('success', 'Registration Successful!');
-    }
+    return redirect()->route('student.dashboard', ['id' => $student->id])
+        ->with('success', 'Registration Successful!');
+}
 
     // Student Login
     public function login(Request $request)
@@ -47,7 +38,8 @@ class StudentRegistrationController extends Controller
         $student = StudentRegistration::where('email', $request->email)->first();
 
         if ($student && Hash::check($request->password, $student->password)) {
-            return redirect('/')->with('success', 'Login Successful!');
+            return redirect()->route('student.dashboard', ['id' => $student->id])
+                ->with('success', 'Login Successful!');
         }
 
         return back()->with('error', 'Invalid Email or Password');

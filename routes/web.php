@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentRegistrationController;
 use App\Http\Controllers\CompanyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContactMessageController;
 
 
 /*
@@ -20,6 +21,7 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
+Route::post('/contact', [ContactMessageController::class, 'store']);
 
 
 /*
@@ -118,6 +120,11 @@ Route::post('/register', [
     'store'
 ]);
 
+Route::get('/student/dashboard/{id}', function ($id) {
+    $student = \App\Models\StudentRegistration::findOrFail($id);
+
+    return view('student_dashboard', compact('student'));
+})->name('student.dashboard');
 
 /*
 |--------------------------------------------------------------------------

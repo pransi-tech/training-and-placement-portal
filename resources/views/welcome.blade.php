@@ -1596,70 +1596,99 @@ footer {
             <div class="help-grid">
 
 
-                <div class="help-card">
+<div class="help-card">
 
-                    <h3>
-                        Send us a message
-                    </h3>
+    <h3>
+        Send us a message
+    </h3>
 
-                    <div class="form-row">
+    <form action="{{ url('/contact') }}" method="POST">
+        @csrf
 
-                        <div class="form-group">
+        <div class="form-row">
 
-                            <label>
-                                Full Name
-                            </label>
+            <div class="form-group">
 
-                            <input type="text"
-                                   class="form-control"
-                                   placeholder="Enter your full name">
+                <label for="name">
+                    Full Name
+                </label>
 
-                        </div>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter your full name"
+                    required
+                >
 
-
-                        <div class="form-group">
-
-                            <label>
-                                Email Address
-                            </label>
-
-                            <input type="email"
-                                   class="form-control"
-                                   placeholder="Enter your email">
-
-                        </div>
-
-                    </div>
+            </div>
 
 
-                    <div class="form-group">
+            <div class="form-group">
 
-                        <label>
-                            Subject
-                        </label>
+                <label for="email">
+                    Email Address
+                </label>
 
-                        <input type="text"
-                               class="form-control"
-                               placeholder="What do you need help with?">
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter your email"
+                    required
+                >
 
-                    </div>
+            </div>
 
-
-                    <div class="form-group">
-
-                        <label>
-                            Message
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="Write your message"></textarea>
-
-                    </div>
+        </div>
 
 
-                    <button class="send-btn">
-                        Send Message
-                    </button>
+        <div class="form-group">
+
+            <label for="subject">
+                Subject
+            </label>
+
+            <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="form-control"
+                placeholder="What do you need help with?"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="message">
+                Message
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                class="form-control"
+                placeholder="Write your message"
+                required
+            ></textarea>
+
+        </div>
+
+
+        <button type="submit" class="send-btn">
+            Send Message
+        </button>
+
+    </form>
+
+</div>
+
+
 
                 </div>
 

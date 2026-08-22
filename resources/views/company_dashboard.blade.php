@@ -33,25 +33,36 @@
             height: 100vh;
             background: #17104f;
             color: white;
-            padding: 25px 15px;
+            padding: 22px 15px;
             overflow-y: auto;
             z-index: 1000;
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
+            padding: 16px 10px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.10);
         }
 
         .logo h2 {
-            font-size: 22px;
+            font-size: 20px;
             color: white;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .logo h2 span {
+            color: #bdb5ff;
         }
 
         .logo p {
-            font-size: 13px;
+            font-size: 12px;
             color: #d8d4ff;
-            margin-top: 5px;
+            margin-top: 7px;
+            letter-spacing: 1px;
         }
 
         .menu {
@@ -59,7 +70,7 @@
         }
 
         .menu li {
-            margin: 7px 0;
+            margin: 6px 0;
         }
 
         .menu button {
@@ -68,7 +79,7 @@
             background: transparent;
             color: white;
             text-align: left;
-            padding: 13px 15px;
+            padding: 12px 15px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
@@ -89,6 +100,7 @@
             background: #c92a3d;
         }
 
+
         /* =========================================================
            MAIN CONTENT
         ========================================================= */
@@ -99,6 +111,7 @@
             min-height: 100vh;
             padding: 25px;
         }
+
 
         /* =========================================================
            TOPBAR
@@ -121,6 +134,7 @@
             margin: 0;
         }
 
+
         /* =========================================================
            PAGES
         ========================================================= */
@@ -141,6 +155,64 @@
             color: #666;
             font-size: 14px;
         }
+
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
+
+        .dashboard-banner {
+            background: linear-gradient(135deg, #17104f, #302777);
+            color: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(23,16,79,0.15);
+        }
+
+        .dashboard-banner h2 {
+            font-size: 22px;
+            margin-bottom: 7px;
+        }
+
+        .dashboard-banner p {
+            font-size: 14px;
+            color: #ddd9ff;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .quick-action {
+            background: white;
+            padding: 18px;
+            border-radius: 11px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .quick-action:hover {
+            border-color: #17104f;
+            transform: translateY(-2px);
+        }
+
+        .quick-action strong {
+            display: block;
+            color: #17104f;
+            margin-bottom: 5px;
+        }
+
+        .quick-action span {
+            color: #777;
+            font-size: 13px;
+        }
+
 
         /* =========================================================
            DASHBOARD CARDS
@@ -171,6 +243,7 @@
             font-weight: bold;
             color: #17104f;
         }
+
 
         /* =========================================================
            TABLE
@@ -207,6 +280,7 @@
             background: #f7f7fb;
             color: #17104f;
         }
+
 
         /* =========================================================
            BUTTONS
@@ -260,6 +334,7 @@
             font-size: 14px;
         }
 
+
         /* =========================================================
            SECTION HEADER
         ========================================================= */
@@ -282,6 +357,7 @@
             font-size: 13px;
             margin-top: 4px;
         }
+
 
         /* =========================================================
            FORMS
@@ -339,6 +415,125 @@
             resize: vertical;
         }
 
+
+        /* =========================================================
+           TIME SELECTOR
+        ========================================================= */
+
+        .time-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time-selector select {
+            min-width: 85px;
+            padding: 11px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .time-selector .time-colon {
+            font-size: 20px;
+            font-weight: bold;
+            color: #17104f;
+        }
+
+        .time-selector .ampm-select {
+            min-width: 80px;
+        }
+
+
+        /* =========================================================
+           SKILLS
+        ========================================================= */
+
+        .skills-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            background: white;
+        }
+
+        .selected-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            min-height: 5px;
+        }
+
+        .skill-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #17104f;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 18px;
+            font-size: 12px;
+        }
+
+        .skill-chip .remove-skill {
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 12px;
+            padding: 0;
+        }
+
+        .skill-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-option {
+            border: 1px solid #d6d6df;
+            background: #f7f7fb;
+            color: #17104f;
+            padding: 8px 11px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .skill-option:hover {
+            background: #e9e7ff;
+        }
+
+        .skill-option.selected {
+            display: none;
+        }
+
+        .view-more-skills {
+            margin-top: 12px;
+            border: none;
+            background: transparent;
+            color: #17104f;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 0;
+        }
+
+        .more-skills {
+            display: none;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .more-skills.show {
+            display: flex;
+        }
+
+
         /* =========================================================
            PROFILE
         ========================================================= */
@@ -378,6 +573,7 @@
             font-size: 14px;
         }
 
+
         /* =========================================================
            FILTERS
         ========================================================= */
@@ -401,8 +597,9 @@
             min-width: 180px;
         }
 
+
         /* =========================================================
-           JOB / DRIVE CARDS
+           JOB / DRIVE / EVENT CARDS
         ========================================================= */
 
         .item-card {
@@ -457,6 +654,32 @@
             color: #555;
         }
 
+
+        /* =========================================================
+           EVENT CARDS
+        ========================================================= */
+
+        .event-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
+            border-left: 4px solid #17104f;
+        }
+
+        .event-card h3 {
+            color: #17104f;
+            margin-bottom: 7px;
+        }
+
+        .event-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+
         /* =========================================================
            NOTIFICATIONS
         ========================================================= */
@@ -482,6 +705,7 @@
         .notification small {
             color: #777;
         }
+
 
         /* =========================================================
            BADGES
@@ -513,6 +737,7 @@
             background: #cff4fc;
             color: #055160;
         }
+
 
         /* =========================================================
            SETTINGS
@@ -551,6 +776,7 @@
             margin-right: 8px;
         }
 
+
         /* =========================================================
            HIDDEN FORMS
         ========================================================= */
@@ -562,6 +788,7 @@
         .hidden-form.show {
             display: block;
         }
+
 
         /* =========================================================
            STUDENT STATUS TABS
@@ -589,6 +816,7 @@
             color: white;
             border-color: #17104f;
         }
+
 
         /* =========================================================
            RESUME MODAL
@@ -643,6 +871,7 @@
             border: none;
         }
 
+
         /* =========================================================
            RESPONSIVE
         ========================================================= */
@@ -650,6 +879,10 @@
         @media(max-width: 1100px) {
 
             .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
                 grid-template-columns: repeat(2, 1fr);
             }
 
@@ -678,6 +911,10 @@
             }
 
             .item-details {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
                 grid-template-columns: 1fr;
             }
         }
@@ -722,6 +959,14 @@
                 width: 100%;
                 height: 85vh;
             }
+
+            .time-selector {
+                width: 100%;
+            }
+
+            .time-selector select {
+                flex: 1;
+            }
         }
 
     </style>
@@ -738,9 +983,17 @@
 <div class="sidebar">
 
     <div class="logo">
-        <h2>K D Polytechnic</h2>
-        <p>T&P Portal</p>
+
+        <h2>
+            K D <span>Polytechnic</span>
+        </h2>
+
+        <p>
+            TRAINING & PLACEMENT PORTAL
+        </p>
+
     </div>
+
 
     <ul class="menu">
 
@@ -777,6 +1030,12 @@
         <li>
             <button onclick="showPage('drives', this)">
                 📅 Upcoming Drives
+            </button>
+        </li>
+
+        <li>
+            <button onclick="showPage('events', this)">
+                📌 Upcoming Events
             </button>
         </li>
 
@@ -819,7 +1078,11 @@
     <!-- TOPBAR -->
 
     <div class="topbar">
-        <h1 id="topTitle">Company Dashboard</h1>
+
+        <h1 id="topTitle">
+            Company Dashboard
+        </h1>
+
     </div>
 
 
@@ -829,9 +1092,18 @@
 
     <section id="dashboard" class="page active">
 
-        <div class="page-intro">
-            <p>Overview of your recruitment activities.</p>
+        <div class="dashboard-banner">
+
+            <h2>
+                Company Recruitment Overview
+            </h2>
+
+            <p>
+                Manage your jobs, applications, students, interviews and placement activities from one place.
+            </p>
+
         </div>
+
 
         <div class="cards">
 
@@ -858,67 +1130,232 @@
         </div>
 
 
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+                <p>
+                    Frequently used recruitment actions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+            <div
+                class="quick-action"
+                onclick="showPage('post-job')">
+
+                <strong>
+                    ➕ Post New Job
+                </strong>
+
+                <span>
+                    Create a new placement opportunity.
+                </span>
+
+            </div>
+
+
+            <div
+                class="quick-action"
+                onclick="showPage('applications')">
+
+                <strong>
+                    📋 View Applications
+                </strong>
+
+                <span>
+                    Review student applications.
+                </span>
+
+            </div>
+
+
+            <div
+                class="quick-action"
+                onclick="showPage('drives')">
+
+                <strong>
+                    📅 Manage Drives
+                </strong>
+
+                <span>
+                    Add and manage placement drives.
+                </span>
+
+            </div>
+
+
+            <div
+                class="quick-action"
+                onclick="showPage('events')">
+
+                <strong>
+                    📌 Upcoming Events
+                </strong>
+
+                <span>
+                    View upcoming recruitment events.
+                </span>
+
+            </div>
+
+
+            <div
+                class="quick-action"
+                onclick="showPage('interviews')">
+
+                <strong>
+                    🕐 Schedule Interview
+                </strong>
+
+                <span>
+                    Schedule student interviews.
+                </span>
+
+            </div>
+
+
+            <div
+                class="quick-action"
+                onclick="showPage('notifications')">
+
+                <strong>
+                    🔔 Notifications
+                </strong>
+
+                <span>
+                    View recruitment updates.
+                </span>
+
+            </div>
+
+        </div>
+
+
         <div class="table-box">
 
             <div class="section-header">
 
                 <div>
-                    <h3>Recent Applications</h3>
-                    <p>Latest student applications received.</p>
+
+                    <h3>
+                        Recent Applications
+                    </h3>
+
+                    <p>
+                        Latest student applications received.
+                    </p>
+
                 </div>
 
                 <button
                     class="btn btn-primary"
                     onclick="showPage('applications')">
+
                     View All
+
                 </button>
 
             </div>
 
+
             <table>
 
                 <thead>
+
                     <tr>
                         <th>Student</th>
                         <th>Course</th>
                         <th>Applied For</th>
                         <th>Status</th>
                     </tr>
+
                 </thead>
+
 
                 <tbody>
 
                     <tr>
-                        <td>Rahul Patel</td>
-                        <td>Computer Engineering</td>
-                        <td>Software Engineer</td>
+
                         <td>
+                            Rahul Patel
+                        </td>
+
+                        <td>
+                            Computer Engineering
+                        </td>
+
+                        <td>
+                            Software Engineer
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-warning">
                                 Under Review
                             </span>
+
                         </td>
+
                     </tr>
 
+
                     <tr>
-                        <td>Priya Shah</td>
-                        <td>IT Engineering</td>
-                        <td>Web Developer</td>
+
                         <td>
+                            Priya Shah
+                        </td>
+
+                        <td>
+                            IT Engineering
+                        </td>
+
+                        <td>
+                            Web Developer
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-success">
                                 Shortlisted
                             </span>
+
                         </td>
+
                     </tr>
 
+
                     <tr>
-                        <td>Amit Desai</td>
-                        <td>Computer Engineering</td>
-                        <td>Data Analyst</td>
+
                         <td>
+                            Amit Desai
+                        </td>
+
+                        <td>
+                            Computer Engineering
+                        </td>
+
+                        <td>
+                            Data Analyst
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-info">
                                 New
                             </span>
+
                         </td>
+
                     </tr>
 
                 </tbody>
@@ -940,6 +1377,7 @@
             <p>Manage your company information.</p>
         </div>
 
+
         <div class="profile-header">
 
             <div class="company-logo">
@@ -950,9 +1388,13 @@
 
                 <h2>TCS</h2>
 
-                <p>Information Technology Company</p>
+                <p>
+                    Information Technology Company
+                </p>
 
-                <p>Ahmedabad, Gujarat</p>
+                <p>
+                    Ahmedabad, Gujarat
+                </p>
 
             </div>
 
@@ -964,38 +1406,88 @@
             <div class="form-grid">
 
                 <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" value="TCS">
+
+                    <label>
+                        Company Name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="TCS">
+
                 </div>
 
-                <div class="form-group">
-                    <label>Company Email</label>
-                    <input type="email" value="hr@tcs.com">
-                </div>
 
                 <div class="form-group">
-                    <label>Contact Number</label>
-                    <input type="text" value="9876543210">
+
+                    <label>
+                        Company Email
+                    </label>
+
+                    <input
+                        type="email"
+                        value="hr@tcs.com">
+
                 </div>
 
-                <div class="form-group">
-                    <label>Website</label>
-                    <input type="text" value="www.tcs.com">
-                </div>
 
                 <div class="form-group">
-                    <label>Industry</label>
-                    <input type="text" value="Information Technology">
+
+                    <label>
+                        Contact Number
+                    </label>
+
+                    <input
+                        type="text"
+                        value="9876543210">
+
                 </div>
 
+
                 <div class="form-group">
-                    <label>Location</label>
-                    <input type="text" value="Ahmedabad, Gujarat">
+
+                    <label>
+                        Website
+                    </label>
+
+                    <input
+                        type="text"
+                        value="www.tcs.com">
+
                 </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Industry
+                    </label>
+
+                    <input
+                        type="text"
+                        value="Information Technology">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        value="Ahmedabad, Gujarat">
+
+                </div>
+
 
                 <div class="form-group full">
 
-                    <label>Company Description</label>
+                    <label>
+                        Company Description
+                    </label>
 
                     <textarea>Leading technology and consulting company providing IT services and solutions.</textarea>
 
@@ -1003,10 +1495,15 @@
 
             </div>
 
+
             <br>
 
-            <button class="btn btn-primary" onclick="saveMessage()">
+            <button
+                class="btn btn-primary"
+                onclick="saveMessage()">
+
                 Save Profile
+
             </button>
 
         </div>
@@ -1021,23 +1518,28 @@
     <section id="post-job" class="page">
 
         <div class="page-intro">
-            <p>Manage your existing job posts and create new placement opportunities.</p>
+
+            <p>
+                Manage your existing job posts and create new placement opportunities.
+            </p>
+
         </div>
 
-
-        <!-- EXISTING JOBS -->
 
         <div class="section-header">
 
             <div>
 
-                <h3>Existing Job Posts</h3>
+                <h3>
+                    Existing Job Posts
+                </h3>
 
                 <p>
                     Manage jobs already posted by your company.
                 </p>
 
             </div>
+
 
             <button
                 id="jobToggleButton"
@@ -1051,25 +1553,24 @@
         </div>
 
 
-        <!--
-            IMPORTANT:
-            NEW JOB FORM IS DIRECTLY BELOW THE BUTTON.
-            IT DOES NOT SCROLL DOWN.
-        -->
-
-        <div id="newJobForm" class="form-box hidden-form">
+        <div
+            id="newJobForm"
+            class="form-box hidden-form">
 
             <div class="section-header">
 
                 <div>
 
-                    <h3>Post New Job</h3>
+                    <h3>
+                        Post New Job
+                    </h3>
 
                     <p>
                         Enter the details of the new placement opportunity.
                     </p>
 
                 </div>
+
 
                 <button
                     class="btn btn-secondary"
@@ -1086,7 +1587,9 @@
 
                 <div class="form-group">
 
-                    <label>Job Title</label>
+                    <label>
+                        Job Title
+                    </label>
 
                     <input
                         type="text"
@@ -1098,14 +1601,27 @@
 
                 <div class="form-group">
 
-                    <label>Job Type</label>
+                    <label>
+                        Job Type
+                    </label>
 
                     <select id="jobType">
 
-                        <option value="">Select Job Type</option>
-                        <option>Full Time</option>
-                        <option>Internship</option>
-                        <option>Part Time</option>
+                        <option value="">
+                            Select Job Type
+                        </option>
+
+                        <option>
+                            Full Time
+                        </option>
+
+                        <option>
+                            Internship
+                        </option>
+
+                        <option>
+                            Part Time
+                        </option>
 
                     </select>
 
@@ -1114,17 +1630,39 @@
 
                 <div class="form-group">
 
-                    <label>Eligibility Course</label>
+                    <label>
+                        Eligibility Course
+                    </label>
 
                     <select id="jobCourse">
 
-                        <option value="">Select Course</option>
-                        <option>Computer Engineering</option>
-                        <option>Information Technology</option>
-                        <option>Electronics Engineering</option>
-                        <option>Mechanical Engineering</option>
-                        <option>Civil Engineering</option>
-                        <option>All Courses</option>
+                        <option value="">
+                            Select Course
+                        </option>
+
+                        <option>
+                            Computer Engineering
+                        </option>
+
+                        <option>
+                            Information Technology
+                        </option>
+
+                        <option>
+                            Electronics Engineering
+                        </option>
+
+                        <option>
+                            Mechanical Engineering
+                        </option>
+
+                        <option>
+                            Civil Engineering
+                        </option>
+
+                        <option>
+                            All Courses
+                        </option>
 
                     </select>
 
@@ -1133,7 +1671,9 @@
 
                 <div class="form-group">
 
-                    <label>Minimum CPI</label>
+                    <label>
+                        Minimum CPI
+                    </label>
 
                     <input
                         type="number"
@@ -1146,7 +1686,9 @@
 
                 <div class="form-group">
 
-                    <label>Salary / Package</label>
+                    <label>
+                        Salary / Package
+                    </label>
 
                     <input
                         type="text"
@@ -1158,7 +1700,9 @@
 
                 <div class="form-group">
 
-                    <label>Application Last Date</label>
+                    <label>
+                        Application Last Date
+                    </label>
 
                     <input
                         type="date"
@@ -1167,21 +1711,217 @@
                 </div>
 
 
+                <!-- =================================================
+                     REQUIRED SKILLS - 20 SKILLS
+                ================================================= -->
+
                 <div class="form-group full">
 
-                    <label>Required Skills</label>
+                    <label>
+                        Required Skills
+                    </label>
 
-                    <input
-                        type="text"
-                        id="jobSkills"
-                        placeholder="Java, Python, PHP, SQL, HTML, CSS">
+
+                    <div class="skills-container">
+
+                        <div
+                            id="selectedSkills"
+                            class="selected-skills">
+                        </div>
+
+
+                        <div class="skill-options">
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Java"
+                                onclick="selectSkill(this)">
+                                Java
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Python"
+                                onclick="selectSkill(this)">
+                                Python
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="PHP"
+                                onclick="selectSkill(this)">
+                                PHP
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="SQL"
+                                onclick="selectSkill(this)">
+                                SQL
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="HTML"
+                                onclick="selectSkill(this)">
+                                HTML
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="CSS"
+                                onclick="selectSkill(this)">
+                                CSS
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="JavaScript"
+                                onclick="selectSkill(this)">
+                                JavaScript
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="C"
+                                onclick="selectSkill(this)">
+                                C
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="C++"
+                                onclick="selectSkill(this)">
+                                C++
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="C#"
+                                onclick="selectSkill(this)">
+                                C#
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="MySQL"
+                                onclick="selectSkill(this)">
+                                MySQL
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Laravel"
+                                onclick="selectSkill(this)">
+                                Laravel
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="moreSkills"
+                            class="more-skills">
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="React"
+                                onclick="selectSkill(this)">
+                                React
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Node.js"
+                                onclick="selectSkill(this)">
+                                Node.js
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Git"
+                                onclick="selectSkill(this)">
+                                Git
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="GitHub"
+                                onclick="selectSkill(this)">
+                                GitHub
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Excel"
+                                onclick="selectSkill(this)">
+                                Excel
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Data Analysis"
+                                onclick="selectSkill(this)">
+                                Data Analysis
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Machine Learning"
+                                onclick="selectSkill(this)">
+                                Machine Learning
+                            </button>
+
+                            <button
+                                type="button"
+                                class="skill-option"
+                                data-skill="Cloud Computing"
+                                onclick="selectSkill(this)">
+                                Cloud Computing
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="viewMoreSkillsButton"
+                            class="view-more-skills"
+                            onclick="toggleMoreSkills()">
+
+                            View More Skills
+
+                        </button>
+
+                    </div>
 
                 </div>
 
 
                 <div class="form-group full">
 
-                    <label>Job Description</label>
+                    <label>
+                        Job Description
+                    </label>
 
                     <textarea
                         id="jobDescription"
@@ -1213,9 +1953,13 @@
 
                 <div>
 
-                    <h3>Software Engineer</h3>
+                    <h3>
+                        Software Engineer
+                    </h3>
 
-                    <p>Full Time • Ahmedabad</p>
+                    <p>
+                        Full Time • Ahmedabad
+                    </p>
 
                 </div>
 
@@ -1271,9 +2015,13 @@
 
                 <div>
 
-                    <h3>Web Developer</h3>
+                    <h3>
+                        Web Developer
+                    </h3>
 
-                    <p>Full Time • Ahmedabad</p>
+                    <p>
+                        Full Time • Ahmedabad
+                    </p>
 
                 </div>
 
@@ -1330,7 +2078,9 @@
     <section id="applications" class="page">
 
         <div class="page-intro">
-            <p>View, search, edit and manage student applications.</p>
+            <p>
+                View, search, edit and manage student applications.
+            </p>
         </div>
 
 
@@ -1347,11 +2097,25 @@
                 id="courseFilter"
                 onchange="filterApplications()">
 
-                <option value="">All Courses</option>
-                <option value="Computer Engineering">Computer Engineering</option>
-                <option value="IT Engineering">IT Engineering</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="">
+                    All Courses
+                </option>
+
+                <option value="Computer Engineering">
+                    Computer Engineering
+                </option>
+
+                <option value="IT Engineering">
+                    IT Engineering
+                </option>
+
+                <option value="Mechanical Engineering">
+                    Mechanical Engineering
+                </option>
+
+                <option value="Civil Engineering">
+                    Civil Engineering
+                </option>
 
             </select>
 
@@ -1360,11 +2124,25 @@
                 id="statusFilter"
                 onchange="filterApplications()">
 
-                <option value="">All Status</option>
-                <option value="New">New</option>
-                <option value="Under Review">Under Review</option>
-                <option value="Shortlisted">Shortlisted</option>
-                <option value="Rejected">Rejected</option>
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="New">
+                    New
+                </option>
+
+                <option value="Under Review">
+                    Under Review
+                </option>
+
+                <option value="Shortlisted">
+                    Shortlisted
+                </option>
+
+                <option value="Rejected">
+                    Rejected
+                </option>
 
             </select>
 
@@ -1387,6 +2165,7 @@
                 <thead>
 
                     <tr>
+
                         <th>Name</th>
                         <th>Enrollment No.</th>
                         <th>Course</th>
@@ -1397,6 +2176,7 @@
                         <th>Resume</th>
                         <th>Status</th>
                         <th>Action</th>
+
                     </tr>
 
                 </thead>
@@ -1412,7 +2192,9 @@
                             Rahul Patel
                         </td>
 
-                        <td>CE12345</td>
+                        <td>
+                            CE12345
+                        </td>
 
                         <td>
                             Computer Engineering
@@ -1422,7 +2204,9 @@
                             Software Engineer
                         </td>
 
-                        <td>8.2</td>
+                        <td>
+                            8.2
+                        </td>
 
                         <td>
                             Java, PHP, SQL
@@ -1437,17 +2221,23 @@
                         </td>
 
                         <td>
+
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Rahul Patel')">
+
                                 View PDF
+
                             </button>
+
                         </td>
 
                         <td>
+
                             <span class="badge badge-warning">
                                 Under Review
                             </span>
+
                         </td>
 
                         <td>
@@ -1477,7 +2267,9 @@
                             Priya Shah
                         </td>
 
-                        <td>IT22341</td>
+                        <td>
+                            IT22341
+                        </td>
 
                         <td>
                             IT Engineering
@@ -1487,32 +2279,42 @@
                             Web Developer
                         </td>
 
-                        <td>8.7</td>
+                        <td>
+                            8.7
+                        </td>
 
                         <td>
                             HTML, CSS, JavaScript
                         </td>
 
                         <td>
+
                             <a
                                 href="https://www.linkedin.com/"
                                 target="_blank">
                                 View
                             </a>
+
                         </td>
 
                         <td>
+
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Priya Shah')">
+
                                 View PDF
+
                             </button>
+
                         </td>
 
                         <td>
+
                             <span class="badge badge-success">
                                 Shortlisted
                             </span>
+
                         </td>
 
                         <td>
@@ -1542,7 +2344,9 @@
                             Amit Desai
                         </td>
 
-                        <td>CE34567</td>
+                        <td>
+                            CE34567
+                        </td>
 
                         <td>
                             Computer Engineering
@@ -1552,32 +2356,42 @@
                             Data Analyst
                         </td>
 
-                        <td>7.9</td>
+                        <td>
+                            7.9
+                        </td>
 
                         <td>
                             Python, SQL, Excel
                         </td>
 
                         <td>
+
                             <a
                                 href="https://www.linkedin.com/"
                                 target="_blank">
                                 View
                             </a>
+
                         </td>
 
                         <td>
+
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Amit Desai')">
+
                                 View PDF
+
                             </button>
+
                         </td>
 
                         <td>
+
                             <span class="badge badge-info">
                                 New
                             </span>
+
                         </td>
 
                         <td>
@@ -1607,7 +2421,9 @@
                             Karan Mehta
                         </td>
 
-                        <td>ME44521</td>
+                        <td>
+                            ME44521
+                        </td>
 
                         <td>
                             Mechanical Engineering
@@ -1617,32 +2433,42 @@
                             Graduate Engineer
                         </td>
 
-                        <td>6.9</td>
+                        <td>
+                            6.9
+                        </td>
 
                         <td>
                             AutoCAD, Design
                         </td>
 
                         <td>
+
                             <a
                                 href="https://www.linkedin.com/"
                                 target="_blank">
                                 View
                             </a>
+
                         </td>
 
                         <td>
+
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Karan Mehta')">
+
                                 View PDF
+
                             </button>
+
                         </td>
 
                         <td>
+
                             <span class="badge badge-danger">
                                 Rejected
                             </span>
+
                         </td>
 
                         <td>
@@ -1679,11 +2505,13 @@
     <section id="students" class="page">
 
         <div class="page-intro">
-            <p>View students according to their placement status and branch.</p>
+
+            <p>
+                View students according to their placement status and branch.
+            </p>
+
         </div>
 
-
-        <!-- BRANCH FILTER -->
 
         <div class="filter-box">
 
@@ -1691,16 +2519,22 @@
                 id="studentBranchFilter"
                 onchange="filterStudents()">
 
-                <option value="">All Branches</option>
+                <option value="">
+                    All Branches
+                </option>
+
                 <option value="Mechanical Engineering">
                     Mechanical Engineering
                 </option>
+
                 <option value="Computer Engineering">
                     Computer Engineering
                 </option>
+
                 <option value="Electrical Engineering">
                     Electrical Engineering
                 </option>
+
                 <option value="Civil Engineering">
                     Civil Engineering
                 </option>
@@ -1719,32 +2553,41 @@
         </div>
 
 
-        <!-- STATUS FILTER -->
-
         <div class="student-tabs">
 
             <button
                 class="student-tab active"
                 onclick="filterStudentStatus('all', this)">
+
                 All Students
+
             </button>
+
 
             <button
                 class="student-tab"
                 onclick="filterStudentStatus('shortlisted', this)">
+
                 Shortlisted Students
+
             </button>
+
 
             <button
                 class="student-tab"
                 onclick="filterStudentStatus('placed', this)">
+
                 Placed Students
+
             </button>
+
 
             <button
                 class="student-tab"
                 onclick="filterStudentStatus('rejected', this)">
+
                 Rejected Students
+
             </button>
 
         </div>
@@ -1777,15 +2620,28 @@
                         data-branch="Computer Engineering"
                         data-student-status="shortlisted">
 
-                        <td>Rahul Patel</td>
-                        <td>CE12345</td>
-                        <td>Computer Engineering</td>
-                        <td>8.2</td>
+                        <td>
+                            Rahul Patel
+                        </td>
 
                         <td>
+                            CE12345
+                        </td>
+
+                        <td>
+                            Computer Engineering
+                        </td>
+
+                        <td>
+                            8.2
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-success">
                                 Shortlisted
                             </span>
+
                         </td>
 
                         <td>
@@ -1793,7 +2649,9 @@
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Rahul Patel')">
+
                                 View PDF
+
                             </button>
 
                         </td>
@@ -1803,7 +2661,9 @@
                             <button
                                 class="btn btn-primary"
                                 onclick="scheduleForStudent('Rahul Patel')">
+
                                 Schedule Interview
+
                             </button>
 
                         </td>
@@ -1815,15 +2675,28 @@
                         data-branch="Computer Engineering"
                         data-student-status="placed">
 
-                        <td>Amit Desai</td>
-                        <td>CE34567</td>
-                        <td>Computer Engineering</td>
-                        <td>7.9</td>
+                        <td>
+                            Amit Desai
+                        </td>
 
                         <td>
+                            CE34567
+                        </td>
+
+                        <td>
+                            Computer Engineering
+                        </td>
+
+                        <td>
+                            7.9
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-success">
                                 Placed
                             </span>
+
                         </td>
 
                         <td>
@@ -1831,15 +2704,19 @@
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Amit Desai')">
+
                                 View PDF
+
                             </button>
 
                         </td>
 
                         <td>
+
                             <span class="badge badge-info">
                                 Selected
                             </span>
+
                         </td>
 
                     </tr>
@@ -1849,15 +2726,28 @@
                         data-branch="Mechanical Engineering"
                         data-student-status="rejected">
 
-                        <td>Karan Mehta</td>
-                        <td>ME44521</td>
-                        <td>Mechanical Engineering</td>
-                        <td>6.9</td>
+                        <td>
+                            Karan Mehta
+                        </td>
 
                         <td>
+                            ME44521
+                        </td>
+
+                        <td>
+                            Mechanical Engineering
+                        </td>
+
+                        <td>
+                            6.9
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-danger">
                                 Rejected
                             </span>
+
                         </td>
 
                         <td>
@@ -1865,7 +2755,9 @@
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Karan Mehta')">
+
                                 View PDF
+
                             </button>
 
                         </td>
@@ -1881,15 +2773,28 @@
                         data-branch="Electrical Engineering"
                         data-student-status="shortlisted">
 
-                        <td>Neha Shah</td>
-                        <td>EE22312</td>
-                        <td>Electrical Engineering</td>
-                        <td>8.4</td>
+                        <td>
+                            Neha Shah
+                        </td>
 
                         <td>
+                            EE22312
+                        </td>
+
+                        <td>
+                            Electrical Engineering
+                        </td>
+
+                        <td>
+                            8.4
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-success">
                                 Shortlisted
                             </span>
+
                         </td>
 
                         <td>
@@ -1897,7 +2802,9 @@
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Neha Shah')">
+
                                 View PDF
+
                             </button>
 
                         </td>
@@ -1907,7 +2814,9 @@
                             <button
                                 class="btn btn-primary"
                                 onclick="scheduleForStudent('Neha Shah')">
+
                                 Schedule Interview
+
                             </button>
 
                         </td>
@@ -1919,15 +2828,28 @@
                         data-branch="Civil Engineering"
                         data-student-status="placed">
 
-                        <td>Riya Patel</td>
-                        <td>CV34521</td>
-                        <td>Civil Engineering</td>
-                        <td>8.1</td>
+                        <td>
+                            Riya Patel
+                        </td>
 
                         <td>
+                            CV34521
+                        </td>
+
+                        <td>
+                            Civil Engineering
+                        </td>
+
+                        <td>
+                            8.1
+                        </td>
+
+                        <td>
+
                             <span class="badge badge-success">
                                 Placed
                             </span>
+
                         </td>
 
                         <td>
@@ -1935,15 +2857,19 @@
                             <button
                                 class="btn btn-light"
                                 onclick="viewResume('Riya Patel')">
+
                                 View PDF
+
                             </button>
 
                         </td>
 
                         <td>
+
                             <span class="badge badge-info">
                                 Selected
                             </span>
+
                         </td>
 
                     </tr>
@@ -1964,23 +2890,28 @@
     <section id="drives" class="page">
 
         <div class="page-intro">
-            <p>Manage your existing campus placement drives and add new drives.</p>
+
+            <p>
+                Manage your existing campus placement drives and add new drives.
+            </p>
+
         </div>
 
-
-        <!-- EXISTING DRIVES HEADER -->
 
         <div class="section-header">
 
             <div>
 
-                <h3>Existing Placement Drives</h3>
+                <h3>
+                    Existing Placement Drives
+                </h3>
 
                 <p>
                     Drives already scheduled by your company.
                 </p>
 
             </div>
+
 
             <button
                 id="driveToggleButton"
@@ -1994,25 +2925,24 @@
         </div>
 
 
-        <!--
-            IMPORTANT:
-            DRIVE FORM IS DIRECTLY BELOW THE BUTTON.
-            NO AUTOMATIC SCROLL.
-        -->
-
-        <div id="newDriveForm" class="form-box hidden-form">
+        <div
+            id="newDriveForm"
+            class="form-box hidden-form">
 
             <div class="section-header">
 
                 <div>
 
-                    <h3>Add New Placement Drive</h3>
+                    <h3>
+                        Add New Placement Drive
+                    </h3>
 
                     <p>
                         Enter the details of the new campus drive.
                     </p>
 
                 </div>
+
 
                 <button
                     class="btn btn-secondary"
@@ -2029,7 +2959,9 @@
 
                 <div class="form-group">
 
-                    <label>Drive Name</label>
+                    <label>
+                        Drive Name
+                    </label>
 
                     <input
                         id="driveName"
@@ -2041,7 +2973,9 @@
 
                 <div class="form-group">
 
-                    <label>Date</label>
+                    <label>
+                        Date
+                    </label>
 
                     <input
                         id="driveDate"
@@ -2050,20 +2984,94 @@
                 </div>
 
 
+                <!-- TIME -->
+
                 <div class="form-group">
 
-                    <label>Time</label>
+                    <label>
+                        Time
+                    </label>
 
-                    <input
-                        id="driveTime"
-                        type="time">
+
+                    <div class="time-selector">
+
+                        <select id="driveHour">
+
+                            <option value="">
+                                Hour
+                            </option>
+
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+
+                        </select>
+
+
+                        <span class="time-colon">
+                            :
+                        </span>
+
+
+                        <select id="driveMinute">
+
+                            <option value="">
+                                Min
+                            </option>
+
+                            <option>00</option>
+                            <option>05</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                            <option>35</option>
+                            <option>40</option>
+                            <option>45</option>
+                            <option>50</option>
+                            <option>55</option>
+
+                        </select>
+
+
+                        <select
+                            id="driveAmPm"
+                            class="ampm-select">
+
+                            <option value="">
+                                AM/PM
+                            </option>
+
+                            <option>
+                                AM
+                            </option>
+
+                            <option>
+                                PM
+                            </option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
 
                 <div class="form-group">
 
-                    <label>Venue</label>
+                    <label>
+                        Venue
+                    </label>
 
                     <input
                         id="driveVenue"
@@ -2075,7 +3083,9 @@
 
                 <div class="form-group">
 
-                    <label>Organizer</label>
+                    <label>
+                        Organizer
+                    </label>
 
                     <input
                         id="driveOrganizer"
@@ -2087,7 +3097,9 @@
 
                 <div class="form-group">
 
-                    <label>Eligible Course</label>
+                    <label>
+                        Eligible Course
+                    </label>
 
                     <select id="driveCourse">
 
@@ -2139,25 +3151,22 @@
         </div>
 
 
-        <!--
-            NO TCS EXISTING DRIVE.
-            NO VIEW DETAILS.
-            NO EDIT BUTTON.
-        -->
-
-
         <div
             id="addedDrives"
             class="table-box"
             style="margin-top:20px;">
 
-            <h3>Added Drives</h3>
+            <h3>
+                Added Drives
+            </h3>
+
 
             <table id="driveTable">
 
                 <thead>
 
                     <tr>
+
                         <th>Drive</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -2165,14 +3174,125 @@
                         <th>Organizer</th>
                         <th>Course</th>
                         <th>Action</th>
+
                     </tr>
 
                 </thead>
+
 
                 <tbody>
                 </tbody>
 
             </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         UPCOMING EVENTS
+    ===================================================== -->
+
+    <section id="events" class="page">
+
+        <div class="page-intro">
+
+            <p>
+                View important recruitment events such as interviews, orientation sessions, tests and company activities.
+            </p>
+
+        </div>
+
+
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Upcoming Events
+                </h3>
+
+                <p>
+                    Important recruitment-related events.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <h3>
+                Technical Interview - Rahul Patel
+            </h3>
+
+            <p>
+                📅 25 Aug 2026
+            </p>
+
+            <p>
+                🕐 10 : 30 AM
+            </p>
+
+            <p>
+                📍 Seminar Hall
+            </p>
+
+            <span class="badge badge-info">
+                Interview
+            </span>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <h3>
+                Pre-Placement Talk
+            </h3>
+
+            <p>
+                📅 27 Aug 2026
+            </p>
+
+            <p>
+                🕐 02 : 00 PM
+            </p>
+
+            <p>
+                📍 Auditorium
+            </p>
+
+            <span class="badge badge-success">
+                Company Event
+            </span>
+
+        </div>
+
+
+        <div class="event-card">
+
+            <h3>
+                Aptitude Assessment
+            </h3>
+
+            <p>
+                📅 29 Aug 2026
+            </p>
+
+            <p>
+                🕐 11 : 15 AM
+            </p>
+
+            <p>
+                📍 Computer Lab
+            </p>
+
+            <span class="badge badge-warning">
+                Assessment
+            </span>
 
         </div>
 
@@ -2186,7 +3306,11 @@
     <section id="interviews" class="page">
 
         <div class="page-intro">
-            <p>Schedule interviews for specific shortlisted students.</p>
+
+            <p>
+                Schedule interviews for specific shortlisted students.
+            </p>
+
         </div>
 
 
@@ -2196,19 +3320,23 @@
 
                 <div class="form-group">
 
-            <label>Student Name</label>
+                    <label>
+                        Student Name
+                    </label>
 
-                <input
-                type="text"
-                id="interviewStudent"
-                placeholder="Enter student name">
+                    <input
+                        type="text"
+                        id="interviewStudent"
+                        placeholder="Enter student name">
 
-            </div>
+                </div>
 
 
                 <div class="form-group">
 
-                    <label>Interview Type</label>
+                    <label>
+                        Interview Type
+                    </label>
 
                     <select id="interviewType">
 
@@ -2231,7 +3359,9 @@
 
                 <div class="form-group">
 
-                    <label>Date</label>
+                    <label>
+                        Date
+                    </label>
 
                     <input
                         id="interviewDate"
@@ -2240,20 +3370,94 @@
                 </div>
 
 
+                <!-- INTERVIEW TIME -->
+
                 <div class="form-group">
 
-                    <label>Time</label>
+                    <label>
+                        Time
+                    </label>
 
-                    <input
-                        id="interviewTime"
-                        type="time">
+
+                    <div class="time-selector">
+
+                        <select id="interviewHour">
+
+                            <option value="">
+                                Hour
+                            </option>
+
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+
+                        </select>
+
+
+                        <span class="time-colon">
+                            :
+                        </span>
+
+
+                        <select id="interviewMinute">
+
+                            <option value="">
+                                Min
+                            </option>
+
+                            <option>00</option>
+                            <option>05</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                            <option>25</option>
+                            <option>30</option>
+                            <option>35</option>
+                            <option>40</option>
+                            <option>45</option>
+                            <option>50</option>
+                            <option>55</option>
+
+                        </select>
+
+
+                        <select
+                            id="interviewAmPm"
+                            class="ampm-select">
+
+                            <option value="">
+                                AM/PM
+                            </option>
+
+                            <option>
+                                AM
+                            </option>
+
+                            <option>
+                                PM
+                            </option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
 
                 <div class="form-group">
 
-                    <label>Mode</label>
+                    <label>
+                        Mode
+                    </label>
 
                     <select id="interviewMode">
 
@@ -2272,7 +3476,9 @@
 
                 <div class="form-group">
 
-                    <label>Interview Location / Link</label>
+                    <label>
+                        Interview Location / Link
+                    </label>
 
                     <input
                         id="interviewLocation"
@@ -2284,7 +3490,9 @@
 
                 <div class="form-group full">
 
-                    <label>Additional Instructions</label>
+                    <label>
+                        Additional Instructions
+                    </label>
 
                     <textarea
                         id="interviewInstructions"
@@ -2312,106 +3520,40 @@
 
     <!-- =====================================================
          NOTIFICATIONS
+         EXISTING NOTIFICATIONS FIRST
     ===================================================== -->
 
     <section id="notifications" class="page">
 
         <div class="page-intro">
-            <p>Recruitment related updates and alerts.</p>
-        </div>
 
-
-        <!-- ADD NOTIFICATION -->
-
-        <div class="form-box">
-
-            <div class="section-header">
-
-                <div>
-
-                    <h3>Add Notification</h3>
-
-                    <p>
-                        Company can add recruitment related notifications.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>Notification Title</label>
-
-                    <input
-                        type="text"
-                        id="notificationTitle"
-                        placeholder="Enter notification title">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Notification Type</label>
-
-                    <select id="notificationType">
-
-                        <option>
-                            General Update
-                        </option>
-
-                        <option>
-                            New Job
-                        </option>
-
-                        <option>
-                            Interview
-                        </option>
-
-                        <option>
-                            Placement Drive
-                        </option>
-
-                        <option>
-                            Important Notice
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group full">
-
-                    <label>Notification Message</label>
-
-                    <textarea
-                        id="notificationMessage"
-                        placeholder="Write notification message..."></textarea>
-
-                </div>
-
-            </div>
-
-
-            <br>
-
-            <button
-                class="btn btn-primary"
-                onclick="addNotification()">
-
-                Add Notification
-
-            </button>
+            <p>
+                Recruitment related updates and alerts.
+            </p>
 
         </div>
 
 
-        <!-- EXISTING NOTIFICATIONS -->
+        <!-- =================================================
+             EXISTING NOTIFICATIONS FIRST
+        ================================================= -->
+
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Existing Notifications
+                </h3>
+
+                <p>
+                    Your recent recruitment notifications.
+                </p>
+
+            </div>
+
+        </div>
+
 
         <div id="notificationList">
 
@@ -2467,6 +3609,106 @@
 
         </div>
 
+
+        <!-- =================================================
+             ADD NOTIFICATION BELOW EXISTING
+        ================================================= -->
+
+        <div class="form-box">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h3>
+                        Add Notification
+                    </h3>
+
+                    <p>
+                        Company can add recruitment related notifications.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Notification Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="notificationTitle"
+                        placeholder="Enter notification title">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Notification Type
+                    </label>
+
+                    <select id="notificationType">
+
+                        <option>
+                            General Update
+                        </option>
+
+                        <option>
+                            New Job
+                        </option>
+
+                        <option>
+                            Interview
+                        </option>
+
+                        <option>
+                            Placement Drive
+                        </option>
+
+                        <option>
+                            Important Notice
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Notification Message
+                    </label>
+
+                    <textarea
+                        id="notificationMessage"
+                        placeholder="Write notification message..."></textarea>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+            <button
+                class="btn btn-primary"
+                onclick="addNotification()">
+
+                Add Notification
+
+            </button>
+
+        </div>
+
     </section>
 
 
@@ -2477,7 +3719,11 @@
     <section id="settings" class="page">
 
         <div class="page-intro">
-            <p>Manage your company account, security and dashboard preferences.</p>
+
+            <p>
+                Manage your company account, security and dashboard preferences.
+            </p>
+
         </div>
 
 
@@ -2803,6 +4049,7 @@
 
         </div>
 
+
         <div class="resume-body">
 
             <iframe
@@ -2899,6 +4146,9 @@ function showPage(pageId, button = null) {
         drives:
             'Upcoming Drives',
 
+        events:
+            'Upcoming Events',
+
         interviews:
             'Schedule Interview',
 
@@ -2914,20 +4164,11 @@ function showPage(pageId, button = null) {
     document.getElementById('topTitle').innerText =
         titles[pageId] || 'Company Dashboard';
 
-
-    /*
-       IMPORTANT:
-       No window.scrollTo() here.
-       So clicking menu does not automatically
-       scroll somewhere unexpectedly.
-    */
-
 }
 
 
 /* =========================================================
    POST JOB FORM TOGGLE
-   FORM OPENS DIRECTLY BELOW THE BUTTON
 ========================================================= */
 
 function toggleJobForm() {
@@ -2944,11 +4185,13 @@ function toggleJobForm() {
 
     if (form.classList.contains('show')) {
 
-        button.innerHTML = '✖ Close Post Job';
+        button.innerHTML =
+            '✖ Close Post Job';
 
     } else {
 
-        button.innerHTML = '➕ Post New Job';
+        button.innerHTML =
+            '➕ Post New Job';
 
     }
 
@@ -2956,31 +4199,146 @@ function toggleJobForm() {
 
 
 /* =========================================================
-   DRIVE FORM TOGGLE
-   FORM OPENS DIRECTLY BELOW THE BUTTON
+   SKILLS
 ========================================================= */
 
-function toggleDriveForm() {
+function selectSkill(button) {
 
-    const form =
-        document.getElementById('newDriveForm');
+    const skill =
+        button.getAttribute('data-skill');
+
+    const selectedContainer =
+        document.getElementById('selectedSkills');
+
+
+    const alreadySelected =
+        document.querySelector(
+            '.skill-option[data-skill="' +
+            skill +
+            '"].selected'
+        );
+
+
+    if (alreadySelected) {
+        return;
+    }
+
+
+    button.classList.add('selected');
+
+
+    const chip =
+        document.createElement('div');
+
+    chip.className =
+        'skill-chip';
+
+    chip.setAttribute(
+        'data-selected-skill',
+        skill
+    );
+
+
+    chip.innerHTML = `
+
+        <span>
+            ${skill}
+        </span>
+
+        <button
+            type="button"
+            class="remove-skill"
+            onclick="removeSkill('${skill}')">
+
+            ×
+
+        </button>
+
+    `;
+
+
+    selectedContainer.appendChild(chip);
+
+}
+
+
+function removeSkill(skill) {
+
+    const chip =
+        document.querySelector(
+            '.skill-chip[data-selected-skill="' +
+            skill +
+            '"]'
+        );
+
+
+    if (chip) {
+        chip.remove();
+    }
+
+
+    const option =
+        document.querySelector(
+            '.skill-option[data-skill="' +
+            skill +
+            '"]'
+        );
+
+
+    if (option) {
+        option.classList.remove('selected');
+    }
+
+}
+
+
+function toggleMoreSkills() {
+
+    const moreSkills =
+        document.getElementById('moreSkills');
 
     const button =
-        document.getElementById('driveToggleButton');
+        document.getElementById('viewMoreSkillsButton');
 
 
-    form.classList.toggle('show');
+    moreSkills.classList.toggle('show');
 
 
-    if (form.classList.contains('show')) {
+    if (moreSkills.classList.contains('show')) {
 
-        button.innerHTML = '✖ Close Add Drive';
+        button.innerText =
+            'View Less Skills';
 
     } else {
 
-        button.innerHTML = '➕ Add New Drive';
+        button.innerText =
+            'View More Skills';
 
     }
+
+}
+
+
+function getSelectedSkills() {
+
+    const chips =
+        document.querySelectorAll(
+            '#selectedSkills .skill-chip'
+        );
+
+    const skills = [];
+
+
+    chips.forEach(function(chip) {
+
+        skills.push(
+            chip.getAttribute('data-selected-skill')
+        );
+
+    });
+
+
+    return skills;
 
 }
 
@@ -3000,19 +4358,34 @@ function postJob() {
 
     if (job === '') {
 
-        alert('Please enter the Job Title.');
+        alert(
+            'Please enter the Job Title.'
+        );
 
         return;
 
     }
 
 
-    alert('Job posted successfully!');
+    const skills =
+        getSelectedSkills();
 
 
-    /*
-       Form fields clear after successful posting.
-    */
+    if (skills.length === 0) {
+
+        alert(
+            'Please select at least one required skill.'
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        'Job posted successfully!'
+    );
+
 
     document.getElementById('jobTitle').value = '';
     document.getElementById('jobType').value = '';
@@ -3020,8 +4393,21 @@ function postJob() {
     document.getElementById('jobCpi').value = '';
     document.getElementById('jobSalary').value = '';
     document.getElementById('jobLastDate').value = '';
-    document.getElementById('jobSkills').value = '';
     document.getElementById('jobDescription').value = '';
+
+
+    document.getElementById(
+        'selectedSkills'
+    ).innerHTML = '';
+
+
+    document.querySelectorAll(
+        '.skill-option'
+    ).forEach(function(option) {
+
+        option.classList.remove('selected');
+
+    });
 
 
     toggleJobForm();
@@ -3116,9 +4502,18 @@ function filterApplications() {
 
 function clearFilters() {
 
-    document.getElementById('applicationSearch').value = '';
-    document.getElementById('courseFilter').value = '';
-    document.getElementById('statusFilter').value = '';
+    document.getElementById(
+        'applicationSearch'
+    ).value = '';
+
+    document.getElementById(
+        'courseFilter'
+    ).value = '';
+
+    document.getElementById(
+        'statusFilter'
+    ).value = '';
+
 
     filterApplications();
 
@@ -3186,15 +4581,16 @@ function deleteApplication(button) {
 
     const confirmDelete =
         confirm(
-            'Are you sure you want to delete the application of '
-            + name
-            + '?'
+            'Are you sure you want to delete the application of ' +
+            name +
+            '?'
         );
 
 
     if (confirmDelete) {
 
         row.remove();
+
 
         alert(
             'Application deleted successfully.'
@@ -3206,30 +4602,31 @@ function deleteApplication(button) {
 
 
 /* =========================================================
-   RESUME PDF
+   RESUME
 ========================================================= */
 
 function viewResume(studentName) {
 
     const modal =
-        document.getElementById('resumeModal');
+        document.getElementById(
+            'resumeModal'
+        );
 
     const title =
-        document.getElementById('resumeStudentName');
+        document.getElementById(
+            'resumeStudentName'
+        );
 
     const frame =
-        document.getElementById('resumeFrame');
+        document.getElementById(
+            'resumeFrame'
+        );
 
 
     title.innerText =
-        studentName + ' - Resume';
+        studentName +
+        ' - Resume';
 
-
-    /*
-       Demo PDF.
-       Later this src can be replaced by the actual
-       Laravel resume URL/database file URL.
-    */
 
     frame.src =
         'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
@@ -3243,10 +4640,14 @@ function viewResume(studentName) {
 function closeResume() {
 
     const modal =
-        document.getElementById('resumeModal');
+        document.getElementById(
+            'resumeModal'
+        );
 
     const frame =
-        document.getElementById('resumeFrame');
+        document.getElementById(
+            'resumeFrame'
+        );
 
 
     modal.classList.remove('show');
@@ -3264,7 +4665,9 @@ function filterStudents() {
 
     const branch =
         document
-            .getElementById('studentBranchFilter')
+            .getElementById(
+                'studentBranchFilter'
+            )
             .value;
 
 
@@ -3277,7 +4680,9 @@ function filterStudents() {
     rows.forEach(function(row) {
 
         const rowBranch =
-            row.getAttribute('data-branch');
+            row.getAttribute(
+                'data-branch'
+            );
 
 
         const branchMatch =
@@ -3304,14 +4709,21 @@ function filterStudents() {
    STUDENT STATUS FILTER
 ========================================================= */
 
-function filterStudentStatus(status, button) {
+function filterStudentStatus(
+    status,
+    button
+) {
 
     const buttons =
-        document.querySelectorAll('.student-tab');
+        document.querySelectorAll(
+            '.student-tab'
+        );
 
 
     buttons.forEach(function(btn) {
+
         btn.classList.remove('active');
+
     });
 
 
@@ -3327,17 +4739,23 @@ function filterStudentStatus(status, button) {
     rows.forEach(function(row) {
 
         const rowStatus =
-            row.getAttribute('data-student-status');
+            row.getAttribute(
+                'data-student-status'
+            );
 
 
         const branch =
             document
-                .getElementById('studentBranchFilter')
+                .getElementById(
+                    'studentBranchFilter'
+                )
                 .value;
 
 
         const rowBranch =
-            row.getAttribute('data-branch');
+            row.getAttribute(
+                'data-branch'
+            );
 
 
         const statusMatch =
@@ -3375,28 +4793,28 @@ function filterStudentStatus(status, button) {
 function clearStudentFilter() {
 
     document
-        .getElementById('studentBranchFilter')
+        .getElementById(
+            'studentBranchFilter'
+        )
         .value = '';
 
 
-    const activeTab =
-        document.querySelector('.student-tab.active');
-
-
-    if (activeTab) {
-
-        filterStudentStatus(
-            'all',
-            document.querySelector('.student-tab')
+    const firstTab =
+        document.querySelector(
+            '.student-tab'
         );
 
-    }
+
+    filterStudentStatus(
+        'all',
+        firstTab
+    );
 
 }
 
 
 /* =========================================================
-   SCHEDULE INTERVIEW FOR SPECIFIC STUDENT
+   SCHEDULE FOR STUDENT
 ========================================================= */
 
 function scheduleForStudent(studentName) {
@@ -3404,45 +4822,49 @@ function scheduleForStudent(studentName) {
     showPage('interviews');
 
 
-    const select =
-        document.getElementById('interviewStudent');
+    const input =
+        document.getElementById(
+            'interviewStudent'
+        );
 
 
-    let found = false;
+    input.value =
+        studentName;
+
+}
 
 
-    for (
-        let i = 0;
-        i < select.options.length;
-        i++
+/* =========================================================
+   DRIVE FORM TOGGLE
+========================================================= */
+
+function toggleDriveForm() {
+
+    const form =
+        document.getElementById(
+            'newDriveForm'
+        );
+
+    const button =
+        document.getElementById(
+            'driveToggleButton'
+        );
+
+
+    form.classList.toggle('show');
+
+
+    if (
+        form.classList.contains('show')
     ) {
 
-        if (
-            select.options[i].text ===
-            studentName
-        ) {
+        button.innerHTML =
+            '✖ Close Add Drive';
 
-            select.selectedIndex = i;
+    } else {
 
-            found = true;
-
-            break;
-
-        }
-
-    }
-
-
-    if (!found) {
-
-        const option =
-            document.createElement('option');
-
-        option.text = studentName;
-
-        select.add(option);
-
-        select.value = studentName;
+        button.innerHTML =
+            '➕ Add New Drive';
 
     }
 
@@ -3457,47 +4879,77 @@ function addDrive() {
 
     const name =
         document
-            .getElementById('driveName')
+            .getElementById(
+                'driveName'
+            )
             .value
             .trim();
 
 
     const date =
         document
-            .getElementById('driveDate')
+            .getElementById(
+                'driveDate'
+            )
             .value;
 
 
-    const time =
+    const hour =
         document
-            .getElementById('driveTime')
+            .getElementById(
+                'driveHour'
+            )
+            .value;
+
+
+    const minute =
+        document
+            .getElementById(
+                'driveMinute'
+            )
+            .value;
+
+
+    const ampm =
+        document
+            .getElementById(
+                'driveAmPm'
+            )
             .value;
 
 
     const venue =
         document
-            .getElementById('driveVenue')
+            .getElementById(
+                'driveVenue'
+            )
             .value
             .trim();
 
 
     const organizer =
         document
-            .getElementById('driveOrganizer')
+            .getElementById(
+                'driveOrganizer'
+            )
             .value
             .trim();
 
 
     const course =
         document
-            .getElementById('driveCourse')
+            .getElementById(
+                'driveCourse'
+            )
             .value;
 
 
     if (
         name === '' ||
         date === '' ||
-        time === '' ||
+        hour === '' ||
+        minute === '' ||
+        ampm === '' ||
         venue === '' ||
         course === ''
     ) {
@@ -3509,6 +4961,14 @@ function addDrive() {
         return;
 
     }
+
+
+    const formattedTime =
+        hour +
+        ' : ' +
+        minute +
+        ' ' +
+        ampm;
 
 
     const table =
@@ -3527,7 +4987,7 @@ function addDrive() {
 
         <td>${date}</td>
 
-        <td>${time}</td>
+        <td>${formattedTime}</td>
 
         <td>${venue}</td>
 
@@ -3553,16 +5013,37 @@ function addDrive() {
     table.appendChild(row);
 
 
-    /*
-       Clear form after adding.
-    */
+    document.getElementById(
+        'driveName'
+    ).value = '';
 
-    document.getElementById('driveName').value = '';
-    document.getElementById('driveDate').value = '';
-    document.getElementById('driveTime').value = '';
-    document.getElementById('driveVenue').value = '';
-    document.getElementById('driveOrganizer').value = '';
-    document.getElementById('driveCourse').value = '';
+    document.getElementById(
+        'driveDate'
+    ).value = '';
+
+    document.getElementById(
+        'driveHour'
+    ).value = '';
+
+    document.getElementById(
+        'driveMinute'
+    ).value = '';
+
+    document.getElementById(
+        'driveAmPm'
+    ).value = '';
+
+    document.getElementById(
+        'driveVenue'
+    ).value = '';
+
+    document.getElementById(
+        'driveOrganizer'
+    ).value = '';
+
+    document.getElementById(
+        'driveCourse'
+    ).value = '';
 
 
     alert(
@@ -3593,6 +5074,7 @@ function deleteDrive(button) {
 
         row.remove();
 
+
         alert(
             'Drive deleted successfully.'
         );
@@ -3610,30 +5092,55 @@ function scheduleInterview() {
 
     const student =
         document
-            .getElementById('interviewStudent')
-            .value;
+            .getElementById(
+                'interviewStudent'
+            )
+            .value
+            .trim();
 
 
     const date =
         document
-            .getElementById('interviewDate')
+            .getElementById(
+                'interviewDate'
+            )
             .value;
 
 
-    const time =
+    const hour =
         document
-            .getElementById('interviewTime')
+            .getElementById(
+                'interviewHour'
+            )
+            .value;
+
+
+    const minute =
+        document
+            .getElementById(
+                'interviewMinute'
+            )
+            .value;
+
+
+    const ampm =
+        document
+            .getElementById(
+                'interviewAmPm'
+            )
             .value;
 
 
     if (
         student === '' ||
         date === '' ||
-        time === ''
+        hour === '' ||
+        minute === '' ||
+        ampm === ''
     ) {
 
         alert(
-            'Please select student, date and time.'
+            'Please enter student, date and complete interview time.'
         );
 
         return;
@@ -3641,9 +5148,19 @@ function scheduleInterview() {
     }
 
 
+    const formattedTime =
+        hour +
+        ' : ' +
+        minute +
+        ' ' +
+        ampm;
+
+
     alert(
         'Interview scheduled successfully for ' +
         student +
+        ' at ' +
+        formattedTime +
         '!'
     );
 
@@ -3652,21 +5169,24 @@ function scheduleInterview() {
 
 /* =========================================================
    ADD NOTIFICATION
-   NO FILE / ATTACHMENT
 ========================================================= */
 
 function addNotification() {
 
     const title =
         document
-            .getElementById('notificationTitle')
+            .getElementById(
+                'notificationTitle'
+            )
             .value
             .trim();
 
 
     const message =
         document
-            .getElementById('notificationMessage')
+            .getElementById(
+                'notificationMessage'
+            )
             .value
             .trim();
 
@@ -3686,11 +5206,15 @@ function addNotification() {
 
 
     const list =
-        document.getElementById('notificationList');
+        document.getElementById(
+            'notificationList'
+        );
 
 
     const notification =
-        document.createElement('div');
+        document.createElement(
+            'div'
+        );
 
 
     notification.className =
@@ -3714,11 +5238,21 @@ function addNotification() {
     `;
 
 
+    /*
+       New notification is added
+       at the top of existing notifications.
+    */
+
     list.prepend(notification);
 
 
-    document.getElementById('notificationTitle').value = '';
-    document.getElementById('notificationMessage').value = '';
+    document.getElementById(
+        'notificationTitle'
+    ).value = '';
+
+    document.getElementById(
+        'notificationMessage'
+    ).value = '';
 
 
     alert(
@@ -3749,19 +5283,25 @@ function changePassword() {
 
     const currentPassword =
         document
-            .getElementById('currentPassword')
+            .getElementById(
+                'currentPassword'
+            )
             .value;
 
 
     const newPassword =
         document
-            .getElementById('newPassword')
+            .getElementById(
+                'newPassword'
+            )
             .value;
 
 
     const confirmPassword =
         document
-            .getElementById('confirmPassword')
+            .getElementById(
+                'confirmPassword'
+            )
             .value;
 
 
@@ -3828,9 +5368,17 @@ function changePassword() {
     );
 
 
-    document.getElementById('currentPassword').value = '';
-    document.getElementById('newPassword').value = '';
-    document.getElementById('confirmPassword').value = '';
+    document.getElementById(
+        'currentPassword'
+    ).value = '';
+
+    document.getElementById(
+        'newPassword'
+    ).value = '';
+
+    document.getElementById(
+        'confirmPassword'
+    ).value = '';
 
 }
 
@@ -3844,17 +5392,6 @@ function saveSettings() {
     alert(
         'Settings saved successfully!'
     );
-
-}
-
-
-/* =========================================================
-   GENERAL MESSAGE
-========================================================= */
-
-function showMessage(message) {
-
-    alert(message);
 
 }
 

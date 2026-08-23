@@ -1690,8 +1690,6 @@ footer {
 
 
 
-                </div>
-
 
                 <div class="help-card">
 

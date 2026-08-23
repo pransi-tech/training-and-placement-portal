@@ -2243,12 +2243,6 @@
                         <td>
 
                             <button
-                                class="btn btn-warning"
-                                onclick="editApplication(this)">
-                                Edit
-                            </button>
-
-                            <button
                                 class="btn btn-danger"
                                 onclick="deleteApplication(this)">
                                 Delete
@@ -2318,12 +2312,6 @@
                         </td>
 
                         <td>
-
-                            <button
-                                class="btn btn-warning"
-                                onclick="editApplication(this)">
-                                Edit
-                            </button>
 
                             <button
                                 class="btn btn-danger"
@@ -2397,12 +2385,6 @@
                         <td>
 
                             <button
-                                class="btn btn-warning"
-                                onclick="editApplication(this)">
-                                Edit
-                            </button>
-
-                            <button
                                 class="btn btn-danger"
                                 onclick="deleteApplication(this)">
                                 Delete
@@ -2472,12 +2454,6 @@
                         </td>
 
                         <td>
-
-                            <button
-                                class="btn btn-warning"
-                                onclick="editApplication(this)">
-                                Edit
-                            </button>
 
                             <button
                                 class="btn btn-danger"
@@ -4421,61 +4397,55 @@ function postJob() {
 
 function filterApplications() {
 
-    const search =
-        document
-            .getElementById('applicationSearch')
-            .value
-            .toLowerCase();
+    const searchInput =
+        document.getElementById('applicationSearch');
 
+    const courseInput =
+        document.getElementById('courseFilter');
+
+    const statusInput =
+        document.getElementById('statusFilter');
+
+    const search =
+        searchInput ? searchInput.value.toLowerCase() : '';
 
     const course =
-        document
-            .getElementById('courseFilter')
-            .value;
-
+        courseInput ? courseInput.value : '';
 
     const status =
-        document
-            .getElementById('statusFilter')
-            .value;
-
+        statusInput ? statusInput.value : '';
 
     const rows =
         document.querySelectorAll(
             '#applicationsTable tbody tr'
         );
 
-
     rows.forEach(function(row) {
 
-        const name =
-            row
-                .querySelector('.student-name')
-                .innerText
-                .toLowerCase();
+        const nameElement =
+            row.querySelector('.student-name');
 
+        const name =
+            nameElement
+                ? nameElement.innerText.toLowerCase()
+                : '';
 
         const rowCourse =
             row.getAttribute('data-course');
 
-
         const rowStatus =
             row.getAttribute('data-status');
 
-
         const searchMatch =
             name.includes(search);
-
 
         const courseMatch =
             course === '' ||
             rowCourse === course;
 
-
         const statusMatch =
             status === '' ||
             rowStatus === status;
-
 
         if (
             searchMatch &&
@@ -5416,7 +5386,26 @@ function logoutCompany() {
     }
 
 }
+document.addEventListener('DOMContentLoaded', function() {
 
+    const search =
+        document.getElementById('applicationSearch');
+
+    const course =
+        document.getElementById('courseFilter');
+
+    const status =
+        document.getElementById('statusFilter');
+
+    if (search) search.value = '';
+
+    if (course) course.value = '';
+
+    if (status) status.value = '';
+
+    filterApplications();
+
+});
 </script>
 
 </body>

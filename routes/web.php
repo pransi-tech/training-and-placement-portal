@@ -417,7 +417,12 @@ Route::get('/company/logout', function () {
         ->with('success', 'You have been logged out successfully.');
 
 })->name('company.logout');
-// Company Dashboard Route (जो Placement Officer Dashboard दिखाएगा)
+// Company Dashboard Route
 Route::get('/company/dashboard', function () {
+    return view('company_dashboard');
+});
+
+// Placement Officer Dashboard Route
+Route::get('/placement-officer/dashboard', function () {
     return view('placement_officer_dashboard');
 });

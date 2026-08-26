@@ -36,6 +36,7 @@ Route::get('/placement-officer/login', function () {
     return view('placement_officer_login');
 })->name('placement.officer.login');
 
+
 // Placement Officer Login
 Route::post('/placement-officer/login', function (Request $request) {
 
@@ -44,8 +45,7 @@ Route::post('/placement-officer/login', function (Request $request) {
 
     /*
      * Temporary login handling.
-     * Replace this with database authentication when
-     * Placement Officer table/authentication is connected.
+     * Replace this with database authentication later.
      */
 
     if ($email && $password) {
@@ -59,7 +59,8 @@ Route::post('/placement-officer/login', function (Request $request) {
             ->route('placement.officer.dashboard');
     }
 
-    return back()->with('error', 'Invalid Email or Password');
+    return back()
+        ->with('error', 'Invalid Email or Password');
 
 })->name('placement.officer.login.submit');
 
@@ -79,7 +80,9 @@ Route::get('/placement-officer/dashboard', function () {
 */
 
 Route::get('/explore-opportunities', function () {
+
     return view('explore_opportunities');
+
 });
 
 
@@ -113,7 +116,10 @@ Route::get('/admin/login', function () {
 // Admin Login
 Route::post('/admin/login', function (Request $request) {
 
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only(
+        'email',
+        'password'
+    );
 
     if (Auth::attempt($credentials)) {
 
@@ -186,7 +192,10 @@ Route::get('/student/dashboard/{id}', function ($id) {
 
     $student = \App\Models\StudentRegistration::findOrFail($id);
 
-    return view('student_dashboard', compact('student'));
+    return view(
+        'student_dashboard',
+        compact('student')
+    );
 
 })->name('student.dashboard.with.id');
 
@@ -231,11 +240,7 @@ Route::post('/company-register', function (Request $request) {
 
     /*
      * Temporary session-based company registration.
-     *
-     * This fixes the current POST /company-register error
-     * and redirects the company to its dashboard.
-     *
-     * Later this should save the company into the database.
+     * Later this can be connected to the database.
      */
 
     session([
@@ -247,7 +252,10 @@ Route::post('/company-register', function (Request $request) {
 
     return redirect()
         ->route('company.dashboard')
-        ->with('success', 'Company registered successfully!');
+        ->with(
+            'success',
+            'Company registered successfully!'
+        );
 
 })->name('company.register.submit');
 
@@ -258,6 +266,7 @@ Route::post('/company-register', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
+// ONLY ONE COMPANY DASHBOARD ROUTE
 Route::get('/company/dashboard', function () {
 
     return view('company_dashboard');
@@ -313,7 +322,10 @@ Route::get('/company/applications', function () {
 
 Route::get('/company/application/{id}', function ($id) {
 
-    return view('company_application_details', compact('id'));
+    return view(
+        'company_application_details',
+        compact('id')
+    );
 
 })->name('company.application.details');
 
@@ -366,7 +378,10 @@ Route::get('/company/drives', function () {
 
 Route::get('/company/drive/{id}', function ($id) {
 
-    return view('company_drive_details', compact('id'));
+    return view(
+        'company_drive_details',
+        compact('id')
+    );
 
 })->name('company.drive.details');
 
@@ -414,9 +429,13 @@ Route::get('/company/logout', function () {
 
     return redirect()
         ->route('company.login')
-        ->with('success', 'You have been logged out successfully.');
+        ->with(
+            'success',
+            'You have been logged out successfully.'
+        );
 
 })->name('company.logout');
+<<<<<<< HEAD
 // Company Dashboard Route
 Route::get('/company/dashboard', function () {
     return view('company_dashboard');
@@ -430,3 +449,5 @@ Route::get('/placement-officer/dashboard', function () {
 Route::post('/student/register', function (\Illuminate\Http\Request $request) {
     return back()->with('success', 'Registration submitted successfully!');
 });
+=======
+>>>>>>> 043d73d87f46f2229760548a50e3def3ffe9517c

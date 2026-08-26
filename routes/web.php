@@ -426,3 +426,7 @@ Route::get('/company/dashboard', function () {
 Route::get('/placement-officer/dashboard', function () {
     return view('placement_officer_dashboard');
 });
+// Student Registration (POST)
+Route::post('/student/register', function (\Illuminate\Http\Request $request) {
+    return back()->with('success', 'Registration submitted successfully!');
+});

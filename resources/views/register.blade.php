@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration | Training & Placement Portal</title>
 
-   <!-- Bootstrap 5 CSS CDN -->
+    <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Font Awesome Icons CDN -->
@@ -70,16 +70,19 @@
                 </div>
             </div>
             <div>
-                <a href="login.html" class="btn btn-outline-light btn-sm fw-semibold"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</a>
+                <a href="{{ url('/login') }}" class="btn btn-outline-light btn-sm fw-semibold"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</a>
             </div>
         </div>
     </header>
 
     <main class="container my-4">
         <!-- Success Alert Message -->
-        <div id="successAlert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
-            <i class="fa-solid fa-circle-check me-2"></i> <strong>Registration Successful!</strong> Your placement profile has been registered. Redirecting...
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        @endif
 
         <!-- Completion Progress Bar -->
         <div class="card p-3 shadow-sm mb-4 rounded-4 border-0">
@@ -93,7 +96,8 @@
         </div>
 
         <!-- Registration Form Start -->
-        <form id="registrationForm" novalidate enctype="multipart/form-data">
+        <form id="registrationForm" action="{{ url('/student/register') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="row g-4">
                 
                 <!-- LEFT COLUMN -->
@@ -109,7 +113,7 @@
                                 <label class="form-label">Full Name *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-signature"></i></span>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="John Doe" required>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="John Doe" value="{{ old('name') }}" required>
                                 </div>
                                 <div class="invalid-feedback">Only alphabets allowed.</div>
                             </div>
@@ -118,7 +122,7 @@
                                 <label class="form-label">Enrollment No. *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-id-card"></i></span>
-                                    <input type="text" name="enrollment_no" id="enrollment_no" class="form-control" placeholder="EN2026101" required>
+                                    <input type="text" name="enrollment_no" id="enrollment_no" class="form-control" placeholder="EN2026101" value="{{ old('enrollment_no') }}" required>
                                 </div>
                                 <div class="invalid-feedback">Enrollment number is required.</div>
                             </div>
@@ -127,7 +131,7 @@
                                 <label class="form-label">Date of Birth (DOB) *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-                                    <input type="date" name="dob" id="dob" class="form-control" required>
+                                    <input type="date" name="dob" id="dob" class="form-control" value="{{ old('dob') }}" required>
                                 </div>
                             </div>
 
@@ -148,7 +152,7 @@
                                 <label class="form-label">Email Address *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="student@college.edu" required>
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="student@college.edu" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="invalid-feedback">Please enter a valid email.</div>
                             </div>
@@ -157,7 +161,7 @@
                                 <label class="form-label">Mobile No. *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-mobile-screen"></i></span>
-                                    <input type="tel" name="mobile_no" id="mobile_no" class="form-control" placeholder="10 Digits" required>
+                                    <input type="tel" name="mobile_no" id="mobile_no" class="form-control" placeholder="10 Digits" value="{{ old('mobile_no') }}" required>
                                 </div>
                                 <div class="invalid-feedback">Must be exactly 10 digits.</div>
                             </div>
@@ -166,20 +170,20 @@
                                 <label class="form-label">City *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
-                                    <input type="text" name="city" id="city" class="form-control" placeholder="Surat" required>
+                                    <input type="text" name="city" id="city" class="form-control" placeholder="Surat" value="{{ old('city') }}" required>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">Full Address *</label>
-                                <textarea name="address" id="address" class="form-control" rows="2" placeholder="Residential Address..." required></textarea>
+                                <textarea name="address" id="address" class="form-control" rows="2" placeholder="Residential Address..." required>{{ old('address') }}</textarea>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">LinkedIn ID (Optional)</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-brands fa-linkedin text-primary"></i></span>
-                                    <input type="url" name="linkedin_id" id="linkedin_id" class="form-control" placeholder="https://linkedin.com/in/username">
+                                    <input type="url" name="linkedin_id" id="linkedin_id" class="form-control" placeholder="https://linkedin.com/in/username" value="{{ old('linkedin_id') }}">
                                 </div>
                             </div>
                         </div>
@@ -200,10 +204,10 @@
                                 <label class="form-label">Branch *</label>
                                 <select name="branch" id="branch" class="form-select" required>
                                     <option value="">Select Branch</option>
-                                    <option value="Computer Engineering">Computer Engineering</option>
-                                    <option value="Information Technology">Information Technology</option>
-                                    <option value="Electronics & Comm">Electronics & Comm</option>
-                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Computer Engineering" {{ old('branch') == 'Computer Engineering' ? 'selected' : '' }}>Computer Engineering</option>
+                                    <option value="Information Technology" {{ old('branch') == 'Information Technology' ? 'selected' : '' }}>Information Technology</option>
+                                    <option value="Electronics & Comm" {{ old('branch') == 'Electronics & Comm' ? 'selected' : '' }}>Electronics & Comm</option>
+                                    <option value="Mechanical Engineering" {{ old('branch') == 'Mechanical Engineering' ? 'selected' : '' }}>Mechanical Engineering</option>
                                 </select>
                             </div>
 
@@ -211,26 +215,26 @@
                                 <label class="form-label">Semester *</label>
                                 <select name="semester" id="semester" class="form-select" required>
                                     <option value="">Select Sem</option>
-                                    <option value="Semester 5" selected>Semester 5</option>
-                                    <option value="Semester 6">Semester 6</option>
-                                    <option value="Semester 7">Semester 7</option>
-                                    <option value="Semester 8">Semester 8</option>
+                                    <option value="Semester 5" {{ old('semester') == 'Semester 5' ? 'selected' : '' }}>Semester 5</option>
+                                    <option value="Semester 6" {{ old('semester', 'Semester 6') == 'Semester 6' ? 'selected' : '' }}>Semester 6</option>
+                                    <option value="Semester 7" {{ old('semester') == 'Semester 7' ? 'selected' : '' }}>Semester 7</option>
+                                    <option value="Semester 8" {{ old('semester') == 'Semester 8' ? 'selected' : '' }}>Semester 8</option>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">SSC Percentage (%) *</label>
-                                <input type="number" step="0.01" min="0" max="100" name="ssc_percentage" id="ssc_percentage" class="form-control" placeholder="85.50" required>
+                                <input type="number" step="0.01" min="0" max="100" name="ssc_percentage" id="ssc_percentage" class="form-control" placeholder="85.50" value="{{ old('ssc_percentage') }}" required>
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">HSC Percentage (%)</label>
-                                <input type="number" step="0.01" min="0" max="100" name="hsc_percentage" id="hsc_percentage" class="form-control" placeholder="Optional">
+                                <input type="number" step="0.01" min="0" max="100" name="hsc_percentage" id="hsc_percentage" class="form-control" placeholder="Optional" value="{{ old('hsc_percentage') }}">
                             </div>
 
                             <div class="col-md-4">
                                 <label class="form-label">Diploma CPI *</label>
-                                <input type="number" step="0.01" min="0" max="10" name="diploma_cpi" id="diploma_cpi" class="form-control" placeholder="8.50" required>
+                                <input type="number" step="0.01" min="0" max="100" name="diploma_cpi" id="diploma_cpi" class="form-control" placeholder="8.50" value="{{ old('diploma_cpi') }}" required>
                                 <div class="invalid-feedback">CPI must be between 0 and 10.</div>
                             </div>
 
@@ -238,13 +242,13 @@
                                 <label class="form-label">Active Backlogs *</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fa-solid fa-triangle-exclamation"></i></span>
-                                    <input type="number" name="backlog" id="backlog" class="form-control" min="0" value="0" required>
+                                    <input type="number" name="backlog" id="backlog" class="form-control" min="0" value="{{ old('backlog', 0) }}" required>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Skills & Expertise (Dynamic Add/Remove and Best Tech Skills) -->
+                    <!-- Skills & Expertise -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-laptop-code"></i> Area of Expertise
@@ -321,7 +325,7 @@
                             </div>
 
                             <!-- Hidden Field synced with Database -->
-                            <input type="hidden" name="area_of_expertise" id="area_of_expertise">
+                            <input type="hidden" name="area_of_expertise" id="area_of_expertise" value="{{ old('area_of_expertise') }}">
                         </div>
                     </div>
 
@@ -386,7 +390,6 @@
             const skillName = input.value.trim();
 
             if (skillName !== '') {
-                // Check if already exists
                 let exists = false;
                 document.querySelectorAll('#skillsContainer .skill-tag').forEach(tag => {
                     if (tag.getAttribute('data-value').toLowerCase() === skillName.toLowerCase()) {

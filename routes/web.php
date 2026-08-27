@@ -435,7 +435,7 @@ Route::get('/company/logout', function () {
         );
 
 })->name('company.logout');
-<<<<<<< HEAD
+
 // Company Dashboard Route
 Route::get('/company/dashboard', function () {
     return view('company_dashboard');
@@ -449,5 +449,16 @@ Route::get('/placement-officer/dashboard', function () {
 Route::post('/student/register', function (\Illuminate\Http\Request $request) {
     return back()->with('success', 'Registration submitted successfully!');
 });
-=======
->>>>>>> 043d73d87f46f2229760548a50e3def3ffe9517c
+Route::get('/student/login', function () {
+    return view('student');
+})->name('student.login');
+
+Route::post('/student/login', function (\Illuminate\Http\Request $request) {
+    $extractedName = explode('@', $request->email)[0];
+    session([
+        'student_name' => ucwords(str_replace('.', ' ', $extractedName)),
+        'student_email' => $request->email
+    ]);
+
+    return redirect('/student/dashboard')->with('success', 'Logged in successfully!');
+});

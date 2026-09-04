@@ -345,14 +345,14 @@
         <header class="top-header">
             <div>
                 <h3 class="fw-bold mb-1" id="section-title" style="color: #0F172A;">Welcome, Placement Officer 👋</h3>
-                <p class="text-muted small mb-0" id="section-subtitle">Kilachand Devchand Polytechnic Placement Dashboard</p>
+                <p class="text-muted small mb-0" id="section-subtitle">Departmental Placement Dashboard</p>
             </div>
             <div class="d-flex align-items-center gap-3">
                 <div class="user-profile">
                     <div class="user-avatar">PO</div>
                     <div>
                         <div class="fw-semibold small" style="color: #0F172A;">Placement Officer</div>
-                        <small class="text-muted" style="font-size: 0.75rem;">K. D. Polytechnic, Patan</small>
+                        <small class="text-muted" style="font-size: 0.75rem;">Department Coordinator (View Only)</small>
                     </div>
                 </div>
             </div>
@@ -365,7 +365,7 @@
                     <div class="white-card stat-card">
                         <div class="stat-icon stat-purple"><i class="bi bi-building"></i></div>
                         <div>
-                            <h3 id="statActiveDrives">18</h3>
+                            <h3>18</h3>
                             <small class="text-muted">Active Hiring Drives</small>
                         </div>
                     </div>
@@ -419,29 +419,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="auto-expiring-row" data-expiry="2026-09-05">
+                                    <tr class="auto-expiring-row" data-expiry="2026-09-08">
                                         <td class="fw-semibold"><i class="bi bi-building text-info me-2"></i> TCS</td>
                                         <td>Junior Software Trainee</td>
                                         <td>Computer Engineering</td>
-                                        <td>05 Sep 2026</td>
+                                        <td>08 Sep 2026</td>
                                         <td><span class="badge-status badge-active">Ongoing</span></td>
-                                        <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Junior Software Trainee', '4.2 LPA', 'Computer Engineering', '05 Sep 2026', 'Ongoing')">View Details</button></td>
+                                        <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Junior Software Trainee', '4.2 LPA', 'Computer Engineering', '08 Sep 2026', 'Ongoing')">View Details</button></td>
                                     </tr>
-                                    <tr class="auto-expiring-row" data-expiry="2026-09-02">
+                                    <tr class="auto-expiring-row" data-expiry="2026-09-12">
                                         <td class="fw-semibold"><i class="bi bi-building text-warning me-2"></i> L&T Construction</td>
                                         <td>Diploma Engineer Trainee</td>
                                         <td>Civil, Mechanical, Electrical</td>
-                                        <td>02 Sep 2026</td>
+                                        <td>12 Sep 2026</td>
                                         <td><span class="badge-status badge-active">Upcoming</span></td>
-                                        <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Diploma Engineer Trainee', '5.0 LPA', 'Civil, Mechanical, Electrical', '02 Sep 2026', 'Upcoming')">View Details</button></td>
+                                        <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Diploma Engineer Trainee', '5.0 LPA', 'Civil, Mechanical, Electrical', '12 Sep 2026', 'Upcoming')">View Details</button></td>
                                     </tr>
-                                    <tr class="auto-expiring-row" data-expiry="2026-09-10">
+                                    <tr class="auto-expiring-row" data-expiry="2026-09-15">
                                         <td class="fw-semibold"><i class="bi bi-building text-primary me-2"></i> Tata Power</td>
                                         <td>Junior Engineer</td>
                                         <td>Electrical Engineering</td>
-                                        <td>10 Sep 2026</td>
+                                        <td>15 Sep 2026</td>
                                         <td><span class="badge-status badge-pending">Open</span></td>
-                                        <td><button class="btn-action-dark" onclick="openDriveDetails('Tata Power', 'Junior Engineer', '4.5 LPA', 'Electrical Engineering', '10 Sep 2026', 'Open')">View Details</button></td>
+                                        <td><button class="btn-action-dark" onclick="openDriveDetails('Tata Power', 'Junior Engineer', '4.5 LPA', 'Electrical Engineering', '15 Sep 2026', 'Open')">View Details</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -453,6 +453,7 @@
                     <div class="white-card">
                         <h5 class="fw-bold mb-3" style="color: #0F172A;"><i class="bi bi-bar-chart-fill text-warning me-2"></i> 4 Branches Placement Status</h5>
                         
+                        <!-- 1. Computer -->
                         <div class="mb-3">
                             <div class="d-flex justify-content-between small mb-1">
                                 <span>Computer Engineering</span>
@@ -463,6 +464,7 @@
                             </div>
                         </div>
 
+                        <!-- 2. Civil -->
                         <div class="mb-3">
                             <div class="d-flex justify-content-between small mb-1">
                                 <span>Civil Engineering</span>
@@ -473,6 +475,7 @@
                             </div>
                         </div>
 
+                        <!-- 3. Mechanical -->
                         <div class="mb-3">
                             <div class="d-flex justify-content-between small mb-1">
                                 <span>Mechanical Engineering</span>
@@ -483,6 +486,7 @@
                             </div>
                         </div>
 
+                        <!-- 4. Electrical -->
                         <div class="mb-3">
                             <div class="d-flex justify-content-between small mb-1">
                                 <span>Electrical Engineering</span>
@@ -555,6 +559,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Computer Engineering -->
                             <tr class="student-row" data-branch="Computer Engineering" data-cpi="8.75" data-status="Placed">
                                 <td class="fw-semibold">226040307001</td>
                                 <td>Aarav Sharma</td>
@@ -564,6 +569,8 @@
                                 <td><span class="badge-status badge-active">Placed (TCS)</span></td>
                                 <td><button class="btn-action-dark" onclick="openStudentModal('Aarav Sharma', '226040307001', 'Computer Engineering', '6th', '8.75', 'Placed at TCS (4.2 LPA)')">View Profile</button></td>
                             </tr>
+
+                            <!-- Civil Engineering -->
                             <tr class="student-row" data-branch="Civil Engineering" data-cpi="7.40" data-status="Eligible">
                                 <td class="fw-semibold">226040306008</td>
                                 <td>Rahul Solanki</td>
@@ -573,6 +580,8 @@
                                 <td><span class="badge-status badge-info">Eligible</span></td>
                                 <td><button class="btn-action-dark" onclick="openStudentModal('Rahul Solanki', '226040306008', 'Civil Engineering', '6th', '7.40', 'Eligible for Hiring Drives')">View Profile</button></td>
                             </tr>
+
+                            <!-- Mechanical Engineering -->
                             <tr class="student-row" data-branch="Mechanical Engineering" data-cpi="8.20" data-status="Shortlisted">
                                 <td class="fw-semibold">226040319022</td>
                                 <td>Karan Desai</td>
@@ -582,6 +591,8 @@
                                 <td><span class="badge-status badge-pending">Shortlisted (L&T)</span></td>
                                 <td><button class="btn-action-dark" onclick="openStudentModal('Karan Desai', '226040319022', 'Mechanical Engineering', '6th', '8.20', 'Shortlisted for L&T')">View Profile</button></td>
                             </tr>
+
+                            <!-- Electrical Engineering -->
                             <tr class="student-row" data-branch="Electrical Engineering" data-cpi="8.50" data-status="Placed">
                                 <td class="fw-semibold">226040309015</td>
                                 <td>Priya Patel</td>
@@ -597,13 +608,13 @@
             </div>
         </div>
 
-        <!-- 3. COMPANY DRIVES (WITH AUTO-EXPIRATION LOGIC) -->
+        <!-- 3. COMPANY DRIVES -->
         <div id="tab-companies" class="content-section">
             <div class="white-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <h5 class="fw-bold mb-0"><i class="bi bi-building-fill text-warning me-2"></i> Campus Placement Drives</h5>
-                        <small class="text-muted">Active and upcoming drives only (expired drives auto-removed)</small>
+                        <small class="text-muted">Active and upcoming drives only</small>
                     </div>
                     <small class="text-muted"><i class="bi bi-shield-check text-success"></i> Synchronized with Admin</small>
                 </div>
@@ -621,37 +632,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Expiry date: 2026-09-05 -->
-                            <tr class="auto-expiring-row" data-expiry="2026-09-05">
+                            <tr class="auto-expiring-row" data-expiry="2026-09-08">
                                 <td class="fw-semibold"><i class="bi bi-building text-info me-2"></i> Tata Consultancy Services</td>
                                 <td>Junior Software Trainee</td>
                                 <td class="fw-bold text-success">4.2 LPA</td>
                                 <td>Computer Engineering</td>
-                                <td>05 Sep 2026</td>
+                                <td>08 Sep 2026</td>
                                 <td><span class="badge-status badge-active">Ongoing</span></td>
-                                <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Junior Software Trainee', '4.2 LPA', 'Computer Engineering', '05 Sep 2026', 'Ongoing')">View Details</button></td>
+                                <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Junior Software Trainee', '4.2 LPA', 'Computer Engineering', '08 Sep 2026', 'Ongoing')">View Details</button></td>
                             </tr>
 
-                            <!-- Expiry date: 2026-09-02 -->
-                            <tr class="auto-expiring-row" data-expiry="2026-09-02">
+                            <tr class="auto-expiring-row" data-expiry="2026-09-12">
                                 <td class="fw-semibold"><i class="bi bi-building text-warning me-2"></i> L&T Construction</td>
                                 <td>Diploma Engineer Trainee</td>
                                 <td class="fw-bold text-success">5.0 LPA</td>
                                 <td>Civil, Mechanical, Electrical</td>
-                                <td>02 Sep 2026</td>
+                                <td>12 Sep 2026</td>
                                 <td><span class="badge-status badge-active">Upcoming</span></td>
-                                <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Diploma Engineer Trainee', '5.0 LPA', 'Civil, Mechanical, Electrical', '02 Sep 2026', 'Upcoming')">View Details</button></td>
+                                <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Diploma Engineer Trainee', '5.0 LPA', 'Civil, Mechanical, Electrical', '12 Sep 2026', 'Upcoming')">View Details</button></td>
                             </tr>
 
-                            <!-- Expiry date: 2026-09-10 -->
-                            <tr class="auto-expiring-row" data-expiry="2026-09-10">
+                            <tr class="auto-expiring-row" data-expiry="2026-09-15">
                                 <td class="fw-semibold"><i class="bi bi-building text-primary me-2"></i> Tata Power</td>
                                 <td>Junior Engineer</td>
                                 <td class="fw-bold text-success">4.5 LPA</td>
                                 <td>Electrical Engineering</td>
-                                <td>10 Sep 2026</td>
+                                <td>15 Sep 2026</td>
                                 <td><span class="badge-status badge-pending">Open</span></td>
-                                <td><button class="btn-action-dark" onclick="openDriveDetails('Tata Power', 'Junior Engineer', '4.5 LPA', 'Electrical Engineering', '10 Sep 2026', 'Open')">View Details</button></td>
+                                <td><button class="btn-action-dark" onclick="openDriveDetails('Tata Power', 'Junior Engineer', '4.5 LPA', 'Electrical Engineering', '15 Sep 2026', 'Open')">View Details</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -683,17 +691,17 @@
                                 <td class="fw-semibold">Rohan Mehta</td>
                                 <td>TCS</td>
                                 <td>Software Trainee</td>
-                                <td>20 Aug 2026</td>
+                                <td>02 Sep 2026</td>
                                 <td><span class="badge-status badge-pending">Under Review</span></td>
-                                <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Software Trainee - Rohan Mehta', '4.2 LPA', 'Computer Engineering', '20 Aug 2026', 'Under Review')">View Application</button></td>
+                                <td><button class="btn-action-dark" onclick="openDriveDetails('TCS', 'Software Trainee - Rohan Mehta', '4.2 LPA', 'Computer Engineering', '02 Sep 2026', 'Under Review')">View Application</button></td>
                             </tr>
                             <tr>
                                 <td class="fw-semibold">Siddharth Shah</td>
                                 <td>L&T Construction</td>
                                 <td>Graduate Trainee</td>
-                                <td>19 Aug 2026</td>
+                                <td>01 Sep 2026</td>
                                 <td><span class="badge-status badge-active">Shortlisted</span></td>
-                                <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Graduate Trainee - Siddharth Shah', '5.0 LPA', 'Mechanical Engineering', '19 Aug 2026', 'Shortlisted')">View Application</button></td>
+                                <td><button class="btn-action-dark" onclick="openDriveDetails('L&T Construction', 'Graduate Trainee - Siddharth Shah', '5.0 LPA', 'Mechanical Engineering', '01 Sep 2026', 'Shortlisted')">View Application</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -715,6 +723,7 @@
                 </div>
 
                 <div class="row g-4" id="eventsContainer">
+                    <!-- Past Event (28 Aug 2026): Will auto-remove on load via JS -->
                     <div class="col-md-6 auto-expiring-card" data-expiry="2026-08-28">
                         <div class="event-box">
                             <div class="event-icon-badge">
@@ -730,31 +739,33 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 auto-expiring-card" data-expiry="2026-09-02">
+                    <!-- Upcoming Event 1 -->
+                    <div class="col-md-6 auto-expiring-card" data-expiry="2026-09-10">
                         <div class="event-box">
                             <div class="event-icon-badge" style="background: #FDF2F8; color: #DB2777;">
                                 <i class="bi bi-mic"></i>
                             </div>
                             <h6 class="fw-bold text-dark mb-2">Mock Interview Session</h6>
                             <p class="small text-muted mb-3">Practice interview session conducted for final-year students.</p>
-                            <span class="badge bg-light text-primary border mb-3">02 Sep 2026</span>
+                            <span class="badge bg-light text-primary border mb-3">10 Sep 2026</span>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Mock Interview Session', '02 Sep 2026', 'Practice interview session conducted for final-year students.', 'T&P Conference Room')">View Details</button>
+                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Mock Interview Session', '10 Sep 2026', 'Practice interview session conducted for final-year students.', 'T&P Conference Room')">View Details</button>
                                 <button class="btn btn-sm btn-light border px-3 rounded-pill" onclick="manageEvent('Mock Interview Session')">Manage</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 auto-expiring-card" data-expiry="2026-09-12">
+                    <!-- Upcoming Event 2 -->
+                    <div class="col-md-6 auto-expiring-card" data-expiry="2026-09-18">
                         <div class="event-box">
                             <div class="event-icon-badge" style="background: #ECFDF5; color: #059669;">
                                 <i class="bi bi-code-slash"></i>
                             </div>
                             <h6 class="fw-bold text-dark mb-2">Technical Aptitude Bootcamp</h6>
                             <p class="small text-muted mb-3">Intensive bootcamp for diploma students preparing for core & software jobs.</p>
-                            <span class="badge bg-light text-primary border mb-3">12 Sep 2026</span>
+                            <span class="badge bg-light text-primary border mb-3">18 Sep 2026</span>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Technical Aptitude Bootcamp', '12 Sep 2026', 'Intensive bootcamp for diploma students preparing for core & software jobs.', 'Lab 2')">View Details</button>
+                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Technical Aptitude Bootcamp', '18 Sep 2026', 'Intensive bootcamp for diploma students preparing for core & software jobs.', 'Lab 2')">View Details</button>
                                 <button class="btn btn-sm btn-light border px-3 rounded-pill" onclick="manageEvent('Technical Aptitude Bootcamp')">Manage</button>
                             </div>
                         </div>
@@ -777,7 +788,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>Drive Alert:</strong> L&T application deadline is approaching on 02 Sep 2026.
+                            <strong>Drive Alert:</strong> L&T application deadline is approaching on 12 Sep 2026.
                             <br><small class="text-muted">Yesterday</small>
                         </div>
                     </li>
@@ -805,12 +816,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Global Auto-Expiry Handler for Drives & Events
+        // Automatic Expired Items Purge (Runs on frontend load)
         function purgeAllExpiredItems() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            // 1. Purge expired Table Rows (Drives in Dashboard & Company Drives Page)
+            // 1. Purge expired Drives
             document.querySelectorAll('.auto-expiring-row').forEach(row => {
                 const exp = row.getAttribute('data-expiry');
                 if (exp) {
@@ -822,7 +833,7 @@
                 }
             });
 
-            // 2. Purge expired Event Cards
+            // 2. Purge expired Events
             document.querySelectorAll('.auto-expiring-card').forEach(card => {
                 const exp = card.getAttribute('data-expiry');
                 if (exp) {

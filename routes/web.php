@@ -455,3 +455,10 @@ Route::get('/company/dashboard', function () {
 Route::get('/placement-officer/dashboard', function () {
     return view('placement_officer_dashboard');
 });
+Route::get('/placement-officer/dashboard', function () {
+    return view('placement_officer_dashboard');
+});
+
+Route::get('/placement_officer_dashboard', function () {
+    return view('placement_officer_dashboard');
+});

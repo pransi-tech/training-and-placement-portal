@@ -6,6 +6,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactMessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\StudentRegistration;
+use App\Models\Company;
 
 
 /*
@@ -138,10 +140,19 @@ Route::post('/admin/login', function (Request $request) {
 // Admin Dashboard
 Route::get('/admin/dashboard', function () {
 
-    return view('admin_dashboard');
+    $students = StudentRegistration::latest()->get();
+    $studentCount = StudentRegistration::count();
 
-})->name('admin.dashboard');
+    $companies = Company::latest()->get();
+    $companyCount = Company::count();
 
+    return view('admin_dashboard', compact(
+        'students',
+        'studentCount',
+        'companies',
+        'companyCount'
+    ));
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -266,12 +277,19 @@ Route::post('/company-register', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
+<<<<<<< HEAD
 // ONLY ONE COMPANY DASHBOARD ROUTE
 Route::get('/company/dashboard', function () {
 
     return view('company_dashboard');
 
 })->name('company.dashboard');
+=======
+Route::get('/company/dashboard', [
+    CompanyController::class,
+    'dashboard'
+])->name('company.dashboard');
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
 
 /*

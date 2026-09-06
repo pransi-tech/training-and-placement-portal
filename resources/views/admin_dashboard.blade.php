@@ -961,7 +961,11 @@
 
                 <div class="card-icon">👨‍🎓</div>
 
+<<<<<<< HEAD
                 <h3>Total Students</h3>
+=======
+                <h3>{{ $studentCount }}</h3>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 <div class="stat-number">128</div>
 
@@ -974,7 +978,11 @@
 
                 <div class="card-icon">⭐</div>
 
+<<<<<<< HEAD
                 <h3>Shortlisted</h3>
+=======
+                <h3 id="companyCount">{{ $companyCount }}</h3>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 <div class="stat-number">24</div>
 
@@ -987,7 +995,11 @@
 
                 <div class="card-icon">🏆</div>
 
+<<<<<<< HEAD
                 <h3>Selected</h3>
+=======
+                <h3 id="opportunityCount">0</h3>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 <div class="stat-number">16</div>
 
@@ -1000,7 +1012,11 @@
 
                 <div class="card-icon">❌</div>
 
+<<<<<<< HEAD
                 <h3>Rejected</h3>
+=======
+                <h3 id="applicationCount">0</h3>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 <div class="stat-number">19</div>
 
@@ -1098,10 +1114,35 @@
                     <p>Latest student applications</p>
                 </div>
 
-                <button class="secondary-btn"
-                        onclick="showPage('applications')">
-                    View All
-                </button>
+<button class="secondary-btn"
+        onclick="showPage('applications')">
+    View All
+</button>
+
+<div class="table-wrapper">
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Company</th>
+                <th>Position</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    No applications available yet.
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
 
             </div>
 
@@ -1239,6 +1280,7 @@
 
                     </thead>
 
+<<<<<<< HEAD
                     <tbody>
 
                         <tr>
@@ -1313,6 +1355,32 @@
                         </tr>
 
                     </tbody>
+=======
+<tbody>
+    @forelse($students as $student)
+        <tr>
+            <td>{{ $student->enrollment_no }}</td>
+            <td>{{ $student->name }}</td>
+            <td>{{ $student->email }}</td>
+            <td>{{ $student->branch }}</td>
+            <td>
+                <span class="status">Active</span>
+            </td>
+            <td>
+                <button class="btn btn-light">
+                    View
+                </button>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                No students registered yet.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 </table>
 
@@ -1352,6 +1420,7 @@
 
                     <div class="card-icon">🏢</div>
 
+<<<<<<< HEAD
                     <h3>TCS</h3>
 
                     <p>
@@ -1370,6 +1439,28 @@
                             onclick="showPage('drives')">
                             Placement Drive
                         </button>
+=======
+                  <tbody>
+    @forelse($companies as $company)
+        <tr>
+            <td>{{ $company->name }}</td>
+            <td>{{ $company->email }}</td>
+            <td>{{ $company->industry ?? 'N/A' }}</td>
+            <td>{{ $company->location ?? 'N/A' }}</td>
+            <td><span class="status">Active</span></td>
+            <td>
+                <button class="btn btn-light">View</button>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" style="text-align: center;">
+                No companies registered yet.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                     </div>
 

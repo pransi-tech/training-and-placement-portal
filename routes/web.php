@@ -277,19 +277,12 @@ Route::post('/company-register', function (Request $request) {
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
-// ONLY ONE COMPANY DASHBOARD ROUTE
-Route::get('/company/dashboard', function () {
 
-    return view('company_dashboard');
-
-})->name('company.dashboard');
-=======
 Route::get('/company/dashboard', [
     CompanyController::class,
     'dashboard'
 ])->name('company.dashboard');
->>>>>>> b160755 (Update company dashboard and admin pages)
+
 
 
 /*

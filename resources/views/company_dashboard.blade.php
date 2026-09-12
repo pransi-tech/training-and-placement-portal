@@ -1002,20 +1002,16 @@
         </li>
 
         <li>
-            <button onclick="showPage('drives', this)">
+                        <button onclick="showPage('drives', this)">
                 📅 Upcoming Drives
             </button>
+
+
         </li>
 
         <li>
             <button onclick="showPage('interviews', this)">
                 🕐 Schedule Interview
-            </button>
-        </li>
-
-        <li>
-            <button onclick="showPage('notifications', this)">
-                🔔 Notifications
             </button>
         </li>
 
@@ -1048,11 +1044,21 @@
     ========================================================= -->
 
     <div class="topbar">
+<<<<<<< HEAD
 
         <h1 id="topTitle">
             Company Dashboard
         </h1>
 
+=======
+        <h1 id="topTitle">Company Dashboard</h1>
+        <div>
+            Welcome,
+<span class="company-name">
+    {{ $company->company_name ?? 'Company Dashboard' }}
+</span>
+        </div>
+>>>>>>> b160755 (Update company dashboard and admin pages)
     </div>
 
 
@@ -1075,6 +1081,51 @@
         </div>
 
 
+<<<<<<< HEAD
+=======
+        <div class="cards">
+
+            <div class="card">
+                <h3>Active Job Posts</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>Total Applications</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>Shortlisted Students</h3>
+                <div class="number">0</div>
+            </div>
+
+            <div class="card">
+                <h3>Upcoming Interviews</h3>
+                <div class="number">0</div>
+            </div>
+
+        </div>
+
+
+        <div class="section-header">
+
+            <div>
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+                <p>
+                    Frequently used recruitment actions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
         <div class="quick-actions">
 
             <div
@@ -1139,7 +1190,12 @@
             </div>
 
 
+<<<<<<< HEAD
             <div class="card">
+=======
+            <table>
+<<<<<<< HEAD
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
 
                 <h3>
                     Applications
@@ -1203,6 +1259,7 @@
             </div>
 
 
+<<<<<<< HEAD
             <div class="item-details">
 
                 <div class="detail-box">
@@ -1270,18 +1327,37 @@
                 </div>
 
             </div>
+=======
+=======
+                
+>>>>>>> b160755 (Update company dashboard and admin pages)
+            </table>
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
 
         </div>
 
     </section>
 
 
+<<<<<<< HEAD
     <!-- =========================================================
          COMPANY PROFILE
     ========================================================= -->
+=======
+<<<<<<< HEAD
+    <!-- =====================================================
+         COMPANY PROFILE
+    ===================================================== -->
+=======
+   <!-- ===================================================== -->
+<!-- PROFILE -->
+<!-- ===================================================== -->
+>>>>>>> b160755 (Update company dashboard and admin pages)
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
 
-    <section id="profile" class="page">
+<section id="profile" class="page">
 
+<<<<<<< HEAD
         <div class="page-intro">
 
             <p>
@@ -1292,11 +1368,37 @@
 
 
         <div class="profile-header">
+=======
+    <div class="page-title">
+        <h2>Company Profile</h2>
+        <p>Manage your company information.</p>
+    </div>
 
-            <div class="company-logo">
-                T
+    <div class="profile-header">
+
+        <div class="company-logo">
+            {{ strtoupper(substr($company->company_name ?? 'C', 0, 1)) }}
+        </div>
+
+        <div>
+            <h2>{{ $company->company_name ?? 'Company' }}</h2>
+            <p>{{ $company->type ?? 'Industry' }}</p>
+            <p>{{ $company->location ?? 'Location' }}</p>
+        </div>
+>>>>>>> b160755 (Update company dashboard and admin pages)
+
+    </div>
+
+    <div class="form-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" value="{{ $company->company_name ?? '' }}">
             </div>
 
+<<<<<<< HEAD
             <div class="profile-info">
 
                 <h2>
@@ -1315,10 +1417,41 @@
                     📞 9876543210
                 </p>
 
+=======
+            <div class="form-group">
+                <label>Company Email</label>
+                <input type="email" value="{{ $company->email ?? '' }}">
+            </div>
+
+            <div class="form-group">
+                <label>Contact Number</label>
+                <input type="text" value="{{ $company->hr_contact ?? '' }}">
+            </div>
+
+            <div class="form-group">
+                <label>Website</label>
+                <input type="text" value="">
+            </div>
+
+            <div class="form-group">
+                <label>Industry</label>
+                <input type="text" value="{{ $company->type ?? '' }}">
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" value="{{ $company->location ?? '' }}">
+            </div>
+
+            <div class="form-group full">
+                <label>Company Description</label>
+                <textarea></textarea>
+>>>>>>> b160755 (Update company dashboard and admin pages)
             </div>
 
         </div>
 
+<<<<<<< HEAD
 
         <div class="form-box">
 
@@ -1402,11 +1535,32 @@
         </div>
 
     </section>
+=======
+        <br>
 
+        <button class="btn btn-primary" onclick="saveMessage()">
+            Save Profile
+        </button>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
+<<<<<<< HEAD
     <!-- =========================================================
          POST NEW JOB
     ========================================================= -->
+=======
+    </div>
+
+<<<<<<< HEAD
+    <!-- =====================================================
+         POST NEW JOB
+    ===================================================== -->
+=======
+</section>
+    <!-- ===================================================== -->
+    <!-- POST JOB -->
+    <!-- ===================================================== -->
+>>>>>>> b160755 (Update company dashboard and admin pages)
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
 
     <section id="post-job" class="page">
 
@@ -1706,7 +1860,7 @@
             </p>
 
         </div>
-
+           
 
         <div class="filter-box">
 
@@ -1778,6 +1932,10 @@
                 Clear Filters
 
             </button>
+            <button class="btn btn-primary" onclick="showPage('shortlisted', this)">
+               ⭐ Shortlisted Students
+            </button>
+            
 
 
             <button
@@ -1827,6 +1985,7 @@
 
                 <tbody>
 
+<<<<<<< HEAD
                     <tr
                         data-course="Computer Engineering"
                         data-status="Under Review">
@@ -2077,6 +2236,15 @@
                         </td>
 
                     </tr>
+=======
+                    
+
+                    <tr>
+    <td colspan="10" style="text-align: center;">
+        No applications yet
+    </td>
+</tr>
+>>>>>>> b160755 (Update company dashboard and admin pages)
 
                 </tbody>
 
@@ -2289,9 +2457,60 @@
     </section>
 
 
+<<<<<<< HEAD
     <!-- =========================================================
          UPCOMING DRIVES
     ========================================================= -->
+=======
+<<<<<<< HEAD
+    <!-- =====================================================
+         UPCOMING DRIVES
+    ===================================================== -->
+=======
+    <!-- ===================================================== -->
+    <!-- SHORTLISTED -->
+    <!-- ===================================================== -->
+
+    <section id="shortlisted" class="page">
+
+        <div class="page-title">
+            <h2>Shortlisted Students</h2>
+            <p>Students selected for the next recruitment stage.</p>
+        </div>
+
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>CPI</th>
+                        <th>Job</th>
+                        <th>Interview</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- UPCOMING DRIVES -->
+    <!-- ===================================================== -->
+>>>>>>> b160755 (Update company dashboard and admin pages)
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
 
     <section id="drives" class="page">
 
@@ -2364,6 +2583,7 @@
             <div class="form-grid">
 
                 <div class="form-group">
+<<<<<<< HEAD
 
                     <label>
                         Drive Name
@@ -2374,6 +2594,11 @@
                         type="text"
                         placeholder="TCS Campus Drive">
 
+=======
+                    <label>Drive Name</label>
+                    <input id="driveName" type="text"
+                           placeholder="Company Campus Drive">
+>>>>>>> b160755 (Update company dashboard and admin pages)
                 </div>
 
 
@@ -3202,6 +3427,81 @@
 
     </div>
 
+</div>
+<!-- ADD STUDENT MODAL -->
+
+<div id="addStudentModal" style="display:none; position:fixed; top:0; left:0;
+width:100%; height:100%; background:rgba(0,0,0,0.5);
+justify-content:center; align-items:center; z-index:1000;">
+
+    <div class="form-box" style="width:500px;">
+
+        <h2>Add Student</h2>
+
+        <br>
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" id="newStudentName"
+                   placeholder="Enter student name">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label>Enrollment No.</label>
+            <input type="text" id="newStudentEnrollment"
+                   placeholder="Enter enrollment number">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label>Course</label>
+            <select id="newStudentCourse">
+                <option>Computer Engineering</option>
+                <option>IT Engineering</option>
+                <option>Mechanical Engineering</option>
+                <option>Civil Engineering</option>
+            </select>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label>Job</label>
+            <input type="text" id="newStudentJob"
+                   placeholder="Enter job">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label>CPI</label>
+            <input type="number" step="0.1" id="newStudentCpi"
+                   placeholder="Enter CPI">
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label>Skills</label>
+            <input type="text" id="newStudentSkills"
+                   placeholder="HTML, CSS, JavaScript">
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary" onclick="addStudent()">
+            Add Student
+        </button>
+
+        <button class="btn btn-secondary"
+                onclick="closeAddStudent()">
+            Cancel
+        </button>
+
+    </div>
 </div>
 
 
@@ -4385,6 +4685,190 @@ function saveMessage() {
 
 
 /* =========================================================
+<<<<<<< HEAD
+=======
+   CHANGE PASSWORD
+========================================================= */
+
+function changePassword() {
+
+    const currentPassword =
+        document
+            .getElementById(
+                'currentPassword'
+            )
+            .value;
+
+
+    const newPassword =
+        document
+            .getElementById(
+                'newPassword'
+            )
+            .value;
+
+
+    const confirmPassword =
+        document
+            .getElementById(
+                'confirmPassword'
+            )
+            .value;
+
+
+    if (currentPassword === '') {
+
+        alert(
+            'Please enter your current password.'
+        );
+
+        return;
+
+    }
+function showAddStudent() {
+    document.getElementById('addStudentModal').style.display = 'flex';
+}
+
+function closeAddStudent() {
+    document.getElementById('addStudentModal').style.display = 'none';
+}
+function addStudent() {
+
+    const name = document.getElementById('newStudentName').value.trim();
+    const enrollment = document.getElementById('newStudentEnrollment').value.trim();
+    const course = document.getElementById('newStudentCourse').value;
+    const job = document.getElementById('newStudentJob').value.trim();
+    const cpi = document.getElementById('newStudentCpi').value;
+    const skills = document.getElementById('newStudentSkills').value.trim();
+
+    if (name === '' || enrollment === '' || job === '') {
+        alert('Please fill Student Name, Enrollment No. and Job.');
+        return;
+    }
+
+    const tableBody = document.querySelector('#applicationsTable tbody');
+
+    const row = document.createElement('tr');
+
+    row.setAttribute('data-course', course);
+    row.setAttribute('data-status', 'New');
+
+    row.innerHTML = `
+        <td class="student-name">${name}</td>
+        <td>${enrollment}</td>
+        <td>${course}</td>
+        <td>${job}</td>
+        <td>${cpi}</td>
+        <td>${skills}</td>
+
+        <td>
+            <a href="#" onclick="return false;">View</a>
+        </td>
+
+        <td>
+            <a href="#" onclick="viewResume('${name}'); return false;">PDF</a>
+        </td>
+
+        <td>
+            <span class="badge badge-info">New</span>
+        </td>
+
+        <td>
+            <button class="btn btn-warning"
+                    onclick="editApplication(this)">
+                Edit
+            </button>
+
+            <button class="btn btn-danger"
+                    onclick="deleteApplication(this)">
+                Delete
+            </button>
+        </td>
+    `;
+
+    tableBody.appendChild(row);
+
+    closeAddStudent();
+
+    document.getElementById('newStudentName').value = '';
+    document.getElementById('newStudentEnrollment').value = '';
+    document.getElementById('newStudentJob').value = '';
+    document.getElementById('newStudentCpi').value = '';
+    document.getElementById('newStudentSkills').value = '';
+
+    alert('Student added successfully!');
+}
+
+
+    if (newPassword === '') {
+
+        alert(
+            'Please enter a new password.'
+        );
+
+        return;
+
+    }
+
+
+    if (newPassword.length < 6) {
+
+        alert(
+            'New password must contain at least 6 characters.'
+        );
+
+        return;
+
+    }
+
+
+    if (confirmPassword === '') {
+
+        alert(
+            'Please confirm your new password.'
+        );
+
+        return;
+
+    }
+
+
+    if (
+        newPassword !==
+        confirmPassword
+    ) {
+
+        alert(
+            'New password and confirm password do not match.'
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        'Password changed successfully!'
+    );
+
+
+    document.getElementById(
+        'currentPassword'
+    ).value = '';
+
+    document.getElementById(
+        'newPassword'
+    ).value = '';
+
+    document.getElementById(
+        'confirmPassword'
+    ).value = '';
+
+}
+
+
+/* =========================================================
+>>>>>>> 7148555ca89a5b8e605a02db2ade07dfe7b0eca4
    SAVE SETTINGS
 ========================================================= */
 
@@ -4472,6 +4956,7 @@ document.addEventListener(
 );
 
 </script>
+            
 
 </body>
 

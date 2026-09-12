@@ -1068,13 +1068,6 @@
     <!-- TOPBAR -->
 
     <div class="topbar">
-<<<<<<< HEAD
-
-        <h1 id="topTitle">
-            Company Dashboard
-        </h1>
-
-=======
         <h1 id="topTitle">Company Dashboard</h1>
         <div>
             Welcome,
@@ -1082,7 +1075,6 @@
     {{ $company->company_name ?? 'Company Dashboard' }}
 </span>
         </div>
->>>>>>> b160755 (Update company dashboard and admin pages)
     </div>
 
 
@@ -1267,131 +1259,68 @@
 
             </div>
 
+        <table>
 
-            <table>
-<<<<<<< HEAD
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Applied For</th>
+            <th>Status</th>
+        </tr>
+    </thead>
 
-                <thead>
+    <tbody>
 
-                    <tr>
-                        <th>Student</th>
-                        <th>Course</th>
-                        <th>Applied For</th>
-                        <th>Status</th>
-                    </tr>
+        <tr>
+            <td>Rahul Patel</td>
+            <td>Computer Engineering</td>
+            <td>Software Engineer</td>
+            <td>
+                <span class="badge badge-warning">
+                    Under Review
+                </span>
+            </td>
+        </tr>
 
-                </thead>
+        <tr>
+            <td>Priya Shah</td>
+            <td>IT Engineering</td>
+            <td>Web Developer</td>
+            <td>
+                <span class="badge badge-success">
+                    Shortlisted
+                </span>
+            </td>
+        </tr>
 
+        <tr>
+            <td>Amit Desai</td>
+            <td>Computer Engineering</td>
+            <td>Data Analyst</td>
+            <td>
+                <span class="badge badge-info">
+                    New
+                </span>
+            </td>
+        </tr>
 
-                <tbody>
+    </tbody>
 
-                    <tr>
-
-                        <td>
-                            Rahul Patel
-                        </td>
-
-                        <td>
-                            Computer Engineering
-                        </td>
-
-                        <td>
-                            Software Engineer
-                        </td>
-
-                        <td>
-
-                            <span class="badge badge-warning">
-                                Under Review
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Priya Shah
-                        </td>
-
-                        <td>
-                            IT Engineering
-                        </td>
-
-                        <td>
-                            Web Developer
-                        </td>
-
-                        <td>
-
-                            <span class="badge badge-success">
-                                Shortlisted
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            Amit Desai
-                        </td>
-
-                        <td>
-                            Computer Engineering
-                        </td>
-
-                        <td>
-                            Data Analyst
-                        </td>
-
-                        <td>
-
-                            <span class="badge badge-info">
-                                New
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-=======
-                
->>>>>>> b160755 (Update company dashboard and admin pages)
-            </table>
+</table>
 
         </div>
 
     </section>
 
 
-<<<<<<< HEAD
-    <!-- =====================================================
-         COMPANY PROFILE
-    ===================================================== -->
-=======
-   <!-- ===================================================== -->
-<!-- PROFILE -->
-<!-- ===================================================== -->
->>>>>>> b160755 (Update company dashboard and admin pages)
+<!-- =====================================================
+     COMPANY PROFILE
+===================================================== -->
 
 <section id="profile" class="page">
 
-<<<<<<< HEAD
-        <div class="page-intro">
-            <p>Manage your company information.</p>
-        </div>
-
-
-        <div class="profile-header">
-=======
-    <div class="page-title">
+<div class="page-title">
         <h2>Company Profile</h2>
         <p>Manage your company information.</p>
     </div>
@@ -1407,9 +1336,10 @@
             <p>{{ $company->type ?? 'Industry' }}</p>
             <p>{{ $company->location ?? 'Location' }}</p>
         </div>
->>>>>>> b160755 (Update company dashboard and admin pages)
 
     </div>
+
+   
 
     <div class="form-box">
 
@@ -1420,21 +1350,7 @@
                 <input type="text" value="{{ $company->company_name ?? '' }}">
             </div>
 
-<<<<<<< HEAD
-            <div class="profile-info">
-
-                <h2>TCS</h2>
-
-                <p>
-                    Information Technology Company
-                </p>
-
-                <p>
-                    Ahmedabad, Gujarat
-                </p>
-
-=======
-            <div class="form-group">
+<div class="form-group">
                 <label>Company Email</label>
                 <input type="email" value="{{ $company->email ?? '' }}">
             </div>
@@ -1462,141 +1378,25 @@
             <div class="form-group full">
                 <label>Company Description</label>
                 <textarea></textarea>
->>>>>>> b160755 (Update company dashboard and admin pages)
+            
             </div>
 
         </div>
-
-<<<<<<< HEAD
-
-        <div class="form-box">
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        Company Name
-                    </label>
-
-                    <input
-                        type="text"
-                        value="TCS">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Company Email
-                    </label>
-
-                    <input
-                        type="email"
-                        value="hr@tcs.com">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Contact Number
-                    </label>
-
-                    <input
-                        type="text"
-                        value="9876543210">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Website
-                    </label>
-
-                    <input
-                        type="text"
-                        value="www.tcs.com">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Industry
-                    </label>
-
-                    <input
-                        type="text"
-                        value="Information Technology">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Location
-                    </label>
-
-                    <input
-                        type="text"
-                        value="Ahmedabad, Gujarat">
-
-                </div>
-
-
-                <div class="form-group full">
-
-                    <label>
-                        Company Description
-                    </label>
-
-                    <textarea>Leading technology and consulting company providing IT services and solutions.</textarea>
-
-                </div>
-
-            </div>
-
-
-            <br>
-
-            <button
-                class="btn btn-primary"
-                onclick="saveMessage()">
-
-                Save Profile
-
-            </button>
-
-        </div>
-
-    </section>
-=======
         <br>
 
         <button class="btn btn-primary" onclick="saveMessage()">
             Save Profile
         </button>
->>>>>>> b160755 (Update company dashboard and admin pages)
 
     </div>
 
-<<<<<<< HEAD
-    <!-- =====================================================
-         POST NEW JOB
-    ===================================================== -->
-=======
 </section>
-    <!-- ===================================================== -->
-    <!-- POST JOB -->
-    <!-- ===================================================== -->
->>>>>>> b160755 (Update company dashboard and admin pages)
+
+    
+
+<!-- =====================================================
+     POST NEW JOB
+===================================================== -->
 
     <section id="post-job" class="page">
 
@@ -2271,7 +2071,7 @@
 
                 <tbody>
 
-<<<<<<< HEAD
+
                     <tr
                         data-course="Computer Engineering"
                         data-status="Under Review">
@@ -2552,15 +2352,11 @@
                         </td>
 
                     </tr>
-=======
+
                     
 
-                    <tr>
-    <td colspan="10" style="text-align: center;">
-        No applications yet
-    </td>
-</tr>
->>>>>>> b160755 (Update company dashboard and admin pages)
+                    
+
 
                 </tbody>
 
@@ -2571,11 +2367,6 @@
     </section>
 
 
-<<<<<<< HEAD
-    <!-- =====================================================
-         UPCOMING DRIVES
-    ===================================================== -->
-=======
     <!-- ===================================================== -->
     <!-- SHORTLISTED -->
     <!-- ===================================================== -->
@@ -2604,8 +2395,6 @@
 
                 <tbody>
 
-                    
-
                 </tbody>
 
             </table>
@@ -2618,7 +2407,6 @@
     <!-- ===================================================== -->
     <!-- UPCOMING DRIVES -->
     <!-- ===================================================== -->
->>>>>>> b160755 (Update company dashboard and admin pages)
 
     <section id="drives" class="page">
 
@@ -2691,22 +2479,17 @@
             <div class="form-grid">
 
                 <div class="form-group">
-<<<<<<< HEAD
+
 
                     <label>
-                        Drive Name
-                    </label>
+    Drive Name
+</label>
 
-                    <input
-                        id="driveName"
-                        type="text"
-                        placeholder="TCS Campus Drive">
+<input
+    id="driveName"
+    type="text"
+    placeholder="Company Campus Drive">
 
-=======
-                    <label>Drive Name</label>
-                    <input id="driveName" type="text"
-                           placeholder="Company Campus Drive">
->>>>>>> b160755 (Update company dashboard and admin pages)
                 </div>
 
 

@@ -3153,21 +3153,7 @@
 
                         </div>
 
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                id="course1Progress">
-                            </div>
-
-                        </div>
-
-                        <span
-                            class="progress-text"
-                            id="course1Text">
-                            Not Started
-                        </span>
-
+                        
                         <button
                             class="primary-btn course-info-btn"
                             data-course="course1">
@@ -3210,20 +3196,7 @@
 
                         </div>
 
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                id="course2Progress">
-                            </div>
-
-                        </div>
-
-                        <span
-                            class="progress-text"
-                            id="course2Text">
-                            Not Started
-                        </span>
+                        
 
                         <button
                             class="primary-btn course-info-btn"
@@ -3267,20 +3240,7 @@
 
                         </div>
 
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                id="course3Progress">
-                            </div>
-
-                        </div>
-
-                        <span
-                            class="progress-text"
-                            id="course3Text">
-                            Not Started
-                        </span>
+                        
 
                         <button
                             class="primary-btn course-info-btn"
@@ -3324,21 +3284,7 @@
 
                         </div>
 
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                id="course4Progress">
-                            </div>
-
-                        </div>
-
-                        <span
-                            class="progress-text"
-                            id="course4Text">
-                            Not Started
-                        </span>
-
+                        
                         <button
                             class="primary-btn course-info-btn"
                             data-course="course4">
@@ -3381,21 +3327,7 @@
 
                         </div>
 
-                        <div class="progress">
-
-                            <div
-                                class="progress-bar"
-                                id="course5Progress">
-                            </div>
-
-                        </div>
-
-                        <span
-                            class="progress-text"
-                            id="course5Text">
-                            Not Started
-                        </span>
-
+                        
                         <button
                             class="primary-btn course-info-btn"
                             data-course="course5">
@@ -4365,10 +4297,10 @@
 
                 <div style="margin-top:22px;">
 
-                    <button
-                        class="primary-btn"
-                        id="startLearningBtn">
-                        Start Learning
+                    <button 
+                        class="primary-btn" 
+                        id="startLearningBtn"> 
+                        I'm Interested
                     </button>
 
                 </div>
@@ -5561,44 +5493,17 @@
            START LEARNING
         ========================================================= */
 
-        document.getElementById("startLearningBtn")
-            .addEventListener("click", function() {
+       document.getElementById("startLearningBtn")
+        .addEventListener("click", function() {
 
-                if (!selectedCourse) {
-                    return;
-                }
+        if (!selectedCourse) {
+            return;
+        }
 
+        document.getElementById("courseModal")
+            .classList.remove("show");
 
-                const progress =
-                    document.getElementById(
-                        selectedCourse + "Progress"
-                    );
-
-
-                const text =
-                    document.getElementById(
-                        selectedCourse + "Text"
-                    );
-
-
-                progress.style.width =
-                    "25%";
-
-
-                text.textContent =
-                    "Started - 25% completed";
-
-
-                document.getElementById("courseModal")
-                    .classList.remove("show");
-
-
-                showToast(
-                    "Course started successfully!"
-                );
-
-            });
-
+    });
 
         /* =========================================================
            COURSE PROGRESS - CLICKING VIEW COURSE AGAIN

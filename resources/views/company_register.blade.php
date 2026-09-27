@@ -1,12 +1,18 @@
+```html
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Company Registration | K D Polytechnic T&P Portal</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -402,7 +408,9 @@
                 width: 92%;
             }
         }
+
     </style>
+
 </head>
 
 <body>
@@ -428,8 +436,13 @@
 <div class="container">
 
     <div class="page-title">
+
         <h2>Company Registration</h2>
-        <p>Register your company and recruitment requirements with the K D Polytechnic Placement Cell.</p>
+
+        <p>
+            Register your company and recruitment requirements with the K D Polytechnic Placement Cell.
+        </p>
+
     </div>
 
 
@@ -441,27 +454,32 @@
 
         @csrf
 
-
         <div class="form-grid">
 
 
-                      <!-- ================= COMPANY REGISTRATION INFORMATION ================= -->
+            <!-- ================= COMPANY REGISTRATION INFORMATION ================= -->
 
             <div class="card full-card">
 
                 <div class="card-title">
+
                     <span class="card-icon">🏢</span>
+
                     Company Registration Information
+
                 </div>
 
 
                 <!-- Company ID -->
+
                 <div class="row">
 
                     <div class="form-group">
 
                         <label for="company_id">
+
                             Company ID <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -481,10 +499,13 @@
 
 
                     <!-- Company Name -->
+
                     <div class="form-group">
 
                         <label for="company_name">
+
                             Company Name <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -506,13 +527,17 @@
 
 
                 <!-- Location + Type -->
+
                 <div class="row">
 
                     <!-- Location -->
+
                     <div class="form-group">
 
                         <label for="location">
+
                             Location <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -532,10 +557,13 @@
 
 
                     <!-- Company Type -->
+
                     <div class="form-group">
 
                         <label for="type">
+
                             Company Type <span class="required">*</span>
+
                         </label>
 
                         <select id="type" name="type" required>
@@ -579,13 +607,17 @@
 
 
                 <!-- HR Name + HR Contact -->
+
                 <div class="row">
 
                     <!-- HR Name -->
+
                     <div class="form-group">
 
                         <label for="hr_name">
+
                             HR Name <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -605,10 +637,13 @@
 
 
                     <!-- HR Contact -->
+
                     <div class="form-group">
 
                         <label for="hr_contact">
+
                             HR Contact <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -630,13 +665,17 @@
 
 
                 <!-- HR Email + Area -->
+
                 <div class="row">
 
                     <!-- HR Email -->
+
                     <div class="form-group">
 
                         <label for="hr_email">
+
                             HR Email <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -656,10 +695,13 @@
 
 
                     <!-- Area -->
+
                     <div class="form-group">
 
                         <label for="area">
+
                             Area <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -672,6 +714,62 @@
                         >
 
                         @error('area')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= PASSWORD ================= -->
+
+                <div class="row">
+
+                    <!-- Create Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+
+                            Create Password <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            required
+                        >
+
+                        @error('password')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label for="password_confirmation">
+
+                            Confirm Password <span class="required">*</span>
+
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            placeholder="Confirm your password"
+                            required
+                        >
+
+                        @error('password_confirmation')
                             <div class="error">{{ $message }}</div>
                         @enderror
 
@@ -701,3 +799,13 @@
                 </a>
 
             </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

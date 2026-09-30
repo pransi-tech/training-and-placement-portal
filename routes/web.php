@@ -462,3 +462,6 @@ Route::get('/placement-officer/dashboard', function () {
 Route::get('/placement_officer_dashboard', function () {
     return view('placement_officer_dashboard');
 });
+Route::get('/login', function () {
+    return view('student');
+});

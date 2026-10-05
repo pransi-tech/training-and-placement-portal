@@ -257,6 +257,8 @@
         .badge-active { background: #DCFCE7; color: #15803D; }
         .badge-pending { background: #FEF3C7; color: #B45309; }
         .badge-info { background: #E0F2FE; color: #0369A1; }
+        .badge-secondary { background: #E2E8F0; color: #475569; }
+        .badge-danger { background: #FEE2E2; color: #DC2626; }
 
         .btn-action-dark {
             background: #18153F;
@@ -283,34 +285,6 @@
             margin-bottom: 1.2rem;
         }
 
-        .event-box {
-            background: #FFFFFF;
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 1.25rem;
-            height: 100%;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        }
-
-        .event-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-        }
-
-        .event-icon-badge {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #EEF2FF;
-            color: #4F46E5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
         .branch-badge-pill {
             background: #EDE9FE;
             color: #6D28D9;
@@ -318,6 +292,64 @@
             padding: 0.35rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
+        }
+
+        .analytic-pill-card {
+            border-radius: 14px;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            background: #FFFFFF;
+        }
+
+        /* COMPACT VERTICAL BAR CHART STYLING */
+        .chart-container-box {
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.2rem;
+        }
+        .bar-chart-wrapper {
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 40px; /* Reduced gap */
+            padding: 10px 20px 0 20px;
+            border-bottom: 2px solid #E2E8F0;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+        .bar-column {
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        .bar-fill {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            transition: height 0.4s ease;
+            min-height: 25px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding-top: 4px;
+        }
+        .bar-fill-placed { background: #10B981; }
+        .bar-fill-others { background: #3B82F6; }
+        .bar-fill-seeking { background: #EF4444; }
+        .bar-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 8px;
+            color: #475569;
+            text-align: center;
+            white-space: nowrap;
         }
 
         @media (max-width: 768px) {
@@ -336,7 +368,7 @@
                 <span class="brand-subtitle">Training & Placement Portal</span>
             </div>
 
-            <div class="menu-label">Officer Menu</div>
+            <div class="menu-label">Portal Menu</div>
             <ul class="nav-menu">
                 <li><a href="javascript:void(0)" class="nav-item-link active" onclick="showTab('dashboard', this)"><i class="bi bi-grid-fill"></i> Dashboard</a></li>
                 <li><a href="javascript:void(0)" class="nav-item-link" onclick="showTab('students', this)"><i class="bi bi-people-fill"></i> Students List</a></li>
@@ -353,30 +385,32 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- TOP HEADER: STRICT RIGHT PLACEMENT HEAD + LEFT BRANCH SWITCHER -->
         <header class="top-header">
             <div>
                 <h3 class="fw-bold mb-1" id="section-title" style="color: #0F172A;">Welcome, <span id="headerOfficerTitle">Placement Officer</span> 👋</h3>
-                <p class="text-muted small mb-0" id="section-subtitle">Departmental Placement Tracking & Analytics (Restricted View)</p>
+                <p class="text-muted small mb-0" id="section-subtitle">Departmental Placement Tracking & Analytics</p>
             </div>
             
             <div class="d-flex align-items-center gap-3">
-                <!-- Branch Selector for Officer -->
+                <!-- Officer Branch Selector -->
                 <div class="bg-white border rounded-pill px-3 py-1 d-flex align-items-center gap-2 shadow-sm">
                     <i class="bi bi-person-badge text-primary"></i>
                     <span class="small fw-bold text-muted">Officer Branch:</span>
-                    <select class="form-select form-select-sm border-0 bg-transparent fw-bold text-primary py-0" id="activeOfficerBranch" onchange="switchOfficerBranch(this.value)" style="box-shadow: none; cursor: pointer; width: auto;">
-                        <option value="Computer Engineering">Computer Engineering</option>
+                    <select class="form-select form-select-sm border-0 bg-transparent fw-bold text-primary py-0" id="activeOfficerBranch" onchange="handleBranchSelect(this.value)" style="box-shadow: none; cursor: pointer; width: auto;">
                         <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Computer Engineering">Computer Engineering</option>
                         <option value="Civil Engineering">Civil Engineering</option>
                         <option value="Electrical Engineering">Electrical Engineering</option>
                     </select>
                 </div>
 
+                <!-- Right End Profile Avatar -->
                 <div class="user-profile">
-                    <div class="user-avatar" id="officerAvatarBadge">PO</div>
+                    <div class="user-avatar" id="officerAvatarBadge">ME</div>
                     <div>
-                        <div class="fw-semibold small" id="officerProfileName">Department Officer</div>
-                        <small class="text-muted" id="officerProfileBranch" style="font-size: 0.75rem;">Department Coordinator</small>
+                        <div class="fw-semibold small" id="officerProfileName">Prof. Placement Head</div>
+                        <small class="text-muted" id="officerProfileBranch" style="font-size: 0.75rem;">Mechanical Engineering</small>
                     </div>
                 </div>
             </div>
@@ -457,7 +491,7 @@
                                 <span class="fw-bold" id="deptPlacementTitle">Department</span>
                                 <span class="fw-bold text-success" id="deptPlacementRate">0%</span>
                             </div>
-                            <small class="text-muted d-block mb-2">Overall placement achievement for final year students.</small>
+                            <small class="text-muted d-block mb-2">Overall placement achievement for selected branch.</small>
                             <div class="progress" style="height: 10px;">
                                 <div class="progress-bar bg-success" id="deptProgressBar" style="width: 0%"></div>
                             </div>
@@ -465,24 +499,113 @@
 
                         <div class="small text-muted">
                             <i class="bi bi-info-circle-fill text-primary me-1"></i>
-                            This dashboard is strictly isolated. You only have visibility over your branch records.
+                            Restricted View: You are currently monitoring live statistics for your selected department.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 2. STUDENTS DIRECTORY -->
+        <!-- 2. STUDENTS DIRECTORY TAB -->
         <div id="tab-students" class="content-section">
             <div class="white-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                
+                <!-- TOP HEADER WITH BRANCH YEAR FILTER -->
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                     <div>
-                        <h5 class="fw-bold mb-0"><i class="bi bi-people-fill text-primary me-2"></i> Registered Students (<span class="current-branch-label"></span>)</h5>
-                        <small class="text-muted">Viewing students strictly enrolled under your department</small>
+                        <h5 class="fw-bold mb-0"><i class="bi bi-people-fill text-primary me-2"></i> Students Directory (<span class="current-branch-label"></span>)</h5>
+                        <small class="text-muted">Viewing departmental batch records and placement status</small>
                     </div>
-                    <span class="badge bg-primary rounded-pill px-3 py-2" id="studentCountBadge">Total: 0</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- YEAR FILTER (2022 to 2030) -->
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-white fw-bold text-dark"><i class="bi bi-calendar3 me-1 text-primary"></i> Passing Year:</span>
+                            <select class="form-select fw-bold text-primary" id="batchYearFilter" onchange="renderBranchStudents()" style="cursor: pointer;">
+                                <option value="ALL">All Batches</option>
+                                <option value="2022">Batch 2022</option>
+                                <option value="2023">Batch 2023</option>
+                                <option value="2024">Batch 2024</option>
+                                <option value="2025">Batch 2025</option>
+                                <option value="2026" selected>Batch 2026 (Final Year)</option>
+                                <option value="2027">Batch 2027</option>
+                                <option value="2028">Batch 2028</option>
+                                <option value="2029">Batch 2029</option>
+                                <option value="2030">Batch 2030</option>
+                            </select>
+                        </div>
+                        <span class="badge bg-primary rounded-pill px-3 py-2 text-nowrap" id="studentCountBadge">Total: 0 Students</span>
+                    </div>
                 </div>
 
+                <!-- 3 METRIC PILL CARDS: PLACED, OTHERS, NOT QUALIFIED -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <div class="analytic-pill-card bg-light border-start border-success border-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted fw-bold text-uppercase">Placed in Companies</small>
+                                    <h4 class="fw-bold text-success mb-0" id="metricPlacedCount">0</h4>
+                                </div>
+                                <span class="badge bg-success-subtle text-success fs-6"><i class="bi bi-check-circle-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="analytic-pill-card bg-light border-start border-primary border-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted fw-bold text-uppercase">Others (Higher Studies / Gov)</small>
+                                    <h4 class="fw-bold text-primary mb-0" id="metricOthersCount">0</h4>
+                                </div>
+                                <span class="badge bg-primary-subtle text-primary fs-6"><i class="bi bi-mortarboard-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="analytic-pill-card bg-light border-start border-danger border-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted fw-bold text-uppercase">Not Qualified / Job Seeking</small>
+                                    <h4 class="fw-bold text-danger mb-0" id="metricNotQualifiedCount">0</h4>
+                                </div>
+                                <span class="badge bg-danger-subtle text-danger fs-6"><i class="bi bi-x-circle-fill"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPACT VERTICAL BAR CHART (REDUCED GAP) -->
+                <div class="chart-container-box mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold small text-dark"><i class="bi bi-bar-chart-line-fill text-primary me-1"></i> Batch Distribution Bar Chart</span>
+                        <small class="text-muted" id="barChartStatsLabel">Dynamic comparison of students</small>
+                    </div>
+                    <div class="bar-chart-wrapper">
+                        <!-- Bar 1: Placed -->
+                        <div class="bar-column">
+                            <div class="bar-fill bar-fill-placed" id="barHeightPlaced" style="height: 15%;">
+                                <span id="barValPlaced">0</span>
+                            </div>
+                            <div class="bar-label">Placed</div>
+                        </div>
+                        <!-- Bar 2: Others -->
+                        <div class="bar-column">
+                            <div class="bar-fill bar-fill-others" id="barHeightOthers" style="height: 15%;">
+                                <span id="barValOthers">0</span>
+                            </div>
+                            <div class="bar-label">Others</div>
+                        </div>
+                        <!-- Bar 3: Seeking / Not Qualified -->
+                        <div class="bar-column">
+                            <div class="bar-fill bar-fill-seeking" id="barHeightSeeking" style="height: 15%;">
+                                <span id="barValSeeking">0</span>
+                            </div>
+                            <div class="bar-label">Not Qualified</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
                 <div class="filter-panel">
                     <div class="row g-2 align-items-center">
                         <div class="col-md-5">
@@ -491,7 +614,7 @@
                         </div>
                         <div class="col-md-3">
                             <label class="small text-muted fw-bold mb-1">Minimum CPI:</label>
-                            <select class="form-select form-select-sm" id="cpiFilter" onchange="filterBranchStudents()">
+                            <select class="form-select form-select-sm" id="cpiFilter" onchange="renderBranchStudents()">
                                 <option value="0">Any CPI</option>
                                 <option value="7.0">7.0 & Above</option>
                                 <option value="8.0">8.0 & Above</option>
@@ -500,11 +623,11 @@
                         </div>
                         <div class="col-md-2">
                             <label class="small text-muted fw-bold mb-1">Placement Status:</label>
-                            <select class="form-select form-select-sm" id="statusFilter" onchange="filterBranchStudents()">
+                            <select class="form-select form-select-sm" id="statusFilter" onchange="renderBranchStudents()">
                                 <option value="ALL">All Status</option>
-                                <option value="Placed">Placed Only</option>
-                                <option value="Shortlisted">Shortlisted</option>
-                                <option value="Eligible">Eligible</option>
+                                <option value="Placed">Placed</option>
+                                <option value="Others">Others</option>
+                                <option value="Not Qualified">Not Qualified / Seeking</option>
                             </select>
                         </div>
                         <div class="col-md-2 d-flex align-items-end">
@@ -520,7 +643,7 @@
                                 <th>Enrollment No.</th>
                                 <th>Student Name</th>
                                 <th>Branch</th>
-                                <th>Semester</th>
+                                <th>Batch Year</th>
                                 <th>CPI</th>
                                 <th>Placement Status</th>
                                 <th>Action</th>
@@ -532,13 +655,13 @@
             </div>
         </div>
 
-        <!-- 3. COMPANY DRIVES -->
+        <!-- 3. COMPANY DRIVES TAB -->
         <div id="tab-companies" class="content-section">
             <div class="white-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
                         <h5 class="fw-bold mb-0"><i class="bi bi-building-fill text-warning me-2"></i> Placement Drives (<span class="current-branch-label"></span>)</h5>
-                        <small class="text-muted">Only campus drives open for your branch are displayed</small>
+                        <small class="text-muted">Active and upcoming drives for this department</small>
                     </div>
                     <span class="branch-badge-pill" id="branchPillBadge">Department</span>
                 </div>
@@ -561,7 +684,7 @@
             </div>
         </div>
 
-        <!-- 4. APPLICATIONS -->
+        <!-- 4. APPLICATIONS TAB -->
         <div id="tab-applications" class="content-section">
             <div class="white-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -589,7 +712,7 @@
             </div>
         </div>
 
-        <!-- 5. TRAINING & SKILL CELL -->
+        <!-- 5. TRAINING CELL -->
         <div id="tab-training" class="content-section">
             <div class="white-card">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -597,37 +720,23 @@
                         <h5 class="fw-bold mb-1" style="color: #0F172A;"><i class="bi bi-journal-check text-primary me-2"></i> Event Management</h5>
                         <p class="text-muted small mb-0">Departmental workshops, training sessions, and bootcamps.</p>
                     </div>
-                    <button class="btn btn-sm btn-primary rounded-pill px-3 py-2" onclick="openAddEventModal()" style="background: var(--sidebar-active); border: none; font-weight: 600;">
+                    <button class="btn btn-sm btn-primary rounded-pill px-3 py-2" onclick="alert('Event creator opened')" style="background: var(--sidebar-active); border: none; font-weight: 600;">
                         <i class="bi bi-plus-lg me-1"></i> + Add Event
                     </button>
                 </div>
-
-                <div class="row g-4" id="eventsContainer">
+                <div class="row g-4">
                     <div class="col-md-6">
-                        <div class="event-box">
-                            <div class="event-icon-badge" style="background: #FDF2F8; color: #DB2777;">
-                                <i class="bi bi-mic"></i>
-                            </div>
-                            <h6 class="fw-bold text-dark mb-2">Technical Mock Interview Session</h6>
-                            <p class="small text-muted mb-3">Departmental faculty mock interview practice for upcoming hiring drives.</p>
-                            <span class="badge bg-light text-primary border mb-3">10 Oct 2026</span>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Technical Mock Interview', '10 Oct 2026', 'Departmental mock interview sessions.', 'Seminar Hall')">View Details</button>
-                            </div>
+                        <div class="p-3 border rounded-3 bg-light">
+                            <h6 class="fw-bold text-dark">Technical Mock Interview Session</h6>
+                            <p class="small text-muted mb-2">Faculty mock practice for final selection clearance.</p>
+                            <span class="badge bg-primary">Scheduled: 10 Oct 2026</span>
                         </div>
                     </div>
-
                     <div class="col-md-6">
-                        <div class="event-box">
-                            <div class="event-icon-badge" style="background: #ECFDF5; color: #059669;">
-                                <i class="bi bi-code-slash"></i>
-                            </div>
-                            <h6 class="fw-bold text-dark mb-2">Core Skills & Aptitude Bootcamp</h6>
-                            <p class="small text-muted mb-3">Intensive branch preparation camp for campus aptitude test clearance.</p>
-                            <span class="badge bg-light text-primary border mb-3">18 Oct 2026</span>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-dark px-3 rounded-pill" style="background: #18153F; border: none;" onclick="openEventDetails('Aptitude Bootcamp', '18 Oct 2026', 'Branch preparation sessions.', 'Lab 2')">View Details</button>
-                            </div>
+                        <div class="p-3 border rounded-3 bg-light">
+                            <h6 class="fw-bold text-dark">Aptitude & Core Test Bootcamp</h6>
+                            <p class="small text-muted mb-2">Campus placement aptitude training session.</p>
+                            <span class="badge bg-success">Scheduled: 18 Oct 2026</span>
                         </div>
                     </div>
                 </div>
@@ -641,16 +750,10 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>Branch Notice:</strong> Students must submit verified marksheets for upcoming drives.
+                            <strong>Branch Notice:</strong> Verify marksheets and CPI criteria for October drives.
                             <br><small class="text-muted">Today at 10:30 AM</small>
                         </div>
                         <span class="badge bg-primary rounded-pill">New</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <strong>Drive Update:</strong> Shortlist announcement for final rounds scheduled this week.
-                            <br><small class="text-muted">Yesterday</small>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -675,73 +778,59 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // MASTER DUMMY DATA STRUCTURE
+        // MASTER STUDENTS DATA WITH PASSING YEAR (2022 to 2030) & STATUS
         const allStudentsMaster = [
-            // Computer Engineering
-            { enroll: '226040307001', name: 'Aarav Sharma', branch: 'Computer Engineering', sem: '6th', cpi: 8.75, status: 'Placed', company: 'TCS (4.2 LPA)' },
-            { enroll: '226040307012', name: 'Neha Vaghela', branch: 'Computer Engineering', sem: '6th', cpi: 8.10, status: 'Shortlisted', company: 'Infosys' },
-            { enroll: '226040307025', name: 'Meet Panchal', branch: 'Computer Engineering', sem: '6th', cpi: 7.60, status: 'Eligible', company: 'None' },
-            
             // Mechanical Engineering
-            { enroll: '226040319022', name: 'Karan Desai', branch: 'Mechanical Engineering', sem: '6th', cpi: 8.20, status: 'Shortlisted', company: 'L&T Construction' },
-            { enroll: '226040319034', name: 'Jaydeep Chaudhary', branch: 'Mechanical Engineering', sem: '6th', cpi: 7.90, status: 'Placed', company: 'Tata Motors (3.8 LPA)' },
-            { enroll: '226040319045', name: 'Hardik Patel', branch: 'Mechanical Engineering', sem: '6th', cpi: 8.45, status: 'Placed', company: 'Adani Power (4.2 LPA)' },
-            { enroll: '226040319011', name: 'Vikas Sharma', branch: 'Mechanical Engineering', sem: '6th', cpi: 7.30, status: 'Eligible', company: 'None' },
+            { enroll: '226040319022', name: 'Karan Desai', branch: 'Mechanical Engineering', year: '2026', cpi: 8.20, status: 'Placed', company: 'L&T Construction (5.0 LPA)' },
+            { enroll: '226040319034', name: 'Jaydeep Chaudhary', branch: 'Mechanical Engineering', year: '2026', cpi: 7.90, status: 'Placed', company: 'Tata Motors (3.8 LPA)' },
+            { enroll: '226040319045', name: 'Hardik Patel', branch: 'Mechanical Engineering', year: '2026', cpi: 8.45, status: 'Others', company: 'Govt. Exam (GPSC)' },
+            { enroll: '226040319011', name: 'Vikas Sharma', branch: 'Mechanical Engineering', year: '2026', cpi: 6.10, status: 'Not Qualified', company: 'Job Seeking' },
+            { enroll: '216040319009', name: 'Manoj Parmar', branch: 'Mechanical Engineering', year: '2025', cpi: 7.85, status: 'Placed', company: 'Maruti Suzuki' },
+            { enroll: '206040319040', name: 'Suresh Patel', branch: 'Mechanical Engineering', year: '2024', cpi: 8.10, status: 'Placed', company: 'Adani Power' },
+
+            // Computer Engineering
+            { enroll: '226040307001', name: 'Aarav Sharma', branch: 'Computer Engineering', year: '2026', cpi: 8.75, status: 'Placed', company: 'TCS (4.2 LPA)' },
+            { enroll: '226040307012', name: 'Neha Vaghela', branch: 'Computer Engineering', year: '2026', cpi: 8.10, status: 'Placed', company: 'Infosys (3.8 LPA)' },
+            { enroll: '226040307025', name: 'Meet Panchal', branch: 'Computer Engineering', year: '2026', cpi: 7.60, status: 'Others', company: 'Higher Studies (B.Tech)' },
+            { enroll: '226040307038', name: 'Rohan Patel', branch: 'Computer Engineering', year: '2026', cpi: 6.20, status: 'Not Qualified', company: 'Job Seeking / Backlogs' },
+            { enroll: '216040307005', name: 'Kavita Dave', branch: 'Computer Engineering', year: '2025', cpi: 8.40, status: 'Placed', company: 'Wipro (4.0 LPA)' },
+            { enroll: '206040307018', name: 'Sanket Solanki', branch: 'Computer Engineering', year: '2024', cpi: 7.90, status: 'Placed', company: 'Capgemini' },
 
             // Civil Engineering
-            { enroll: '226040306008', name: 'Rahul Solanki', branch: 'Civil Engineering', sem: '6th', cpi: 7.40, status: 'Eligible', company: 'None' },
-            { enroll: '226040306019', name: 'Anjali Prajapati', branch: 'Civil Engineering', sem: '6th', cpi: 8.35, status: 'Placed', company: 'L&T Construction (5.0 LPA)' },
-            { enroll: '226040306031', name: 'Darshan Joshi', branch: 'Civil Engineering', sem: '6th', cpi: 7.80, status: 'Shortlisted', company: 'Adani Infra' },
-            
+            { enroll: '226040306008', name: 'Rahul Solanki', branch: 'Civil Engineering', year: '2026', cpi: 7.40, status: 'Not Qualified', company: 'Job Seeking' },
+            { enroll: '226040306019', name: 'Anjali Prajapati', branch: 'Civil Engineering', year: '2026', cpi: 8.35, status: 'Placed', company: 'L&T Construction (5.0 LPA)' },
+            { enroll: '226040306031', name: 'Darshan Joshi', branch: 'Civil Engineering', year: '2026', cpi: 7.80, status: 'Others', company: 'Family Construction Business' },
+            { enroll: '216040306014', name: 'Pooja Varma', branch: 'Civil Engineering', year: '2025', cpi: 8.15, status: 'Placed', company: 'Dilip Buildcon' },
+
             // Electrical Engineering
-            { enroll: '226040309015', name: 'Priya Patel', branch: 'Electrical Engineering', sem: '6th', cpi: 8.50, status: 'Placed', company: 'Tata Power (4.5 LPA)' },
-            { enroll: '226040309028', name: 'Sanjay Rawal', branch: 'Electrical Engineering', sem: '6th', cpi: 7.15, status: 'Eligible', company: 'None' },
-            { enroll: '226040309040', name: 'Manish Dave', branch: 'Electrical Engineering', sem: '6th', cpi: 8.10, status: 'Shortlisted', company: 'Torrent Power' }
+            { enroll: '226040309015', name: 'Priya Patel', branch: 'Electrical Engineering', year: '2026', cpi: 8.50, status: 'Placed', company: 'Tata Power (4.5 LPA)' },
+            { enroll: '226040309028', name: 'Sanjay Rawal', branch: 'Electrical Engineering', year: '2026', cpi: 6.30, status: 'Not Qualified', company: 'Job Seeking' },
+            { enroll: '226040309040', name: 'Manish Dave', branch: 'Electrical Engineering', year: '2026', cpi: 8.10, status: 'Others', company: 'Higher Studies (Degree)' },
+            { enroll: '216040309019', name: 'Tejas Shah', branch: 'Electrical Engineering', year: '2025', cpi: 7.90, status: 'Placed', company: 'Torrent Power' }
         ];
 
-        // BRAND NEW DRIVES (OCTOBER 2026)
+        // MASTER DRIVES
         const allDrivesMaster = [
-            // Computer Drives
-            { company: 'Tata Consultancy Services', role: 'Junior Software Trainee', pkg: '4.2 LPA', branches: ['Computer Engineering'], date: '08 Oct 2026', status: 'Ongoing' },
-            { company: 'Infosys BPM', role: 'Technical Support Associate', pkg: '3.6 LPA', branches: ['Computer Engineering'], date: '14 Oct 2026', status: 'Upcoming' },
-            { company: 'Wipro Technologies', role: 'Project Trainee', pkg: '4.0 LPA', branches: ['Computer Engineering'], date: '22 Oct 2026', status: 'Open' },
-
-            // Mechanical Drives
             { company: 'Tata Motors', role: 'Production Quality Associate', pkg: '3.8 LPA', branches: ['Mechanical Engineering'], date: '05 Oct 2026', status: 'Ongoing' },
             { company: 'L&T Heavy Engineering', role: 'Diploma Engineer Trainee', pkg: '5.2 LPA', branches: ['Mechanical Engineering', 'Civil Engineering'], date: '12 Oct 2026', status: 'Upcoming' },
             { company: 'Maruti Suzuki', role: 'Assembly Supervisor Trainee', pkg: '4.5 LPA', branches: ['Mechanical Engineering'], date: '18 Oct 2026', status: 'Open' },
-
-            // Civil Drives
+            { company: 'Tata Consultancy Services', role: 'Junior Software Trainee', pkg: '4.2 LPA', branches: ['Computer Engineering'], date: '08 Oct 2026', status: 'Ongoing' },
+            { company: 'Infosys BPM', role: 'Technical Support Associate', pkg: '3.6 LPA', branches: ['Computer Engineering'], date: '14 Oct 2026', status: 'Upcoming' },
+            { company: 'Wipro Technologies', role: 'Project Trainee', pkg: '4.0 LPA', branches: ['Computer Engineering'], date: '22 Oct 2026', status: 'Open' },
             { company: 'L&T Construction', role: 'Site Engineer Trainee', pkg: '5.0 LPA', branches: ['Civil Engineering', 'Mechanical Engineering'], date: '10 Oct 2026', status: 'Ongoing' },
             { company: 'Adani Infra & Port', role: 'Civil Quality Inspector', pkg: '4.2 LPA', branches: ['Civil Engineering'], date: '16 Oct 2026', status: 'Upcoming' },
-            { company: 'Dilip Buildcon', role: 'Junior Highway Surveyor', pkg: '3.9 LPA', branches: ['Civil Engineering'], date: '24 Oct 2026', status: 'Open' },
-
-            // Electrical Drives
             { company: 'Tata Power Solar', role: 'Junior Electrical Engineer', pkg: '4.5 LPA', branches: ['Electrical Engineering'], date: '07 Oct 2026', status: 'Ongoing' },
-            { company: 'Torrent Power', role: 'Substation Trainee', pkg: '4.0 LPA', branches: ['Electrical Engineering'], date: '15 Oct 2026', status: 'Open' },
-            { company: 'Siemens Energy', role: 'Field Service Associate', pkg: '5.0 LPA', branches: ['Electrical Engineering', 'Mechanical Engineering'], date: '25 Oct 2026', status: 'Upcoming' }
+            { company: 'Torrent Power', role: 'Substation Trainee', pkg: '4.0 LPA', branches: ['Electrical Engineering'], date: '15 Oct 2026', status: 'Open' }
         ];
 
-        // APPLICATIONS
+        // MASTER APPLICATIONS
         const allApplicationsMaster = [
-            // Computer Applications
-            { student: 'Aarav Sharma', branch: 'Computer Engineering', company: 'TCS', role: 'Junior Software Trainee', date: '28 Sep 2026', status: 'Under Review' },
-            { student: 'Neha Vaghela', branch: 'Computer Engineering', company: 'Infosys', role: 'System Trainee', date: '29 Sep 2026', status: 'Shortlisted' },
-            { student: 'Meet Panchal', branch: 'Computer Engineering', company: 'Wipro', role: 'Project Trainee', date: '30 Sep 2026', status: 'Under Review' },
-
-            // Mechanical Applications
             { student: 'Karan Desai', branch: 'Mechanical Engineering', company: 'Tata Motors', role: 'Production Quality Associate', date: '28 Sep 2026', status: 'Shortlisted' },
             { student: 'Jaydeep Chaudhary', branch: 'Mechanical Engineering', company: 'L&T Heavy Engineering', role: 'Diploma Trainee', date: '29 Sep 2026', status: 'Under Review' },
-            { student: 'Hardik Patel', branch: 'Mechanical Engineering', company: 'Maruti Suzuki', role: 'Assembly Supervisor', date: '30 Sep 2026', status: 'Under Review' },
-
-            // Civil Applications
+            { student: 'Aarav Sharma', branch: 'Computer Engineering', company: 'TCS', role: 'Junior Software Trainee', date: '28 Sep 2026', status: 'Under Review' },
+            { student: 'Neha Vaghela', branch: 'Computer Engineering', company: 'Infosys', role: 'System Trainee', date: '29 Sep 2026', status: 'Shortlisted' },
             { student: 'Rahul Solanki', branch: 'Civil Engineering', company: 'L&T Construction', role: 'Site Trainee', date: '28 Sep 2026', status: 'Under Review' },
-            { student: 'Anjali Prajapati', branch: 'Civil Engineering', company: 'Adani Infra', role: 'Civil Inspector', date: '29 Sep 2026', status: 'Shortlisted' },
-            { student: 'Darshan Joshi', branch: 'Civil Engineering', company: 'Dilip Buildcon', role: 'Surveyor Trainee', date: '30 Sep 2026', status: 'Under Review' },
-
-            // Electrical Applications
-            { student: 'Priya Patel', branch: 'Electrical Engineering', company: 'Tata Power', role: 'Junior Engineer', date: '28 Sep 2026', status: 'Shortlisted' },
-            { student: 'Manish Dave', branch: 'Electrical Engineering', company: 'Torrent Power', role: 'Substation Trainee', date: '30 Sep 2026', status: 'Under Review' }
+            { student: 'Priya Patel', branch: 'Electrical Engineering', company: 'Tata Power', role: 'Junior Engineer', date: '28 Sep 2026', status: 'Shortlisted' }
         ];
 
         const branchStatsMap = {
@@ -751,101 +840,129 @@
             'Electrical Engineering': { placedRate: '70%', placedCount: 35, appsCount: 68, interviews: 2, avatar: 'EE' }
         };
 
-        // PERSISTENT ACTIVE BRANCH (Loads from localStorage or URL, defaults to Computer)
-        let currentOfficerBranch = localStorage.getItem('kdp_officer_branch') || 'Computer Engineering';
-
+        // READ BRANCH DIRECTLY FROM URL PARAMETER OR LOCALSTORAGE
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('branch')) {
-            currentOfficerBranch = urlParams.get('branch');
+        let currentOfficerBranch = urlParams.get('branch') || localStorage.getItem('kdp_officer_branch') || 'Mechanical Engineering';
+
+        // GUARANTEED INSTANT URL REDIRECT (NO STUCK DATA)
+        function handleBranchSelect(selectedBranch) {
+            localStorage.setItem('kdp_officer_branch', selectedBranch);
+            // Instant redirect with branch param so URL and State are 100% synchronized
+            window.location.href = window.location.pathname + '?branch=' + encodeURIComponent(selectedBranch);
         }
 
-        // SWITCH BRANCH FUNCTION
-        function switchOfficerBranch(branch) {
-            currentOfficerBranch = branch;
-            localStorage.setItem('kdp_officer_branch', branch); // Save so reload keeps same branch
-            
-            // Sync Dropdown
+        function applyBranchDataDirectly() {
+            // Set Select value
             const selectEl = document.getElementById('activeOfficerBranch');
-            if (selectEl) selectEl.value = branch;
+            if (selectEl) selectEl.value = currentOfficerBranch;
 
-            // 1. Update Header Information & Labels
-            const shortName = branch.replace(' Engineering', '');
+            const shortName = currentOfficerBranch.replace(' Engineering', '');
+            const stats = branchStatsMap[currentOfficerBranch] || { placedRate: '60%', placedCount: 30, appsCount: 60, interviews: 2, avatar: 'PO' };
+
+            // Update Top Header & Profile Avatar
             document.getElementById('headerOfficerTitle').innerText = shortName + " Dept Officer";
-            document.getElementById('lockedBranchInput').value = branch;
-            document.getElementById('branchPillBadge').innerText = branch;
-            
+            document.getElementById('officerAvatarBadge').innerText = stats.avatar;
+            document.getElementById('officerProfileName').innerText = "Prof. " + shortName + " Coordinator";
+            document.getElementById('officerProfileBranch').innerText = currentOfficerBranch;
+
+            // Update Department Locked to Input
+            document.getElementById('lockedBranchInput').value = currentOfficerBranch;
+            document.getElementById('branchPillBadge').innerText = currentOfficerBranch;
+
             document.querySelectorAll('.current-branch-label').forEach(el => {
                 el.innerText = shortName;
             });
 
-            const stats = branchStatsMap[branch] || { placedRate: '50%', placedCount: 20, appsCount: 40, interviews: 1, avatar: 'PO' };
-            document.getElementById('officerAvatarBadge').innerText = stats.avatar;
-            document.getElementById('officerProfileName').innerText = "Prof. " + shortName + " Coordinator";
-            document.getElementById('officerProfileBranch').innerText = branch;
-
-            // 2. Update Stats
+            // Update Dashboard Tab Stats
             document.getElementById('statPlacedStudents').innerText = stats.placedCount;
             document.getElementById('statTotalApplications').innerText = stats.appsCount;
             document.getElementById('statUpcomingInterviews').innerText = stats.interviews;
-            document.getElementById('deptPlacementTitle').innerText = branch;
+            document.getElementById('deptPlacementTitle').innerText = currentOfficerBranch;
             document.getElementById('deptPlacementRate').innerText = stats.placedRate;
             document.getElementById('deptProgressBar').style.width = stats.placedRate;
 
-            // 3. Render Strictly Branch Isolated Data
+            // Re-render Data Tables & Chart
             renderBranchStudents();
             renderBranchDrives();
             renderBranchApplications();
             updateTabTitles();
         }
 
-        // 1. RENDER STUDENTS
+        // RENDER STUDENTS & UPDATE VERTICAL BAR CHART
         function renderBranchStudents() {
             const tbody = document.getElementById('branchStudentsTableBody');
             const minCpi = parseFloat(document.getElementById('cpiFilter').value) || 0;
             const statusFilter = document.getElementById('statusFilter').value;
+            const yearFilter = document.getElementById('batchYearFilter').value;
 
-            // STRICT FILTER FOR ACTIVE BRANCH ONLY
-            const filtered = allStudentsMaster.filter(s => {
-                const branchMatch = (s.branch.trim().toLowerCase() === currentOfficerBranch.trim().toLowerCase());
+            // Filter students strictly by active branch and batch year
+            let branchPool = allStudentsMaster.filter(s => s.branch.trim().toLowerCase() === currentOfficerBranch.trim().toLowerCase());
+            if (yearFilter !== 'ALL') {
+                branchPool = branchPool.filter(s => s.year === yearFilter);
+            }
+
+            const placedCount = branchPool.filter(s => s.status === 'Placed').length;
+            const othersCount = branchPool.filter(s => s.status === 'Others').length;
+            const notQualifiedCount = branchPool.filter(s => s.status === 'Not Qualified').length;
+            const totalCount = branchPool.length;
+
+            // Metric Cards
+            document.getElementById('metricPlacedCount').innerText = placedCount;
+            document.getElementById('metricOthersCount').innerText = othersCount;
+            document.getElementById('metricNotQualifiedCount').innerText = notQualifiedCount;
+
+            // UPDATE VERTICAL BAR CHART HEIGHTS (UP-DOWN HEIGHT IN PERCENT)
+            const maxVal = Math.max(placedCount, othersCount, notQualifiedCount, 1);
+            const placedHeight = Math.max(Math.round((placedCount / maxVal) * 85), 18);
+            const othersHeight = Math.max(Math.round((othersCount / maxVal) * 85), 18);
+            const seekingHeight = Math.max(Math.round((notQualifiedCount / maxVal) * 85), 18);
+
+            document.getElementById('barHeightPlaced').style.height = placedHeight + '%';
+            document.getElementById('barValPlaced').innerText = placedCount;
+
+            document.getElementById('barHeightOthers').style.height = othersHeight + '%';
+            document.getElementById('barValOthers').innerText = othersCount;
+
+            document.getElementById('barHeightSeeking').style.height = seekingHeight + '%';
+            document.getElementById('barValSeeking').innerText = notQualifiedCount;
+
+            document.getElementById('barChartStatsLabel').innerText = `Batch ${yearFilter}: ${totalCount} Total Students Monitored`;
+
+            // Filter Table
+            const filteredTableData = branchPool.filter(s => {
                 const cpiMatch = (s.cpi >= minCpi);
                 const statusMatch = (statusFilter === 'ALL' || s.status === statusFilter);
-                return branchMatch && cpiMatch && statusMatch;
+                return cpiMatch && statusMatch;
             });
 
             tbody.innerHTML = '';
-            if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-3">No students found for ${currentOfficerBranch}.</td></tr>`;
+            if (filteredTableData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-3">No students found matching current filters for ${currentOfficerBranch}.</td></tr>`;
             } else {
-                filtered.forEach(s => {
-                    const statusBadge = s.status === 'Placed' ? 'badge-active' : (s.status === 'Shortlisted' ? 'badge-pending' : 'badge-info');
+                filteredTableData.forEach(s => {
+                    let badgeClass = 'badge-info';
+                    if (s.status === 'Placed') badgeClass = 'badge-active';
+                    else if (s.status === 'Others') badgeClass = 'badge-secondary';
+                    else if (s.status === 'Not Qualified') badgeClass = 'badge-danger';
+
                     tbody.innerHTML += `
-                        <tr class="student-row">
+                        <tr>
                             <td class="fw-semibold">${s.enroll}</td>
                             <td>${s.name}</td>
                             <td><span class="badge bg-light text-dark border">${s.branch}</span></td>
-                            <td>${s.sem}</td>
+                            <td><span class="badge bg-light text-primary border">${s.year}</span></td>
                             <td><span class="fw-bold text-success">${s.cpi.toFixed(2)}</span></td>
-                            <td><span class="badge-status ${statusBadge}">${s.status}</span></td>
-                            <td><button class="btn-action-dark" onclick="openStudentModal('${s.name}', '${s.enroll}', '${s.branch}', '${s.sem}', '${s.cpi}', '${s.company}')">View Profile</button></td>
+                            <td><span class="badge-status ${badgeClass}">${s.status}</span></td>
+                            <td><button class="btn-action-dark" onclick="openStudentModal('${s.name}', '${s.enroll}', '${s.branch}', '${s.year}', '${s.cpi}', '${s.company}')">View Profile</button></td>
                         </tr>
                     `;
                 });
             }
 
-            document.getElementById('studentCountBadge').innerText = `Total: ${filtered.length} Students`;
+            document.getElementById('studentCountBadge').innerText = `Total: ${filteredTableData.length} Students`;
         }
 
-        function filterBranchStudents() {
-            renderBranchStudents();
-        }
-
-        function resetBranchFilters() {
-            document.getElementById('cpiFilter').value = '0';
-            document.getElementById('statusFilter').value = 'ALL';
-            renderBranchStudents();
-        }
-
-        // 2. RENDER DRIVES
+        // RENDER DRIVES
         function renderBranchDrives() {
             const eligibleDrives = allDrivesMaster.filter(d => d.branches.includes(currentOfficerBranch));
             document.getElementById('statActiveDrives').innerText = eligibleDrives.length;
@@ -857,9 +974,8 @@
             allDrivesTbody.innerHTML = '';
 
             if (eligibleDrives.length === 0) {
-                const emptyMsg = `<tr><td colspan="7" class="text-center text-muted py-3">No ongoing drives eligible for ${currentOfficerBranch}.</td></tr>`;
-                recentTbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">No ongoing drives for ${currentOfficerBranch}.</td></tr>`;
-                allDrivesTbody.innerHTML = emptyMsg;
+                recentTbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">No active drives for ${currentOfficerBranch}.</td></tr>`;
+                allDrivesTbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-3">No active drives for ${currentOfficerBranch}.</td></tr>`;
             } else {
                 eligibleDrives.forEach(d => {
                     const rowHtml = `
@@ -889,11 +1005,11 @@
             }
         }
 
-        // 3. RENDER APPLICATIONS
+        // RENDER APPLICATIONS
         function renderBranchApplications() {
             const tbody = document.getElementById('applicationsTableBody');
             const apps = allApplicationsMaster.filter(a => a.branch.trim().toLowerCase() === currentOfficerBranch.trim().toLowerCase());
-            
+
             tbody.innerHTML = '';
             if (apps.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">No applications submitted by ${currentOfficerBranch} students yet.</td></tr>`;
@@ -914,6 +1030,13 @@
             document.getElementById('applicationCountBadge').innerText = `${apps.length} Submissions`;
         }
 
+        function resetBranchFilters() {
+            document.getElementById('cpiFilter').value = '0';
+            document.getElementById('statusFilter').value = 'ALL';
+            document.getElementById('batchYearFilter').value = '2026';
+            renderBranchStudents();
+        }
+
         // TAB SWITCHER
         let currentTabName = 'dashboard';
         function showTab(tabName, element) {
@@ -931,8 +1054,8 @@
         function updateTabTitles() {
             const shortName = currentOfficerBranch.replace(' Engineering', '');
             const titles = {
-                dashboard: ['Welcome, ' + shortName + ' Dept Officer 👋', 'Departmental Placement Tracking & Analytics (Restricted View)'],
-                students: ['Students Directory 🎓', 'Viewing students strictly registered under ' + currentOfficerBranch],
+                dashboard: ['Welcome, ' + shortName + ' Dept Officer 👋', 'Departmental Placement Tracking & Analytics'],
+                students: ['Students Directory 🎓', 'Viewing batch records strictly registered under ' + currentOfficerBranch],
                 companies: ['Placement Drives 🏢', 'Drives open for ' + currentOfficerBranch],
                 applications: ['Job Applications 📄', 'Submissions from ' + currentOfficerBranch],
                 training: ['Manage Events 🗓️', 'Departmental training and placement events'],
@@ -947,13 +1070,13 @@
 
         // INITIALIZE ON LOAD
         document.addEventListener('DOMContentLoaded', () => {
-            switchOfficerBranch(currentOfficerBranch);
+            applyBranchDataDirectly();
         });
 
         // MODAL HANDLERS
         const modal = new bootstrap.Modal(document.getElementById('infoModal'));
 
-        function openStudentModal(name, enroll, branch, sem, cpi, company) {
+        function openStudentModal(name, enroll, branch, year, cpi, company) {
             document.getElementById('infoModalTitle').innerText = "Student Profile Details";
             document.getElementById('infoModalBody').innerHTML = `
                 <div class="text-center mb-3">
@@ -961,13 +1084,12 @@
                         ${name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <h6 class="fw-bold mt-2 mb-0">${name}</h6>
-                    <small class="text-muted">${branch}</small>
+                    <small class="text-muted">${branch} | Batch ${year}</small>
                 </div>
                 <div class="p-2 border rounded bg-light small">
                     <div class="d-flex justify-content-between py-1"><strong>Enrollment:</strong> <span>${enroll}</span></div>
-                    <div class="d-flex justify-content-between py-1"><strong>Semester:</strong> <span>${sem}</span></div>
                     <div class="d-flex justify-content-between py-1"><strong>CPI:</strong> <span class="text-success fw-bold">${cpi}</span></div>
-                    <div class="d-flex justify-content-between py-1"><strong>Status / Company:</strong> <span class="badge bg-success">${company}</span></div>
+                    <div class="d-flex justify-content-between py-1"><strong>Status / Company:</strong> <span class="badge bg-primary">${company}</span></div>
                 </div>
             `;
             modal.show();
@@ -984,44 +1106,6 @@
                     <div class="d-flex justify-content-between py-1"><strong>Drive Date:</strong> <span>${date}</span></div>
                     <div class="d-flex justify-content-between py-1"><strong>Status:</strong> <span class="badge bg-primary">${status}</span></div>
                 </div>
-            `;
-            modal.show();
-        }
-
-        function openEventDetails(title, date, desc, venue) {
-            document.getElementById('infoModalTitle').innerText = "Event Details - " + title;
-            document.getElementById('infoModalBody').innerHTML = `
-                <div class="p-2 border rounded bg-light small">
-                    <div class="d-flex justify-content-between py-1"><strong>Event:</strong> <span>${title}</span></div>
-                    <div class="d-flex justify-content-between py-1"><strong>Date:</strong> <span>${date}</span></div>
-                    <div class="d-flex justify-content-between py-1"><strong>Venue:</strong> <span>${venue}</span></div>
-                    <div class="mt-2 pt-2 border-top"><strong>Description:</strong> <p class="mb-0 text-muted mt-1">${desc}</p></div>
-                </div>
-            `;
-            modal.show();
-        }
-
-        function openAddEventModal() {
-            document.getElementById('infoModalTitle').innerText = "Add New Department Event";
-            document.getElementById('infoModalBody').innerHTML = `
-                <form id="addEventForm">
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Event Title</label>
-                        <input type="text" id="eventTitleInput" class="form-control form-control-sm" placeholder="e.g. Core Branch Interview Prep" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Event Date</label>
-                        <input type="text" id="eventDateInput" class="form-control form-control-sm" placeholder="e.g. 25 Oct 2026" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Venue / Room</label>
-                        <input type="text" id="eventVenueInput" class="form-control form-control-sm" placeholder="e.g. Department Seminar Hall" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Description</label>
-                        <textarea id="eventDescInput" class="form-control form-control-sm" rows="2" placeholder="Brief about the session"></textarea>
-                    </div>
-                </form>
             `;
             modal.show();
         }

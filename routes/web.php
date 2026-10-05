@@ -174,6 +174,28 @@ Route::post('/student/login', [
     'login'
 ])->name('student.login.submit');
 
+// Send OTP
+
+Route::post('/student/send-otp', [
+
+    StudentRegistrationController::class,
+
+    'sendOtp'
+
+])->name('student.send.otp');
+
+// Verify OTP
+Route::post('/student/verify-otp', [
+    StudentRegistrationController::class,
+    'verifyOtp'
+])->name('student.verify.otp');
+
+// Student Reset Password
+Route::post('/student/reset-password', [
+    StudentRegistrationController::class,
+    'resetPassword'
+])->name('student.reset.password');
+
 
 // Student Registration Page
 Route::get('/register', function () {

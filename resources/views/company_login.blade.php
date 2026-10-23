@@ -136,12 +136,19 @@
 
     <div class="login-card">
         <div class="text-center mb-4">
-            <span class="company-badge"><i class="fa-solid fa-building me-1"></i> Corporate Recruiter</span>
-            <h3 class="fw-bold text-white mb-1">Company Login</h3>
-            <p class="text-secondary small">Manage recruitment drives, job openings & applicants</p>
-        </div>
+    <span class="company-badge">
+        <i class="fa-solid fa-building me-1"></i> Corporate Recruiter
+    </span>
 
-        <form action="{{ route('company.login.submit') }}" method="POST">
+    <div id="companyLoginHeading">
+        <h3 class="fw-bold text-white mb-1">Company Login</h3>
+        <p class="text-secondary small">
+            Manage recruitment drives, job openings & applicants
+        </p>
+    </div>
+</div>
+
+        <form id="companyLoginForm" action="{{ route('company.login.submit') }}" method="POST">
             @csrf
 
             <!-- Work Email Address -->
@@ -179,9 +186,14 @@
                         Remember Me
                     </label>
                 </div>
-                <a href="#" class="custom-link">Forgot Password?</a>
+                <a href="#" class="custom-link" onclick="showForgotPassword(); return false;">Forgot Password?</a>
             </div>
 
+          
+
+ <h5 class="text-white">Reset Password</h5>
+        <p class="text-secondary small">
+          
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary-custom mb-3">
                 <i class="fa-solid fa-right-to-bracket me-2"></i> Login to Portal
@@ -194,7 +206,96 @@
                 </p>
             </div>
         </form>
+        <!-- Forgot Password Section -->
+<div id="forgotPasswordSection" style="display: none;" class="mt-3">
+
+    <div class="text-center mb-3">
+        <h5 class="text-white">Reset Password</h5>
+        <p class="text-secondary small">
+            Enter your registered company email to receive an OTP.
+        </p>
     </div>
+
+    <form action="{{ route('company.send.otp') }}" method="POST">
+        @csrf
+
+        <div class="mb-3">
+            <label class="form-label">Registered Email</label>
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Enter your registered email"
+                   required>
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom">
+            Send OTP
+        </button>
+    </form>
+
+    <!-- Enter OTP Form -->
+<form action="{{ route('company.verify.otp') }}"
+      method="POST"
+      class="mt-3"
+      id="companyOtpForm"
+      style="display: {{ session('company_reset_email') && !session('company_otp_verified') ? 'block' : 'none' }};"
+    @csrf
+
+    <div class="mb-3">
+        <label class="form-label">Enter OTP</label>
+        <input type="text"
+               name="otp"
+               class="form-control"
+               placeholder="Enter 6-digit OTP"
+               maxlength="6"
+               inputmode="numeric"
+               pattern="[0-9]{6}"
+               required>
+    </div>
+
+    <button type="submit" class="btn btn-primary-custom">
+        Verify OTP
+    </button>
+</form>
+
+<!-- New Password Form -->
+@if(session('company_otp_verified'))
+
+<form action="{{ route('company.reset.password') }}" method="POST" class="mt-3">
+    @csrf
+
+    <div class="mb-3">
+        <label class="form-label">New Password</label>
+        <input type="password"
+               name="password"
+               class="form-control"
+               placeholder="Enter new password"
+               minlength="6"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input type="password"
+               name="password_confirmation"
+               class="form-control"
+               placeholder="Confirm new password"
+               minlength="6"
+               required>
+    </div>
+
+    <button type="submit" class="btn btn-primary-custom">
+        Reset Password
+    </button>
+
+</form>
+
+@endif
+
+</div>
+
+
+        </div>
 
     <script>
         function togglePassword() {
@@ -211,6 +312,18 @@
                 toggleIcon.classList.add('fa-eye');
             }
         }
+
+ function showForgotPassword() {
+    document.getElementById('companyLoginForm').style.display = 'none';
+    document.getElementById('companyLoginHeading').style.display = 'none';
+    document.getElementById('forgotPasswordSection').style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    @if (session('company_reset_email') || session('company_otp_verified'))
+        showForgotPassword();
+    @endif
+});
     </script>
 </body>
 </html>

@@ -253,6 +253,24 @@ Route::post('/company/login', [
     'login'
 ])->name('company.login.submit');
 
+// Company Send OTP
+Route::post('/company/send-otp', [
+    CompanyController::class,
+    'sendOtp'
+])->name('company.send.otp');
+
+// Company Verify OTP
+Route::post('/company/verify-otp', [
+    CompanyController::class,
+    'verifyOtp'
+])->name('company.verify.otp');
+
+// Company Reset Password
+Route::post('/company/reset-password', [
+    CompanyController::class,
+    'resetPassword'
+])->name('company.reset.password');
+
 
 /*
 |--------------------------------------------------------------------------

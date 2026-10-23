@@ -87,6 +87,25 @@
             padding: 0;
             text-decoration: underline;
         }
+        .bulk-upload-zone {
+            border: 2px dashed #93c5fd;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .bulk-upload-zone:hover {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .bulk-row {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -125,7 +144,7 @@
                 <!-- LEFT COLUMN -->
                 <div class="col-lg-6">
                     
-                    <!-- Personal Details -->
+                    <!-- 1. Personal Details -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-user text-primary"></i> Personal Information
@@ -163,7 +182,57 @@
                         </div>
                     </div>
 
-                    <!-- Password Security Setup -->
+                    <!-- 2. UPLOAD EXCEL / CSV & MANUAL MULTI-STUDENT ENTRY -->
+                    <div class="custom-card">
+                        <div class="section-title">
+                            <i class="fa-solid fa-file-excel text-primary"></i> Upload Excel / CSV Student Master Sheet
+                        </div>
+
+                        <!-- File Upload Zone -->
+                        <div class="bulk-upload-zone mb-3">
+                            <i class="fa-solid fa-file-csv fs-2 text-primary mb-2"></i>
+                            <div class="fw-semibold text-dark small mb-1">Upload Excel / CSV Student Master Sheet</div>
+                            <small class="text-muted d-block mb-2">Supported formats: .csv, .xlsx, .xls</small>
+                            <div class="d-flex justify-content-center gap-2">
+                                <input type="file" name="bulk_file" id="bulk_file" class="form-control form-control-sm w-auto" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="downloadSampleCSV()">
+                                    <i class="fa-solid fa-download me-1"></i> Sample CSV
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Manual Multi-Student Entry -->
+                        <div class="mb-2 d-flex justify-content-between align-items-center">
+                            <span class="fw-bold small text-secondary">Manual Multi-Student Entry:</span>
+                            <button type="button" class="btn btn-sm btn-outline-primary py-0 px-2" onclick="addBulkStudentRow()" style="font-size: 0.8rem;">
+                                <i class="fa-solid fa-plus me-1"></i> + Add Another Student
+                            </button>
+                        </div>
+
+                        <div id="bulkStudentsContainer">
+                            <!-- Initial Row -->
+                            <div class="bulk-row" id="bulkRow_1">
+                                <div class="row g-2 align-items-center">
+                                    <div class="col-md-5">
+                                        <input type="text" name="bulk_students[0][name]" class="form-control form-control-sm" placeholder="Student Full Name">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" name="bulk_students[0][enrollment]" class="form-control form-control-sm" placeholder="Enrollment No.">
+                                    </div>
+                                    <div class="col-md-3 d-flex gap-1">
+                                        <select name="bulk_students[0][branch]" class="form-select form-select-sm">
+                                            <option value="Computer Engineering">Computer</option>
+                                            <option value="Mechanical Engineering">Mechanical</option>
+                                            <option value="Civil Engineering">Civil</option>
+                                            <option value="Electrical Engineering">Electrical</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Password Security Setup -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-key text-primary"></i> Portal Security & Password Setup
@@ -212,7 +281,7 @@
                         <input type="hidden" name="password" id="final_password" value="KDP123">
                     </div>
 
-                    <!-- Contact Details -->
+                    <!-- 4. Contact Details -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-phone text-primary"></i> Contact Details
@@ -296,7 +365,7 @@
                         </div>
                     </div>
 
-                    <!-- Area of Expertise (Fixed 6 Primary Skills + View More Mode) -->
+                    <!-- Area of Expertise -->
                     <div class="custom-card">
                         <div class="section-title">
                             <i class="fa-solid fa-laptop-code text-primary"></i> Area of Expertise
@@ -311,8 +380,6 @@
                             
                             <!-- Skills Container -->
                             <div class="d-flex flex-wrap gap-2 mt-1 mb-3" id="skillsContainer">
-                                
-                                <!-- 6 Primary Starting Skills (Clean View) -->
                                 <div class="skill-tag active" data-value="Web Development" data-icon="fa-code text-primary">
                                     <span><i class="fa-solid fa-code text-primary me-1"></i> Web Development</span>
                                     <span class="remove-btn" title="Remove">&times;</span>
@@ -338,7 +405,7 @@
                                     <span class="remove-btn" title="Remove">&times;</span>
                                 </div>
 
-                                <!-- Extra Skills (Hidden by default, visible on View More) -->
+                                <!-- Extra Skills -->
                                 <div class="skill-tag extra-skill d-none" data-value="React JS" data-icon="fa-react text-info brands">
                                     <span><i class="fa-brands fa-react text-info me-1"></i> React JS</span>
                                     <span class="remove-btn" title="Remove">&times;</span>
@@ -365,7 +432,7 @@
                                 </div>
                             </div>
 
-                            <!-- Add Custom Skill Input with Auto-Correction Datalist -->
+                            <!-- Add Custom Skill Input -->
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-plus text-primary"></i></span>
                                 <input type="text" id="newSkillInput" list="verifiedSkillsList" class="form-control" placeholder="Type skill (e.g. AI, React, Docker, AutoCAD)...">
@@ -469,14 +536,12 @@
 
             errorMsg.classList.add('d-none');
 
-            // Block gibberish / empty inputs under 2 chars
             if (!rawInput || rawInput.length < 2) {
                 errorMsg.innerText = "Please enter a valid skill name.";
                 errorMsg.classList.remove('d-none');
                 return;
             }
 
-            // Auto-correct matching
             let resolvedName = '';
             let resolvedIcon = 'fa-tag text-primary';
 
@@ -484,7 +549,6 @@
                 resolvedName = verifiedSkillsDict[rawInput].name;
                 resolvedIcon = verifiedSkillsDict[rawInput].icon;
             } else {
-                // Check if matches datalist options
                 const options = Array.from(document.querySelectorAll('#verifiedSkillsList option')).map(o => o.value);
                 const matchedOption = options.find(opt => opt.toLowerCase().includes(rawInput));
 
@@ -492,20 +556,18 @@
                     resolvedName = matchedOption;
                     resolvedIcon = 'fa-certificate text-primary';
                 } else {
-                    // Block random typing like "pra", "asdf"
                     errorMsg.innerText = `Skill "${input.value}" not recognized. Select from suggestions (e.g. AI, React, Docker).`;
                     errorMsg.classList.remove('d-none');
                     return;
                 }
             }
 
-            // Check if already exists in container
             let alreadyExists = false;
             document.querySelectorAll('#skillsContainer .skill-tag').forEach(tag => {
                 if (tag.getAttribute('data-value').toLowerCase() === resolvedName.toLowerCase()) {
                     alreadyExists = true;
                     tag.classList.add('active');
-                    tag.classList.remove('d-none'); // reveal if hidden
+                    tag.classList.remove('d-none');
                 }
             });
 
@@ -557,14 +619,12 @@
             let registeredStudents = JSON.parse(localStorage.getItem('kdp_registered_students') || '{}');
 
             if (registeredStudents[enroll]) {
-                // SECOND TIME: SHOW MANDATORY PASSWORD CHANGE
                 document.getElementById('firstTimePasswordBox').style.display = 'none';
                 document.getElementById('secondTimePasswordBox').style.display = 'block';
                 document.getElementById('new_password').setAttribute('required', 'required');
                 document.getElementById('confirm_password').setAttribute('required', 'required');
                 document.getElementById('submitBtn').innerText = "Update Password & Proceed";
             } else {
-                // FIRST TIME: SHOW DEFAULT KDP123
                 document.getElementById('firstTimePasswordBox').style.display = 'block';
                 document.getElementById('secondTimePasswordBox').style.display = 'none';
                 document.getElementById('new_password').removeAttribute('required');
@@ -610,6 +670,47 @@
             }
 
             return true;
+        }
+
+        // Dynamic Multi-Row Entry Functions
+        let bulkRowCounter = 1;
+        function addBulkStudentRow() {
+            bulkRowCounter++;
+            const container = document.getElementById('bulkStudentsContainer');
+            const row = document.createElement('div');
+            row.className = 'bulk-row';
+            row.id = `bulkRow_${bulkRowCounter}`;
+            row.innerHTML = `
+                <div class="row g-2 align-items-center">
+                    <div class="col-md-5">
+                        <input type="text" name="bulk_students[${bulkRowCounter}][name]" class="form-control form-control-sm" placeholder="Student Full Name">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="bulk_students[${bulkRowCounter}][enrollment]" class="form-control form-control-sm" placeholder="Enrollment No.">
+                    </div>
+                    <div class="col-md-3 d-flex gap-1">
+                        <select name="bulk_students[${bulkRowCounter}][branch]" class="form-select form-select-sm">
+                            <option value="Computer Engineering">Computer</option>
+                            <option value="Mechanical Engineering">Mechanical</option>
+                            <option value="Civil Engineering">Civil</option>
+                            <option value="Electrical Engineering">Electrical</option>
+                        </select>
+                        <button type="button" class="btn btn-outline-danger btn-sm px-2" onclick="document.getElementById('bulkRow_${bulkRowCounter}').remove()" title="Remove Row">&times;</button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(row);
+        }
+
+        function downloadSampleCSV() {
+            const csvContent = "data:text/csv;charset=utf-8," + "Full Name,Enrollment No,Branch,Email,Mobile,CPI\nJohn Doe,226040307001,Computer Engineering,john@kdpoly.edu,9876543210,8.50\nJane Smith,226040319002,Mechanical Engineering,jane@kdpoly.edu,9876543211,7.90";
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "student_master_sample.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Enter key listener for Add Skill input

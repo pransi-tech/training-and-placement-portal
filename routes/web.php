@@ -40,31 +40,10 @@ Route::get('/placement-officer/login', function () {
 
 
 // Placement Officer Login
-Route::post('/placement-officer/login', function (Request $request) {
-
-    $email = $request->input('email');
-    $password = $request->input('password');
-
-    /*
-     * Temporary login handling.
-     * Replace this with database authentication later.
-     */
-
-    if ($email && $password) {
-
-        session([
-            'placement_officer_logged_in' => true,
-            'placement_officer_email' => $email
-        ]);
-
-        return redirect()
-            ->route('placement.officer.dashboard');
-    }
-
-    return back()
-        ->with('error', 'Invalid Email or Password');
-
-})->name('placement.officer.login.submit');
+Route::post('/placement-officer/login', [
+    \App\Http\Controllers\PlacementOfficerController::class,
+    'login'
+])->name('placement.officer.login.submit');
 
 
 // Placement Officer Dashboard
@@ -73,6 +52,24 @@ Route::get('/placement-officer/dashboard', function () {
     return view('placement_officer_dashboard');
 
 })->name('placement.officer.dashboard');
+
+// Placement Officer Send OTP
+Route::post('/placement-officer/send-otp', [
+    \App\Http\Controllers\PlacementOfficerController::class,
+    'sendOtp'
+])->name('placement.officer.send.otp');
+
+// Placement Officer Verify OTP
+Route::post('/placement-officer/verify-otp', [
+    \App\Http\Controllers\PlacementOfficerController::class,
+    'verifyOtp'
+])->name('placement.officer.verify.otp');
+
+// Placement Officer Reset Password
+Route::post('/placement-officer/reset-password', [
+    \App\Http\Controllers\PlacementOfficerController::class,
+    'resetPassword'
+])->name('placement.officer.reset.password');
 
 
 /*

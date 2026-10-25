@@ -184,7 +184,7 @@
         <div class="alert-success">
             {{ session('success') }}
         </div>
-    @endif.
+    @endif
 
 
  
@@ -195,15 +195,15 @@
 
             @csrf
 
-            <label>Email Address</label>
+           <label>Enrollment Number</label>
 
-            <input
-                type="email"
-                name="email"
-                class="input-box"
-                placeholder="Enter your email"
-                value="{{ old('email') }}"
-                required>
+           <input
+           type="text"
+           name="enrollment_no"
+           class="input-box"
+           placeholder="Enter your enrollment number"
+           value="{{ old('enrollment_no') }}"
+           required>
 
 
             <label>Password</label>

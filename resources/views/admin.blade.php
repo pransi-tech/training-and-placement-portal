@@ -114,16 +114,70 @@
                 <label>Remember Me</label>
             </div>
 
-            <a href="#">Forgot Password?</a>
+        <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
         </div>
 
         <button class="btn-login" type="submit">
             Login
         </button>
 
-    </form>
+ </form>
+
+    <!-- Forgot Password Box -->
+    <div id="forgotPasswordBox" style="display:none;">
+
+        <h2>Forgot Password</h2>
+
+        <p style="color:#d6d6d6; text-align:center;">
+            Enter your registered admin email
+        </p>
+
+        <form action="{{ url('/admin/send-otp') }}" method="POST">
+            @csrf
+
+            <div class="mb-3">
+                <label>Email Address</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       placeholder="Enter your email"
+                       required>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Send OTP
+            </button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="#" onclick="showLogin(event)">
+                Back to Login
+            </a>
+        </div>
+
+    </div>
 
 </div>
+
+<script>
+    function showForgotPassword(event) {
+        event.preventDefault();
+
+        document.querySelector('.login-box > form').style.display = 'none';
+        document.querySelector('.login-box > h2').style.display = 'none';
+
+        document.getElementById('forgotPasswordBox').style.display = 'block';
+    }
+
+    function showLogin(event) {
+        event.preventDefault();
+
+        document.querySelector('.login-box > form').style.display = 'block';
+        document.querySelector('.login-box > h2').style.display = 'block';
+
+        document.getElementById('forgotPasswordBox').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>

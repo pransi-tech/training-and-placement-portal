@@ -32,19 +32,26 @@ class StudentRegistrationController extends Controller
         ->with('success', 'Registration Successful!');
 }
 
-    // Student Login
-    public function login(Request $request)
-    {
-        $student = StudentRegistration::where('email', $request->email)->first();
+// Student Login
+public function login(Request $request)
+{
+    $request->validate([
+        'enrollment_no' => 'required',
+        'password' => 'required',
+    ]);
 
-        if ($student && Hash::check($request->password, $student->password)) {
-            return redirect()->route('student.dashboard', ['id' => $student->id])
-                ->with('success', 'Login Successful!');
-        }
+    $student = StudentRegistration::where(
+        'enrollment_no',
+        $request->enrollment_no
+    )->first();
 
-        return back()->with('error', 'Invalid Email or Password');
+    if ($student && Hash::check($request->password, $student->password)) {
+        return redirect()->route('student.dashboard', ['id' => $student->id])
+            ->with('success', 'Login Successful!');
     }
 
+    return back()->with('error', 'Invalid Enrollment Number or Password');
+}
 // Send OTP
 public function sendOtp(Request $request)
 {

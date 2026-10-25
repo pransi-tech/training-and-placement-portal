@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Placement Officer Login</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <style>
         :root {
             --bg: #0F172A;
@@ -43,16 +45,14 @@
             max-width: 460px;
             padding: 2rem;
             border-radius: 24px;
-            background: linear-gradient(145deg, rgba(17, 28, 51, 0.95), rgba(15, 23, 42, 0.9));
+            background: linear-gradient(
+                145deg,
+                rgba(17, 28, 51, 0.95),
+                rgba(15, 23, 42, 0.9)
+            );
             border: 1px solid var(--border);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(12px);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .auth-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 30px 70px rgba(37, 99, 235, 0.16);
         }
 
         .auth-title {
@@ -74,7 +74,6 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 0.8rem 1rem;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .form-control::placeholder {
@@ -124,7 +123,11 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-2)
+            );
             border: none;
             box-shadow: 0 10px 25px rgba(37, 99, 235, 0.24);
             border-radius: 999px;
@@ -151,12 +154,10 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid var(--border);
             text-decoration: none;
-            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
             z-index: 10;
         }
 
         .auth-back-link:hover {
-            transform: translateY(-2px);
             background: rgba(37, 99, 235, 0.16);
             color: var(--primary-2);
         }
@@ -165,12 +166,20 @@
             font-size: 0.9rem;
             color: var(--primary-2);
             text-decoration: none;
-            transition: color 0.2s ease;
         }
 
         .forgot-password:hover {
             color: #93C5FD;
             text-decoration: underline;
+        }
+
+        /* Hide password reset until requested */
+        #forgotSection {
+            display: none;
+        }
+
+        #forgotSection.active {
+            display: block;
         }
 
         @media (max-width: 576px) {
@@ -184,53 +193,217 @@
         }
     </style>
 </head>
+
 <body>
-    <a href="{{ url('/') }}" class="auth-back-link" aria-label="Back to Home">
+
+    <a href="{{ url('/') }}"
+       class="auth-back-link"
+       aria-label="Back to Home">
         <i class="bi bi-arrow-left"></i>
     </a>
 
     <div class="auth-shell">
         <div class="auth-card">
+
             <h2 class="auth-title">Officer Sign In</h2>
 
-            <form>
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <!-- LOGIN FORM -->
+            <form id="loginForm"
+      action="{{ route('placement.officer.login.submit') }}"
+      method="POST">
+                @csrf
+
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <label for="email" class="form-label">
+                        Email Address
+                    </label>
+
+                    <input type="email"
+                           name="email"
+                           class="form-control"
+                           id="email"
+                           placeholder="Enter your email"
+                           required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">
+                        Password
+                    </label>
+
                     <div class="password-group">
-                        <input type="password" class="form-control pe-5" id="password" placeholder="Enter your password" required>
-                        <button type="button" class="password-toggle" id="passwordToggle">Show</button>
+                        <input type="password"
+                               name="password"
+                               class="form-control pe-5"
+                               id="password"
+                               placeholder="Enter your password"
+                               required>
+
+                        <button type="button"
+                                class="password-toggle"
+                                id="passwordToggle">
+                            Show
+                        </button>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
+
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember Me</label>
+                        <input class="form-check-input"
+                               type="checkbox"
+                               id="rememberMe">
+
+                        <label class="form-check-label"
+                               for="rememberMe">
+                            Remember Me
+                        </label>
                     </div>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
+
+                    <a href="#"
+                       class="forgot-password"
+                       id="forgotPasswordLink">
+                        Forgot Password?
+                    </a>
+
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    <button type="submit" class="btn btn-primary">
+                        Sign In
+                    </button>
                 </div>
+
             </form>
+
+            <!-- FORGOT PASSWORD SECTION -->
+            <div id="forgotSection" class="mt-4">
+
+                <h4 class="text-center mb-3">
+                    Reset Password
+                </h4>
+
+                <!-- SEND OTP -->
+                @if(!session('officer_otp_sent') && !session('officer_otp_verified'))
+                    <form action="{{ route('placement.officer.send.otp') }}"
+                          method="POST">
+                        @csrf
+
+                        <input type="email"
+                               name="email"
+                               class="form-control mb-3"
+                               placeholder="Enter Registered Email"
+                               required>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Send OTP
+                        </button>
+                    </form>
+                @endif
+
+                <!-- VERIFY OTP -->
+                @if(session('officer_otp_sent') && !session('officer_otp_verified'))
+                    <form action="{{ route('placement.officer.verify.otp') }}"
+                          method="POST">
+                        @csrf
+
+                        <input type="text"
+                               name="otp"
+                               class="form-control mb-3"
+                               placeholder="Enter 6-digit OTP"
+                               maxlength="6"
+                               inputmode="numeric"
+                               pattern="[0-9]{6}"
+                               required>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Verify OTP
+                        </button>
+                    </form>
+                @endif
+
+                <!-- RESET PASSWORD -->
+                @if(session('officer_otp_verified'))
+                    <form action="{{ route('placement.officer.reset.password') }}"
+                          method="POST">
+                        @csrf
+
+                        <input type="password"
+                               name="password"
+                               class="form-control mb-3"
+                               placeholder="New Password"
+                               minlength="8"
+                               required>
+
+                        <input type="password"
+                               name="password_confirmation"
+                               class="form-control mb-3"
+                               placeholder="Confirm New Password"
+                               minlength="8"
+                               required>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Reset Password
+                        </button>
+                    </form>
+                @endif
+
+            </div>
+
         </div>
     </div>
 
     <script>
+        // Show / Hide login password
         const passwordInput = document.getElementById('password');
         const passwordToggle = document.getElementById('passwordToggle');
 
-        passwordToggle.addEventListener('click', () => {
+        passwordToggle.addEventListener('click', function () {
             const isPassword = passwordInput.type === 'password';
+
             passwordInput.type = isPassword ? 'text' : 'password';
             passwordToggle.textContent = isPassword ? 'Hide' : 'Show';
         });
+
+        // Open Forgot Password section when clicked
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const forgotSection = document.getElementById('forgotSection');
+
+forgotPasswordLink.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    document.getElementById('loginForm').style.display = 'none';
+    document.querySelector('.auth-title').style.display = 'none';
+
+    forgotSection.classList.add('active');
+});
+
+        // Keep OTP / Reset form visible after Laravel redirects
+        @if(session('officer_otp_sent') || session('officer_otp_verified'))
+            forgotSection.classList.add('active');
+        @endif
     </script>
+
 </body>
 </html>

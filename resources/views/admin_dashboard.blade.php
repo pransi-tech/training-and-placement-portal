@@ -874,12 +874,7 @@
             </button>
         </li>
 
-        <li>
-            <button onclick="showPage('notifications', this)">
-                <span class="menu-icon">🔔</span>
-                Notifications
-            </button>
-        </li>
+    
 
         <li>
             <button onclick="showPage('settings', this)">
@@ -961,13 +956,9 @@
 
                 <div class="card-icon">👨‍🎓</div>
 
-<<<<<<< HEAD
-                <h3>Total Students</h3>
-=======
-                <h3>{{ $studentCount }}</h3>
->>>>>>> b160755 (Update company dashboard and admin pages)
 
-                <div class="stat-number">128</div>
+                <h3>Total Students</h3>
+                <div class="stat-number">{{ $studentCount }}</div>
 
                 <p>Registered students</p>
 
@@ -978,13 +969,10 @@
 
                 <div class="card-icon">⭐</div>
 
-<<<<<<< HEAD
-                <h3>Shortlisted</h3>
-=======
-                <h3 id="companyCount">{{ $companyCount }}</h3>
->>>>>>> b160755 (Update company dashboard and admin pages)
 
-                <div class="stat-number">24</div>
+                <h3>Shortlisted</h3>
+
+                <div class="stat-number">{{ $shortlistedCount ?? 0 }}</div>
 
                 <p>Students shortlisted</p>
 
@@ -995,13 +983,9 @@
 
                 <div class="card-icon">🏆</div>
 
-<<<<<<< HEAD
                 <h3>Selected</h3>
-=======
-                <h3 id="opportunityCount">0</h3>
->>>>>>> b160755 (Update company dashboard and admin pages)
 
-                <div class="stat-number">16</div>
+                <div class="stat-number">{{ $selectedCount ?? 0 }}</div>
 
                 <p>Students selected</p>
 
@@ -1012,13 +996,9 @@
 
                 <div class="card-icon">❌</div>
 
-<<<<<<< HEAD
-                <h3>Rejected</h3>
-=======
-                <h3 id="applicationCount">0</h3>
->>>>>>> b160755 (Update company dashboard and admin pages)
+               <h3>Rejected</h3>
 
-                <div class="stat-number">19</div>
+                <div class="stat-number">{{ $rejectedCount ?? 0 }}</div>
 
                 <p>Applications rejected</p>
 
@@ -1162,63 +1142,37 @@
                         </tr>
 
                     </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td><strong>Riya Patel</strong></td>
-                            <td>TCS</td>
-                            <td>Software Trainee</td>
-                            <td>
-                                <span class="badge badge-green">
-                                    Selected
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Riya Patel','TCS','Software Trainee','Selected')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Meet Shah</strong></td>
-                            <td>Infosys</td>
-                            <td>Web Developer</td>
-                            <td>
-                                <span class="badge badge-yellow">
-                                    Shortlisted
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Meet Shah','Infosys','Web Developer','Shortlisted')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Krisha Patel</strong></td>
-                            <td>Wipro</td>
-                            <td>Junior Developer</td>
-                            <td>
-                                <span class="badge badge-blue">
-                                    Applied
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Krisha Patel','Wipro','Junior Developer','Applied')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-                    </tbody>
+<tbody>
+    @forelse($applications ?? [] as $application)
+        <tr>
+            <td><strong>{{ $application->student_name }}</strong></td>
+            <td>{{ $application->company_name }}</td>
+            <td>{{ $application->position }}</td>
+            <td>
+                <span class="badge badge-blue">
+                    {{ $application->status }}
+                </span>
+            </td>
+            <td>
+                <button class="primary-btn small-btn"
+                    onclick="viewApplication(
+                        @js($application->student_name),
+                        @js($application->company_name),
+                        @js($application->position),
+                        @js($application->status)
+                    )">
+                    View Details
+                </button>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="5" style="text-align:center;">
+                No applications found.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
 
                 </table>
 
@@ -1280,107 +1234,37 @@
 
                     </thead>
 
-<<<<<<< HEAD
-                    <tbody>
-
-                        <tr>
-                            <td><strong>Riya Patel</strong></td>
-                            <td>CE23041</td>
-                            <td>Computer Engineering</td>
-                            <td>8.6</td>
-                            <td>
-                                <span class="badge badge-green">
-                                    Selected
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="editStudent('Riya Patel','CE23041','Computer Engineering','8.6','Selected')">
-                                    Update
-                                </button>
-
-                                <button class="secondary-btn small-btn"
-                                    onclick="viewStudent('Riya Patel')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Meet Shah</strong></td>
-                            <td>CE23052</td>
-                            <td>Computer Engineering</td>
-                            <td>8.1</td>
-                            <td>
-                                <span class="badge badge-yellow">
-                                    Shortlisted
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="editStudent('Meet Shah','CE23052','Computer Engineering','8.1','Shortlisted')">
-                                    Update
-                                </button>
-
-                                <button class="secondary-btn small-btn"
-                                    onclick="viewStudent('Meet Shah')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Krisha Patel</strong></td>
-                            <td>CE23064</td>
-                            <td>Computer Engineering</td>
-                            <td>7.8</td>
-                            <td>
-                                <span class="badge badge-blue">
-                                    Available
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="editStudent('Krisha Patel','CE23064','Computer Engineering','7.8','Available')">
-                                    Update
-                                </button>
-
-                                <button class="secondary-btn small-btn"
-                                    onclick="viewStudent('Krisha Patel')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-                    </tbody>
-=======
 <tbody>
     @forelse($students as $student)
-        <tr>
-            <td>{{ $student->enrollment_no }}</td>
-            <td>{{ $student->name }}</td>
-            <td>{{ $student->email }}</td>
-            <td>{{ $student->branch }}</td>
-            <td>
-                <span class="status">Active</span>
-            </td>
-            <td>
-                <button class="btn btn-light">
-                    View
-                </button>
-            </td>
-        </tr>
+    <tr>
+        <td><strong>{{ $student->name }}</strong></td>
+        <td>{{ $student->enrollment_no }}</td>
+        <td>{{ $student->branch }}</td>
+        <td>{{ $student->cpi ?? 'N/A' }}</td>
+        <td>
+            <span class="badge badge-blue">Available</span>
+        </td>
+        <td>
+            <button class="primary-btn small-btn"
+                onclick="editStudent(@js($student->name), @js($student->enrollment_no), @js($student->branch), @js($student->cpi ?? 'N/A'), 'Available')">
+                Update
+            </button>
+
+            <button class="secondary-btn small-btn"
+                onclick="viewStudent(@js($student->name))">
+                View Details
+            </button>
+        </td>
+    </tr>
     @empty
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                No students registered yet.
-            </td>
-        </tr>
+    <tr>
+        <td colspan="6" style="text-align:center;">
+            No registered students found.
+        </td>
+    </tr>
     @endforelse
 </tbody>
->>>>>>> b160755 (Update company dashboard and admin pages)
+
 
                 </table>
 
@@ -1416,72 +1300,21 @@
 
             <div class="management-grid">
 
+            @forelse($companies as $company)
+
                 <div class="management-card">
 
                     <div class="card-icon">🏢</div>
 
-<<<<<<< HEAD
-                    <h3>TCS</h3>
 
-                    <p>
-                        Tata Consultancy Services is hiring students
-                        for Software Trainee positions.
-                    </p>
+                    <h3>{{ $company->company_name ?? $company->name ?? 'Company' }}</h3>
+
+                    <p>{{ $company->description ?? 'No description available.' }}</p>
 
                     <div class="management-actions">
 
                         <button class="primary-btn small-btn"
-                            onclick="viewCompany('TCS')">
-                            View Details
-                        </button>
-
-                        <button class="secondary-btn small-btn"
-                            onclick="showPage('drives')">
-                            Placement Drive
-                        </button>
-=======
-                  <tbody>
-    @forelse($companies as $company)
-        <tr>
-            <td>{{ $company->name }}</td>
-            <td>{{ $company->email }}</td>
-            <td>{{ $company->industry ?? 'N/A' }}</td>
-            <td>{{ $company->location ?? 'N/A' }}</td>
-            <td><span class="status">Active</span></td>
-            <td>
-                <button class="btn btn-light">View</button>
-            </td>
-        </tr>
-    @empty
-        <tr>
-            <td colspan="6" style="text-align: center;">
-                No companies registered yet.
-            </td>
-        </tr>
-    @endforelse
-</tbody>
->>>>>>> b160755 (Update company dashboard and admin pages)
-
-                    </div>
-
-                </div>
-
-
-                <div class="management-card">
-
-                    <div class="card-icon">💻</div>
-
-                    <h3>Infosys</h3>
-
-                    <p>
-                        IT services company offering opportunities
-                        for Web Developer roles.
-                    </p>
-
-                    <div class="management-actions">
-
-                        <button class="primary-btn small-btn"
-                            onclick="viewCompany('Infosys')">
+                        onclick="viewCompany(@js($company->company_name ?? $company->name ?? 'Company'))">
                             View Details
                         </button>
 
@@ -1490,32 +1323,20 @@
                             Placement Drive
                         </button>
 
-                    </div>
-
-                </div>
-
-
-                <div class="management-card">
-
-                    <div class="card-icon">🌐</div>
-
-                    <h3>Wipro</h3>
-
-                    <p>
-                        Recruitment opportunity for junior software
-                        development positions.
-                    </p>
-
-                    <div class="management-actions">
-
-                        <button class="primary-btn small-btn"
-                            onclick="viewCompany('Wipro')">
-                            View Details
-                        </button>
 
                     </div>
 
                 </div>
+
+
+                
+
+
+                
+
+                @empty
+                    <p>No companies found.</p>
+                @endforelse
 
             </div>
 
@@ -1664,66 +1485,38 @@
                         </tr>
 
                     </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td><strong>Riya Patel</strong></td>
-                            <td>TCS</td>
-                            <td>Software Trainee</td>
-                            <td>20 Aug 2026</td>
-                            <td>
-                                <span class="badge badge-green">
-                                    Selected
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Riya Patel','TCS','Software Trainee','Selected')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Meet Shah</strong></td>
-                            <td>Infosys</td>
-                            <td>Web Developer</td>
-                            <td>21 Aug 2026</td>
-                            <td>
-                                <span class="badge badge-yellow">
-                                    Shortlisted
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Meet Shah','Infosys','Web Developer','Shortlisted')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td><strong>Krisha Patel</strong></td>
-                            <td>Wipro</td>
-                            <td>Junior Developer</td>
-                            <td>22 Aug 2026</td>
-                            <td>
-                                <span class="badge badge-blue">
-                                    Applied
-                                </span>
-                            </td>
-                            <td>
-                                <button class="primary-btn small-btn"
-                                    onclick="viewApplication('Krisha Patel','Wipro','Junior Developer','Applied')">
-                                    View Details
-                                </button>
-                            </td>
-                        </tr>
-
-                    </tbody>
+<tbody>
+    @forelse($applications ?? [] as $application)
+        <tr>
+            <td><strong>{{ $application->student_name }}</strong></td>
+            <td>{{ $application->company_name }}</td>
+            <td>{{ $application->position }}</td>
+            <td>{{ $application->created_at?->format('d M Y') ?? 'N/A' }}</td>
+            <td>
+                <span class="badge badge-blue">
+                    {{ $application->status }}
+                </span>
+            </td>
+            <td>
+                <button class="primary-btn small-btn"
+                    onclick="viewApplication(
+                        @js($application->student_name),
+                        @js($application->company_name),
+                        @js($application->position),
+                        @js($application->status)
+                    )">
+                    View Details
+                </button>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" style="text-align:center;">
+                No applications found.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
 
                 </table>
 
@@ -2532,78 +2325,6 @@
     <section id="settings" class="page">
 
         <div class="settings-grid">
-
-
-            <!-- PASSWORD -->
-
-            <div class="settings-card">
-
-                <h2>🔐 Change Password</h2>
-
-                <p>
-                    Verify your current password before creating
-                    a new password.
-                </p>
-
-                <form onsubmit="changePassword(event)">
-
-                    <div class="form-group">
-
-                        <label>Current Password</label>
-
-                        <input
-                            type="password"
-                            id="currentPassword"
-                            required
-                            placeholder="Enter current password">
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-group">
-
-                        <label>New Password</label>
-
-                        <input
-                            type="password"
-                            id="newPassword"
-                            required
-                            minlength="6"
-                            placeholder="Minimum 6 characters">
-
-                    </div>
-
-
-                    <br>
-
-
-                    <div class="form-group">
-
-                        <label>Confirm New Password</label>
-
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            required
-                            placeholder="Confirm new password">
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <button class="primary-btn">
-                            Update Password
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </div>
 
 
             <!-- ACCOUNT -->
